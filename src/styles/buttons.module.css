@@ -1,0 +1,14 @@
+
+
+.primary_btn{
+ padding:.75rem 1.5rem;
+ border-radius: .375rem;
+ border:none;
+ width:100%;
+ font-size: 1.125rem;
+}
+.login_btn{
+ background:var(--primary_black);
+ color:white;
+ margin:1rem 0;
+}

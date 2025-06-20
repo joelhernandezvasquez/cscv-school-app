@@ -1,14 +1,19 @@
 
 import Image from "next/image";
 
-const Logo = () => {
+interface Props{
+    width?:number,
+    height?:number
+}
+
+const Logo = ({width,height}:Props) => {
   return (
       <Image
             src={"/logo.jpg"}
-            width={50}
-            height={50}
+            width={width ?? 55}
+            height={height ?? 55}
             alt=""
-           />
+    />
   )
 }
 
