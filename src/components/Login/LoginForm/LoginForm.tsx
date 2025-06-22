@@ -1,10 +1,24 @@
+'use client';
+import { FormEvent } from 'react';
+import { authenticateUser, signInUser } from '@/lib/actions/auth/login';
 import style from './style.module.css';
 import form from '../../../styles/forms.module.css';
 import button from '../../../styles/buttons.module.css';
 
 const LoginForm = () => {
+
+  const handleAuthentication = async(event:FormEvent<HTMLFormElement>) =>{
+    event.preventDefault();
+
+    
+    const result = await authenticateUser("aneirytestVasquez@gmail.com",'12345678');
+    console.log(result);
+
+    await signInUser("aneirytestVasquez@gmail.com",'12345678');
+  }
+
   return (
-    <form className={style.form_container}>
+    <form className={style.form_container} onSubmit={handleAuthentication}>
        <div className={form.form_field}>
          <label htmlFor='email'>Email Address</label>
          <div className={form.input_wrapper}>
