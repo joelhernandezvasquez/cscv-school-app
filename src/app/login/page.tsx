@@ -1,8 +1,18 @@
+import { auth } from '@/auth.config';
+import { redirect } from 'next/navigation';
 import Logo from '@/components/ui/logo/Logo';
 import LoginForm from '@/components/Login/LoginForm/LoginForm';
 import style from './style.module.css';
 
-const LoginPage = () => {
+
+const LoginPage = async() => {
+
+      const session: UserSession = await auth() ;
+  
+      if(session?.user){
+        redirect('/dashboard');
+      }
+  
   return (
     <section className={style.wrapper}>
      
