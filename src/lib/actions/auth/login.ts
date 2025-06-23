@@ -3,8 +3,8 @@ import { User } from "@/types";
 import { signIn,getSession } from "next-auth/react";
 
 export const authenticateUser = async(email:string,password:string):Promise<User> =>{
- const TOKEN = getSession();
-  console.log(TOKEN);
+//  const TOKEN = getSession();
+//   console.log(TOKEN);
   try{
       const loginRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login`,{
        method:'POST',
@@ -17,11 +17,7 @@ export const authenticateUser = async(email:string,password:string):Promise<User
         password
     })
       })
-      
-      if(!loginRequest.ok){
-        console.log(loginRequest);
-        throw Error('Error while loging in..')
-      }
+   
 
       return await loginRequest.json();
       

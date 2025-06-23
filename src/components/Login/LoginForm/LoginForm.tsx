@@ -1,20 +1,37 @@
 'use client';
-import { FormEvent } from 'react';
 import { authenticateUser, signInUser } from '@/lib/actions/auth/login';
+import { checkLoginFormErrors } from '@/lib/utils';
+import { toast, Toaster } from 'sonner';
 import style from './style.module.css';
 import form from '../../../styles/forms.module.css';
 import button from '../../../styles/buttons.module.css';
 
+
 const LoginForm = () => {
 
-  const handleAuthentication = async(event:FormEvent<HTMLFormElement>) =>{
+  const handleAuthentication = async(event:React.FormEvent<HTMLFormElement>) =>{
     event.preventDefault();
-
+    const formData = new FormData(event.currentTarget);
     
-    const result = await authenticateUser("aneirytestVasquez@gmail.com",'12345678');
-    console.log(result);
+    const email  = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    
+    const {isError,message} = checkLoginFormErrors(email,password);
 
-    await signInUser("aneirytestVasquez@gmail.com",'12345678');
+    if(isError){
+      toast.error(message);
+      return;
+    }
+
+    const result = await authenticateUser(email,password);
+    console.log(result);
+    
+    if(result.error){
+      toast.error(result.error);
+      return;
+    }
+
+   await signInUser(email,password);
   }
 
   return (
@@ -36,7 +53,7 @@ const LoginForm = () => {
          </div>
         
        </div>
-
+         <Toaster position="top-center" richColors  closeButton  />
        <button type='submit' className={`${button.primary_btn} ${button.login_btn}`}>Log in</button>
     </form>
   )

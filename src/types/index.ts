@@ -2,7 +2,8 @@
 
 export interface User{
     email:string,
-    password:string
+    password:string,
+    error:string
 }
 
 export interface UserSession{
@@ -18,4 +19,9 @@ export interface UserSession{
     id: string
   },
   expires: Date
+}
+
+export type LoginError = {
+ isError:boolean,
+ message?:string
 }
