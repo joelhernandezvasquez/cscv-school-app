@@ -1,17 +1,32 @@
 .wrapper{
     display:flex;
     flex-direction: column;
-    justify-content: center;
     height: 100%;
-    padding:0 1rem 4rem 1rem;
+    padding:5rem 1rem;
+    max-width: 450px;
+    margin:0 auto;
 }
 
 .logo{
     display:flex;
     align-items: center;
     gap:.5rem;
+    color:var(--primary_black);
+}
+
+.main_headline{
+ margin-top:1rem;
+ font-size: 1.75rem;
+ color:var(--primary_black);
 }
 .academy_text{
     font-size: 1.125rem;
     font-weight: 600;
+}
+
+
+@media(min-width:1200px){
+.wrapper{
+    padding:7rem 1rem;
+}
 }
