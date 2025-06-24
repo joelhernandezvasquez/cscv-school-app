@@ -1,12 +1,11 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth.config";
-import {UserSession} from '../../../types/index';
 
 const DashboardPage = async () => {
 
-    const session: UserSession = await auth() ;
+    const session = await auth() ;
 
-    if(!session?.user){
+    if(!session?.user || !session){
       redirect('/login');
     }
 

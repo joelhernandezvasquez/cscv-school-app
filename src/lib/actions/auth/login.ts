@@ -1,6 +1,6 @@
 
 import { User } from "@/types";
-import { signIn,getSession } from "next-auth/react";
+import { signIn} from "next-auth/react";
 
 export const authenticateUser = async(email:string,password:string):Promise<User> =>{
 //  const TOKEN = getSession();

@@ -6,7 +6,6 @@ import style from './style.module.css';
 import form from '../../../styles/forms.module.css';
 import button from '../../../styles/buttons.module.css';
 
-
 const LoginForm = () => {
 
   const handleAuthentication = async(event:React.FormEvent<HTMLFormElement>) =>{
@@ -15,7 +14,6 @@ const LoginForm = () => {
     
     const email  = formData.get('email') as string;
     const password = formData.get('password') as string;
-    
     const {isError,message} = checkLoginFormErrors(email,password);
 
     if(isError){
@@ -24,7 +22,6 @@ const LoginForm = () => {
     }
 
     const result = await authenticateUser(email,password);
-    console.log(result);
     
     if(result.error){
       toast.error(result.error);

@@ -14,8 +14,8 @@ export const authConfig:NextAuthConfig = {
          }
         return token;
        },
-      async session({ session, token, user }) {
-        session.user = token.data as any;
+      async session({ session, token}) {
+        session.user = token.data as never;
         return session;
       },
       },
@@ -28,7 +28,7 @@ export const authConfig:NextAuthConfig = {
           email: { label: "Email", type: "text", placeholder: "jsmith" },
           password: { label: "Password", type: "password" }
         },
-        async authorize(credentials, req) {
+        async authorize(credentials) {
          
           const {email,password} = credentials;
         

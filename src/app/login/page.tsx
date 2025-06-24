@@ -4,12 +4,11 @@ import Logo from '@/components/ui/logo/Logo';
 import LoginForm from '@/components/Login/LoginForm/LoginForm';
 import style from './style.module.css';
 
-
 const LoginPage = async() => {
 
-      const session: UserSession = await auth() ;
+      const session = await auth() ;
   
-      if(session?.user){
+      if( session && session?.user){
         redirect('/dashboard');
       }
   
