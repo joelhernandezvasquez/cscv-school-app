@@ -19,3 +19,10 @@ export const checkLoginFormErrors = (email:string,password:string):LoginError =>
         isError:false
     }
 }
+
+export const getPageNameFromPath = (path:string) =>{
+  let pathName = path.replace('/','');
+  const firstLetter = pathName[0].toUpperCase();
+  pathName = `${firstLetter}${pathName.slice(1)}`;
+  return pathName;
+}
