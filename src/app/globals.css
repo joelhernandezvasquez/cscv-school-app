@@ -27,6 +27,7 @@ body {
 
 :root {
  --primary_black:#11141A;
+ --primary_blue:#5655D7;
  --radius:0.625rem;
  --background:oklch(1 0 0);
  --foreground:oklch(0.145 0 0);
@@ -72,6 +73,7 @@ html, body {
 
 body {
 line-height: 1.5;
+/* background:#F7F8FA; */
 }
 img, picture, video, canvas, svg {
   display: block;
