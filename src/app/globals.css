@@ -73,7 +73,7 @@ html, body {
 
 body {
 line-height: 1.5;
-/* background:#F7F8FA; */
+background:#F7F8FA;
 }
 img, picture, video, canvas, svg {
   display: block;

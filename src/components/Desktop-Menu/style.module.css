@@ -1,0 +1,26 @@
+.desktop_menu{
+    display:flex;
+    align-items: center;
+    border-radius: 10px;
+    background:#FFF;
+}
+.group_desktop_menu_items{
+ display:flex;
+ align-items: center;
+ margin-left:auto;
+ gap:1.5rem;
+}
+
+@media(min-width:1200px){
+.group_desktop_menu_items{
+ gap:3rem;
+}
+}
+
+
+@media(max-width:767px){
+    .desktop_menu{
+        display:none;
+    }
+    
+}

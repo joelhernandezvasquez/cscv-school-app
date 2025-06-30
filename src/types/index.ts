@@ -1,13 +1,16 @@
 
-
 export interface User{
     email:string,
     password:string,
     error:string
 }
-
+export type SessionUser = {
+  name: string;
+  email: string;
+  image?: string;
+  role: string;
+};
 export interface UserSession{
-    user: {
     user: {
       id: number,
       name: string,
@@ -16,9 +19,8 @@ export interface UserSession{
       created_at: Date
     },
     token: string,
-    id: string
-  },
-  expires: Date
+    id: string,
+   expires: Date
 }
 
 export type LoginError = {

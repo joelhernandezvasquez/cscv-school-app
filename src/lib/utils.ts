@@ -26,3 +26,8 @@ export const getPageNameFromPath = (path:string) =>{
   pathName = `${firstLetter}${pathName.slice(1)}`;
   return pathName;
 }
+
+export const getFirstLetterUpperCase = (text:string) =>{
+  const firstLetter = text[0].toUpperCase();
+  return `${firstLetter}${text.slice(1)}`;
+}
