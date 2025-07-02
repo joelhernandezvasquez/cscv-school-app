@@ -103,6 +103,24 @@ a{
   color:inherit;
 }
 
+.container{
+  display:grid;
+  grid-template-columns: 1fr;
+}
+
+@media(min-width:767px){
+  .container{
+    grid-template-columns: 240px 1fr 1fr;
+    grid-template-rows: 80px 1fr 1fr;
+    height: 100%;
+  }
+
+  .main_content{
+    grid-column: 2/-1;
+    grid-row: 2/-1;
+  }
+}
+
 @theme inline {
  --radius-sm:calc(var(--radius) - 4px);
  --radius-md:calc(var(--radius) - 2px);

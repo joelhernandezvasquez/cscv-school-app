@@ -37,3 +37,17 @@
     box-shadow: 0px 2px 6px 0px rgba(144, 146, 148, 0.20);
     cursor: pointer;
 }
+
+.sign_out_btn{
+    display:flex;
+    align-items: center;
+    border:none;
+    background:#F5F8FF;
+    width:100%;
+    padding:10px 12px;
+    cursor: pointer;
+    color:#414244;
+    gap:1rem;
+    border-radius: 5px;
+    font-size: 1.125rem;
+}

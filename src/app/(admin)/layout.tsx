@@ -2,8 +2,9 @@
 // import {Figtree } from "next/font/google";
 // import "./globals.css";
 import { auth } from "@/auth.config";
-import MainHeader from "@/components/MainHeader/MainHeader";
 import { redirect } from "next/navigation";
+import MainHeader from "@/components/MainHeader/MainHeader";
+import Sidebar from "@/components/Sidebar/Sidebar";
 
 // const figtree = Figtree({
 //   variable: "--font-figtree",
@@ -18,16 +19,20 @@ import { redirect } from "next/navigation";
 
 export default async function AuthenticatedLayout({children}: Readonly<{children: React.ReactNode}>) 
 {
-    const session = await auth() ;
+    const session = await auth();
 
     if(!session?.user || !session){
       redirect('/login');
     }
 
     return (
-    <>
-     <MainHeader/>
-     {children}
-    </>
+    <div className={'container'}>
+      <Sidebar/>
+      <MainHeader/>
+      <main className={'main_content'}>
+        {children}
+      </main>
+     
+    </div>
   );
 }

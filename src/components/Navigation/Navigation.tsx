@@ -1,3 +1,4 @@
+'use client';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { RxDashboard } from 'react-icons/rx';
@@ -40,7 +41,7 @@ export const navigationItems = [
 ]
 
 interface Props{
-  closeMenu: () => void
+  closeMenu? : () => void
 }
 const Navigation = ({closeMenu}:Props) => {
 
@@ -48,7 +49,11 @@ const Navigation = ({closeMenu}:Props) => {
 
   const handleOnClick = (currentUrl:string) =>{
     if(pathName!==currentUrl){
-      closeMenu();
+      
+      if(closeMenu){
+        closeMenu();
+      }
+     
     }
   }
 
