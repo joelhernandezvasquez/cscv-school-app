@@ -51,3 +51,9 @@
     border-radius: 5px;
     font-size: 1.125rem;
 }
+
+@media(max-width:767px){
+    .sign_out_btn{
+       background:none;
+    }
+}
