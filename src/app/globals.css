@@ -118,6 +118,7 @@ a{
   .main_content{
     grid-column: 2/-1;
     grid-row: 2/-1;
+    padding:4rem 1rem;
   }
 }
 

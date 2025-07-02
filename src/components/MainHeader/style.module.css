@@ -4,6 +4,6 @@
     .main_header{
         grid-column:2/-1;
         grid-row:1/2;
-        padding:1.25rem 1.5rem;
+        padding:1rem;
     }
 }

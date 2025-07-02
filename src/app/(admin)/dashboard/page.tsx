@@ -2,7 +2,7 @@
 const DashboardPage = async () => {
 
   return (
-    <p>This is the dashboard page</p>
+    <p></p>
   )
 }
 
