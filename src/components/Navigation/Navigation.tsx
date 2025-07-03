@@ -6,6 +6,7 @@ import { PiCalendarBlank, PiStudent } from 'react-icons/pi';
 import { LuUserCheck } from 'react-icons/lu';
 import { SiGoogleclassroom } from 'react-icons/si';
 import style from './style.module.css';
+import SignOutBtn from '../ui/sign-out-btn/SignOutBtn';
 
 export const navigationItems = [
     {
@@ -71,6 +72,7 @@ const Navigation = ({closeMenu}:Props) => {
         )
       })}
      </ul>
+     <SignOutBtn/>
     </nav>
   )
 }

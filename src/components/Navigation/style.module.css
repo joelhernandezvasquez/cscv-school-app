@@ -5,6 +5,7 @@
  width: 100%;
  background:#F7F8FA;
  box-shadow: 0px 2px 6px 0px rgba(144, 146, 148, 0.20);
+ padding-bottom: 1rem;
 }
 .nav_item{
     margin:.5rem 0;
