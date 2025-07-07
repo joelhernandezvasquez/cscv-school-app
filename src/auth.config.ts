@@ -17,6 +17,7 @@ export const authConfig:NextAuthConfig = {
        },
       async session({ session, token}) {
         session = token.data as never;
+        //console.log(session)
         return session;
       },
       },

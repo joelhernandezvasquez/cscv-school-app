@@ -1,8 +1,15 @@
-
+import { Suspense } from 'react';
+import StudentMetrics from '@/components/Students/Students-Metrics/StudentMetrics';
+import util from '../../../styles/utils.module.css';
 
 const page = () => {
   return (
-    <h1>This is the student page</h1>
+    <main className={util.wrapper}>
+     <Suspense fallback="Loading...">
+        <StudentMetrics/>
+     </Suspense>
+
+    </main>
   )
 }
 

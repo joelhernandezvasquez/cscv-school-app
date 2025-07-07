@@ -27,3 +27,8 @@ export type LoginError = {
  isError:boolean,
  message?:string
 }
+export interface StudentsSummary{
+    total:number,
+    active:number,
+    inactive:number
+}
