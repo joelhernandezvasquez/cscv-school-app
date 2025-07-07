@@ -29,9 +29,9 @@ export default async function AuthenticatedLayout({children}: Readonly<{children
     <div className={'container'}>
       <Sidebar/>
       <MainHeader/>
-      <main className={'main_content'}>
+      <div className={'main_content'}>
         {children}
-      </main>
+      </div>
      
     </div>
   );
