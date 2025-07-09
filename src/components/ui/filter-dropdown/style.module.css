@@ -1,0 +1,34 @@
+.filter_container{
+
+}
+.filter_mobile_btn{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding:9px;
+    border-radius: 10px;
+    background: #FAFAFA;
+    border:none;
+}
+.filter_desktop_btn{
+    display:none;
+}
+
+@media(min-width:767px){
+    .filter_mobile_btn{
+        display:none;
+    }
+    .filter_desktop_btn{
+     display:flex;
+     align-items: center;
+     gap:5px;
+     border:none;
+     background: #FAFAFA;
+     border-radius: .5rem;
+     padding:6px 10px;
+     font-size: .875rem;
+     color:#2E3135;
+     font-weight: 500;
+     cursor: pointer;
+    }
+}

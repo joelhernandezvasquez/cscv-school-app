@@ -5,10 +5,11 @@
     padding:.5rem .75rem;
     border-radius: .625rem;
     background: #F5F5F5;
+    flex:1;
 }
 .search_input{
-    flex:1;
     background:none;
     border:none;
     outline:none;
+    flex:1;
 }

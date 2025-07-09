@@ -3,6 +3,9 @@ import StudentMetrics from '@/components/Students/Students-Metrics/StudentMetric
 import Search from '@/components/ui/search/Search';
 import util from '../../../styles/utils.module.css';
 import style from './style.module.css';
+import FilterDropdown from '@/components/ui/filter-dropdown/FilterDropdown';
+import AddStudentButton from '@/components/Students/Add-Student-Button/AddStudentButton';
+import SortByStudents from '@/components/Students/SortByStudents/SortByStudents';
 
 const page = () => {
   return (
@@ -13,8 +16,13 @@ const page = () => {
 
      <section className={`${style.student_table_container} ${util.card_container}`}>
        <header className={style.student_table_header}>
+         <div className={style.student_table_header_left_col}>
          <Search placeholder='Search name, etc'/>
-         
+         <FilterDropdown/>
+         </div>
+        
+         <SortByStudents/>
+         <AddStudentButton/>
        </header> 
      </section>
 

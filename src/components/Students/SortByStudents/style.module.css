@@ -1,0 +1,25 @@
+.sort_by{
+    display:none;
+}
+
+@media(min-width:1200px){
+    .sort_by{
+        display:flex;
+        align-items: center;
+        gap:1rem;
+        font-size: .875rem;
+    }
+    .sort_by button{
+    display:flex;
+     align-items: center;
+     gap:5px;
+     border:none;
+     background: #FAFAFA;
+     border-radius: .5rem;
+     padding:6px 10px;
+     font-size: .875rem;
+     color:#2E3135;
+     font-weight: 500;
+     cursor: pointer;
+    }
+}
