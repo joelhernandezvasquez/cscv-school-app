@@ -1,0 +1,32 @@
+.mobile_student_btn{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border:none;
+    border-radius: 10px;
+    background: #CDDEFF;
+    padding:9px;
+}
+
+.desktop_student_btn{
+    display:none;
+}
+
+@media(min-width:767px){
+    .mobile_student_btn{
+        display:none;
+    }
+
+    .desktop_student_btn{
+        display:block;
+        border:none;
+        background: #CDDEFF;
+        border-radius: .5rem;
+        padding:8px 12px;
+        font-size: .875rem;
+        color:#2E3135;
+        cursor: pointer;
+        font-weight: 500;
+
+    }
+}
