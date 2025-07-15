@@ -1,6 +1,10 @@
 import { LoginError } from "@/types";
+import clsx, { ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
-
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
 export const checkLoginFormErrors = (email:string,password:string):LoginError =>{
     if(email.length === 0){
         return {

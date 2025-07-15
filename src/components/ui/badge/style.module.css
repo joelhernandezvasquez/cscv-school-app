@@ -1,0 +1,16 @@
+.badge{
+    padding:2px;
+    border-radius: 1.5rem;
+    text-align: center;
+    font-size: .875rem;
+}
+.active_badge{
+    background:var(--primary_blue);
+    color:#FFF;
+    font-weight: 500;
+}
+.inactive_badge{
+    background:#E2E2E3;
+    color:#2E3135;
+    font-weight: 500;
+}

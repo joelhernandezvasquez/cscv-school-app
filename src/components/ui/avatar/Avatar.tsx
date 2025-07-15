@@ -4,8 +4,8 @@ import style from './style.module.css';
 interface Props{
     width:number,
     height:number,
-    userName:string,
-    role:string
+    userName?:string,
+    role?:string
 }
 
 const Avatar = ({width,height,userName,role}:Props) => {
