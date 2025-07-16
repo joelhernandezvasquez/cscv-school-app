@@ -1,0 +1,12 @@
+.action_btn{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border:none;
+    background:none;
+}
+
+.action_btn svg{
+    width: 25px;
+   color:#A6A8A9;
+}
