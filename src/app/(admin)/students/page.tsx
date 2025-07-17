@@ -7,6 +7,7 @@ import SortByStudents from '@/components/Students/SortByStudents/SortByStudents'
 import StudentContentTable from '@/components/Students/StudentContentTable/StudentContentTable';
 import style from './style.module.css';
 import util from '../../../styles/utils.module.css';
+import PaginationContainer from '@/components/ui/pagination/PaginationContainer';
 
 const page = () => {
   return (
@@ -33,7 +34,10 @@ const page = () => {
             //  sortBy={sortBy}
              /> 
         {/* </Suspense> */}
+        <PaginationContainer/>
      </section>
+
+   
 
     </main>
   )
