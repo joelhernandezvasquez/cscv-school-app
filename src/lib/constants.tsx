@@ -27,3 +27,7 @@ export const navigationItems = [
     }
 
 ]
+
+export const filterStudentOptions = [
+    'All','Active','Inactive','Recent','Oldest','Most Courses'
+]

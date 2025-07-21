@@ -5,9 +5,10 @@ import FilterDropdown from '@/components/ui/filter-dropdown/FilterDropdown';
 import AddStudentButton from '@/components/Students/Add-Student-Button/AddStudentButton';
 import SortByStudents from '@/components/Students/SortByStudents/SortByStudents';
 import StudentContentTable from '@/components/Students/StudentContentTable/StudentContentTable';
+import PaginationContainer from '@/components/ui/pagination/PaginationContainer';
+import { filterStudentOptions } from '@/lib/constants';
 import style from './style.module.css';
 import util from '../../../styles/utils.module.css';
-import PaginationContainer from '@/components/ui/pagination/PaginationContainer';
 
 const page = () => {
   return (
@@ -20,7 +21,7 @@ const page = () => {
        <header className={style.student_table_header}>
          <div className={style.student_table_header_left_col}>
          <Search placeholder='Search name, etc'/>
-         <FilterDropdown/>
+         <FilterDropdown itemList={filterStudentOptions}/>
          </div>
         
          <SortByStudents/>
@@ -36,8 +37,6 @@ const page = () => {
         {/* </Suspense> */}
         <PaginationContainer/>
      </section>
-
-   
 
     </main>
   )

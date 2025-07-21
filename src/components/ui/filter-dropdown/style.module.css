@@ -1,5 +1,5 @@
 .filter_container{
-
+ position:relative;
 }
 .filter_mobile_btn{
     display:flex;
@@ -12,6 +12,17 @@
 }
 .filter_desktop_btn{
     display:none;
+}
+
+.dropdown_style{
+    position:absolute;
+    top:40px;
+    right:0;
+    width: 160px;
+}
+
+.flip_icon{
+    transform:rotate(180deg);
 }
 
 @media(min-width:767px){
