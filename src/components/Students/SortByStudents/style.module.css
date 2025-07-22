@@ -4,13 +4,14 @@
 
 @media(min-width:1200px){
     .sort_by{
+         position:relative;
         display:flex;
         align-items: center;
-        gap:1rem;
-        font-size: .875rem;
+        justify-content: space-between;
+        font-size: .875rem; 
     }
     .sort_by button{
-    display:flex;
+     display:flex;
      align-items: center;
      gap:5px;
      border:none;
@@ -21,5 +22,14 @@
      color:#2E3135;
      font-weight: 500;
      cursor: pointer;
+     
     }
+
+    .dropdown_style{
+    position:absolute;
+    top:40px;
+    right:0;
+    left:0;
+    width: 170px;
+}
 }

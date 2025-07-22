@@ -31,3 +31,7 @@ export const navigationItems = [
 export const filterStudentOptions = [
     'All','Active','Inactive','Recent','Oldest','Most Courses'
 ]
+
+export const sortStudentOptions = [
+    'Name (A-Z)','Name (Z-A)','Enrollment Date (Newest)','Enrollment Date (Oldest)','Most Courses','Least Courses'
+]

@@ -6,7 +6,7 @@ import AddStudentButton from '@/components/Students/Add-Student-Button/AddStuden
 import SortByStudents from '@/components/Students/SortByStudents/SortByStudents';
 import StudentContentTable from '@/components/Students/StudentContentTable/StudentContentTable';
 import PaginationContainer from '@/components/ui/pagination/PaginationContainer';
-import { filterStudentOptions } from '@/lib/constants';
+import { filterStudentOptions, sortStudentOptions } from '@/lib/constants';
 import style from './style.module.css';
 import util from '../../../styles/utils.module.css';
 
@@ -24,7 +24,7 @@ const page = () => {
          <FilterDropdown itemList={filterStudentOptions}/>
          </div>
         
-         <SortByStudents/>
+         <SortByStudents itemList={sortStudentOptions}/>
          <AddStudentButton/>
        </header> 
 
