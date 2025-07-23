@@ -4,8 +4,7 @@ import StudentTableItem from "../StudentTableItem/StudentTableItem";
 import style from './style.module.css';
 
 const StudentContentTable = async() => {
-  
-  const studentList = await fetchStudents();
+   const studentList = await fetchStudents();
 
   return (
    <>
@@ -17,9 +16,8 @@ const StudentContentTable = async() => {
     }
    </ul>
 
-    <StudentTable/>
+    <StudentTable studentsList={studentList}/>
    </>
-  
   )
 }
 
