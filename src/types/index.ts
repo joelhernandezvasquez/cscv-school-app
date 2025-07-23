@@ -32,3 +32,18 @@ export interface StudentsSummary{
     active:number,
     inactive:number
 }
+
+export interface Students{
+  id: 8,
+  first_name: string,
+  last_name: string,
+  email: string,
+  phone: string,
+  gender: string,
+  direccion:string,
+  parroquia: string,
+  asuntos_medicos: string,
+  active: boolean,
+  created_at: Date,
+  _count:{Enrollments:number}
+}

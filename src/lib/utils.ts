@@ -41,3 +41,11 @@ export const getOnlyUserName = (userName:string) =>{
   return `${name.slice(0,whiteSpace)}`;
 
 }
+
+export const getFormattedDate = (date:Date) =>{
+ return new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+}
