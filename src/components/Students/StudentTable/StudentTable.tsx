@@ -19,7 +19,6 @@ interface Props{
 }
 
 const StudentTable = ({studentsList}:Props) => {
-
   return (
    <Table className={style.student_table}>
     <TableHeader className={style.student_table_header}>
@@ -51,7 +50,7 @@ const StudentTable = ({studentsList}:Props) => {
 
         <TableCell className={`${style.student_courses}`}>
           <FaBookBible size={18} color="#5655D7" />
-          <p>10</p>
+          <p>{student._count.Enrollments}</p>
         </TableCell>
 
         <TableCell>

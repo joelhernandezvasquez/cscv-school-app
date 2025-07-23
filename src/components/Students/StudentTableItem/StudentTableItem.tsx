@@ -43,7 +43,7 @@ const StudentTableItem = ({student}:Props) => {
         <ActionButton/>
           <p className={style.student_info_text}> 
             <FaBookBible size={18} color="#5655D7" />
-            10
+            {student._count.Enrollments}
            </p>
              <Badge status= {active ? 'Active' : 'Inactive'}/>
           

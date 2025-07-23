@@ -44,5 +44,6 @@ export interface Students{
   parroquia: string,
   asuntos_medicos: string,
   active: boolean,
-  created_at: Date
+  created_at: Date,
+  _count:{Enrollments:number}
 }
