@@ -10,7 +10,18 @@ import { filterStudentOptions, sortStudentOptions } from '@/lib/constants';
 import style from './style.module.css';
 import util from '../../../styles/utils.module.css';
 
-const page = () => {
+export default async function Page(props: {
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+    sortBy?:string
+  }>;
+}) {
+
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query || '';
+  const currentPage = Number(searchParams?.page) || 1;
+  
   return (
     <main className={util.wrapper}>
      <Suspense fallback="Loading...">
@@ -28,18 +39,16 @@ const page = () => {
          <AddStudentButton/>
        </header> 
 
-        {/* <Suspense key={query + currentPage} fallback={<SkeletonTable/>}> */}
+        <Suspense key={query + currentPage} fallback={'Loading Table...'}>
             <StudentContentTable 
-            //  query={query} 
-            //  currentPage={currentPage}
+              query={query} 
+              currentPage={currentPage}
             //  sortBy={sortBy}
              /> 
-        {/* </Suspense> */}
+        </Suspense>
         <PaginationContainer/>
      </section>
 
     </main>
   )
 }
-
-export default page
