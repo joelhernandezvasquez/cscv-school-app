@@ -12,7 +12,7 @@ interface Props{
 const StudentContentTable = async({query,currentPage}:Props) => {
   console.log(query);
   console.log(currentPage); 
-  const studentList = await fetchStudents();
+  const studentList = await fetchStudents(query,currentPage);
 
   return (
    <>

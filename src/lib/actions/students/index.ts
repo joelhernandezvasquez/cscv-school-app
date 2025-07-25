@@ -27,12 +27,12 @@ export const getStudentSummary = async():Promise<StudentsSummary> => {
     }
 }
 
-export const fetchStudents = async():Promise<Students[]> =>{
+export const fetchStudents = async(query:string,page:string | number):Promise<Students[]> =>{
   try{
        const session = await auth();
        const TOKEN = (session as Session & { token?: string })?.token;
 
-       const studentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/students`,{
+       const studentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/search?query=${query}&page=${page}`,{
          method: 'GET',
          headers: {
            'Authorization': `Bearer ${TOKEN}`,
