@@ -46,7 +46,7 @@ export default async function Page(props: {
               sortBy={sortBy}
              /> 
         </Suspense>
-        <PaginationContainer currentPage={currentPage}/>
+        <PaginationContainer currentPage={currentPage} query={query} sortBy={sortBy}/>
      </section>
 
     </main>
