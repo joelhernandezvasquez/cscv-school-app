@@ -1,5 +1,5 @@
 import { auth } from "@/auth.config";
-import { Students, StudentsSummary } from "@/types";
+import { Students, StudentsPagination, StudentsSummary } from "@/types";
 import { Session } from "next-auth";
 
 export const getStudentSummary = async():Promise<StudentsSummary> => {
@@ -27,12 +27,12 @@ export const getStudentSummary = async():Promise<StudentsSummary> => {
     }
 }
 
-export const fetchStudents = async(query:string,page:string | number):Promise<Students[]> =>{
+export const fetchStudents = async(query:string,page:string | number,sortBy:string):Promise<Students[]> =>{
   try{
        const session = await auth();
        const TOKEN = (session as Session & { token?: string })?.token;
 
-       const studentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/search?query=${query}&page=${page}`,{
+       const studentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/search?query=${query}&page=${page}&sortBy=${sortBy}`,{
          method: 'GET',
          headers: {
            'Authorization': `Bearer ${TOKEN}`,
@@ -50,4 +50,30 @@ export const fetchStudents = async(query:string,page:string | number):Promise<St
        console.log(error);
         throw new Error('Unknown error occurred while getting the students');
   }
+}
+
+export const getStudentsPagination = async ():Promise<StudentsPagination> =>{
+  try{
+      const session = await auth();
+      const TOKEN = (session as Session & { token?: string })?.token;
+      const paginationRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/pagination`,{
+         method: 'GET',
+         headers: {
+           'Authorization': `Bearer ${TOKEN}`,
+            'Content-Type': 'application/json'
+          }
+      })
+
+      return await paginationRequest.json();
+
+  }
+  catch(error){
+   if(error instanceof Error){
+        console.log(error);
+        throw new Error(error.message);
+    } 
+       console.log(error);
+        throw new Error('Unknown error occurred while getting the students pagination');
+  }
+
 }

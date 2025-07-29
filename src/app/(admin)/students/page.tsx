@@ -21,7 +21,7 @@ export default async function Page(props: {
   const searchParams = await props.searchParams;
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
-  
+  const sortBy = searchParams?.sortBy;
   return (
     <main className={util.wrapper}>
      <Suspense fallback="Loading...">
@@ -43,10 +43,10 @@ export default async function Page(props: {
             <StudentContentTable 
               query={query} 
               currentPage={currentPage}
-            //  sortBy={sortBy}
+              sortBy={sortBy}
              /> 
         </Suspense>
-        <PaginationContainer/>
+        <PaginationContainer currentPage={currentPage}/>
      </section>
 
     </main>

@@ -1,12 +1,20 @@
 
+import { getStudentsPagination } from '@/lib/actions/students';
 import {Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious} from '../pagination';
 import style from './style.module.css';
 
-const PaginationContainer = () => {
+interface Props{
+  currentPage:number
+}
+
+const PaginationContainer = async ({currentPage}:Props) => {
+  const {totalPages,totalStudents} = await getStudentsPagination();
+
+
   return (
     <div className={style.pagination_container}>
        <div className={style.pagination_info}>
-        <p className={style.pagination_text}>Showing 1-12 of 560</p>
+        <p className={style.pagination_text}>Showing {currentPage}-{totalPages} of {totalStudents}</p>
        </div>
 
        <div className={style.pagination}>

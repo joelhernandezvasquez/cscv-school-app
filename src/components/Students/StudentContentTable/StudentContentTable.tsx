@@ -4,15 +4,14 @@ import StudentTableItem from "../StudentTableItem/StudentTableItem";
 import style from './style.module.css';
 
 interface Props{
-   query:string,
-    // sortBy?:string,
-   currentPage:number | string,
+    query:string,
+    sortBy?:string,
+    currentPage:number | string,
 }
 
-const StudentContentTable = async({query,currentPage}:Props) => {
-  console.log(query);
-  console.log(currentPage); 
-  const studentList = await fetchStudents(query,currentPage);
+const StudentContentTable = async({query,currentPage,sortBy}:Props) => {
+
+  const studentList = await fetchStudents(query,currentPage,sortBy!);
 
   return (
    <>

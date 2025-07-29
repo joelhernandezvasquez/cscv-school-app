@@ -23,10 +23,10 @@ const SortByStudents = ({itemList}:Props) => {
       params.set('page','1');
 
     if(value){
-      params.set('query', value);
+      params.set('sortBy',value)
     }
     else{
-      params.delete('query');
+      params.delete('sortBy');
     }
     replace(`${pathname}?${params.toString()}`);
     handleToggle();
