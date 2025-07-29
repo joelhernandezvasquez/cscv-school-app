@@ -1,8 +1,9 @@
 
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
 import { getStudentsPagination } from '@/lib/actions/students';
 import {Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious} from '../pagination';
 import style from './style.module.css';
-import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
+
 
 interface Props{
   currentPage:number,
