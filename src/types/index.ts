@@ -47,3 +47,8 @@ export interface Students{
   created_at: Date,
   _count:{Enrollments:number}
 }
+
+export interface StudentsPagination{
+  totalPages:number,
+  totalStudents:number;
+}

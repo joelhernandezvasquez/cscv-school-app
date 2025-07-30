@@ -34,6 +34,10 @@
     background:#CDDEFF;
 }
 
+.disable{
+    cursor:not-allowed;
+}
+
 @media(min-width:767px){
     .pagination_container{
     flex-direction: row;

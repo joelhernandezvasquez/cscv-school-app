@@ -3,8 +3,15 @@ import StudentTable from "../StudentTable/StudentTable";
 import StudentTableItem from "../StudentTableItem/StudentTableItem";
 import style from './style.module.css';
 
-const StudentContentTable = async() => {
-   const studentList = await fetchStudents();
+interface Props{
+    query:string,
+    sortBy?:string,
+    currentPage:number | string,
+}
+
+const StudentContentTable = async({query,currentPage,sortBy}:Props) => {
+
+  const studentList = await fetchStudents(query,currentPage,sortBy!);
 
   return (
    <>
