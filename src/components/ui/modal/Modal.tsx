@@ -19,7 +19,7 @@ const Modal = ({modalHeading,onCloseModal,subText,children}:Props) => {
         <div className={style.inner_modal} ref={modalRef}>
           <header className={style.modal_header}>
               <h2 className={style.heading}>{modalHeading}</h2>
-              <IoIosClose size={30} onClick={onCloseModal} />
+              <IoIosClose className={style.close_icon} size={30} onClick={onCloseModal} />
           </header>
           
           <section className={style.modal_content}>
