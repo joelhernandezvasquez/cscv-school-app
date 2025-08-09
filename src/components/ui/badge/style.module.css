@@ -1,0 +1,45 @@
+.badge_desktop{
+    display:block;
+    padding:2px;
+    border-radius: 1.5rem;
+    text-align: center;
+    font-size: .875rem;
+}
+.active_badge{
+    background:var(--primary_blue);
+    color:#FFF;
+    font-weight: 500;
+}
+.inactive_badge{
+    background:#E2E2E3;
+    color:#2E3135;
+    font-weight: 500;
+}
+
+.badge_mobile{
+    display:none;
+}
+
+@media(max-width:768px){
+    .badge_desktop{
+       display:none;
+    }
+    .badge_mobile{
+        display:flex;
+        align-items: center;
+        gap:.5rem;
+        font-size: .875rem;
+    }
+    .active_badge{
+        width:.5rem;
+        height: .5rem;
+        border-radius: 50% ;
+       background:var(--primary_blue);
+}
+.inactive_badge{
+width:.5rem;
+height: .5rem;
+border-radius: 50% ;
+background:#E2E2E3;
+}
+}

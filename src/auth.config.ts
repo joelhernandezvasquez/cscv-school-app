@@ -1,5 +1,6 @@
 import NextAuth,{type NextAuthConfig} from "next-auth";
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { UserSession } from "./types";
 
 export const authConfig:NextAuthConfig = {
     pages: {
@@ -15,7 +16,8 @@ export const authConfig:NextAuthConfig = {
         return token;
        },
       async session({ session, token}) {
-        session.user = token.data as never;
+        session = token.data as never;
+        //console.log(session)
         return session;
       },
       },
@@ -43,7 +45,7 @@ export const authConfig:NextAuthConfig = {
             })
           })
 
-          const user = await res.json();
+          const user:UserSession = await res.json();
       
           if(user){
              return user;

@@ -6,14 +6,14 @@
 }
 .form_field label{
  color:var(--primary_black);
- font-size: 1.125rem;
+ font-size: 1rem;
 }
 
 .form_field input{
- padding:.75rem 1rem;
+ padding:.5rem 1rem;
  border-radius:5px;
  border:1px solid #e5e7eb;
- font-size: 1.125rem;
+ font-size: 1rem;
 }
 .form_field input:focus{
  outline:1.5px solid  #5655D7;
@@ -51,5 +51,44 @@
 }
 .input_wrapper:focus-within svg, .input_wrapper:focus-within span{
     color:#5655D7;
-    
+}
+
+.radio_group{
+    display:flex;
+    align-items: center;
+    gap:1rem;
+}
+.radio_group label{
+    display:flex;
+    align-items: center;
+    gap:.5rem;
+}
+input[type="radio"]:focus {
+  outline: none;
+}
+
+.fieldset {
+    border: none;
+}
+.textarea{
+    min-height: 100px;
+    padding:.5rem;
+    border-radius: 5px;
+}
+.textarea:focus{
+       outline: 1px solid var(--primary_blue);
+}
+.error{
+ outline:1px solid red;
+}
+
+
+@media(min-width:767px){
+   .form_field label{
+ font-size: 1.125rem;
+}
+
+.form_field input{
+ font-size: 1.125rem;
+} 
 }

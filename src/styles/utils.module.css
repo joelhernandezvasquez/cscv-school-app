@@ -1,3 +1,26 @@
 .wrapper{
-    
+   padding:1rem; 
+}
+
+.card_container{
+    background:#FFF;
+    border-radius: 1rem;
+    padding:1rem;
+    box-shadow: 0px 2px 6px 0px rgba(144, 146, 148, 0.20);
+}
+
+.text_center{
+    text-align: center;
+}
+.text-left{
+    text-align: left;
+}
+.text-right{
+    text-align: right;
+}
+
+@media(min-width:767px){
+    .wrapper{
+        padding:0;
+    }
 }

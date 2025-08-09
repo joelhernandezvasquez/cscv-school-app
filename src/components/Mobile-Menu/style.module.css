@@ -1,0 +1,14 @@
+.mobile_menu{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:1rem;
+    position:relative;
+    z-index:1;
+}
+
+@media(min-width:767px){
+    .mobile_menu{
+        display:none;
+    }
+}

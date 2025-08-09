@@ -1,0 +1,31 @@
+.desktop_menu{
+    display:flex;
+    align-items: center;
+    border-radius: 10px;
+    background:#FFF;
+    padding:16px 20px;
+    box-shadow: 0px 2px 6px 0px rgba(144, 146, 148, 0.20);
+}
+.group_desktop_menu_items{
+ display:flex;
+ align-items: center;
+ margin-left:auto;
+ gap:1.5rem;
+}
+.desktop_menu p{
+    color:#414244;
+}
+
+@media(min-width:1200px){
+.group_desktop_menu_items{
+ gap:3rem;
+}
+}
+
+
+@media(max-width:767px){
+    .desktop_menu{
+        display:none;
+    }
+    
+}
