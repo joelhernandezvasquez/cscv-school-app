@@ -52,3 +52,20 @@ export interface StudentsPagination{
   totalPages:number,
   totalStudents:number;
 }
+
+export interface AddStudentFormState {
+    firstName?: boolean;
+    lastName?: boolean;
+    email?: boolean,
+    phoneNumber?: boolean;
+    gender?: boolean;
+    street?: boolean;
+    city?: boolean;
+    state?: boolean;
+    zipcode?: boolean;
+    parroquia?: boolean;
+    medicalCondition?: boolean;
+    success:boolean,
+    message:string,
+    errors?: Record<string, string>;
+}

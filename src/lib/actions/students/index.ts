@@ -1,6 +1,13 @@
+
 import { auth } from "@/auth.config";
 import { Students, StudentsPagination, StudentsSummary } from "@/types";
 import { Session } from "next-auth";
+
+export const getToken = async() =>{
+   const session = await auth();
+   const TOKEN = (session as Session & { token?: string })?.token;
+   return TOKEN;
+}
 
 export const getStudentSummary = async():Promise<StudentsSummary> => {
     try{
@@ -77,3 +84,157 @@ export const getStudentsPagination = async ():Promise<StudentsPagination> =>{
   }
 
 }
+
+export const validateStudentForm = (formData:FormData) =>{
+ let errors = {};
+
+  const firstName = formData.get('firstName');
+  const lastName = formData.get('lastName');
+  const email = formData.get('email');
+  const phoneNumber = formData.get('phoneNumber');
+  const gender = formData.get('genderRadio');
+  const street = formData.get('street');
+  const city = formData.get('city');
+  const state = formData.get('state');
+  const zipcode = formData.get('zipcode');
+  const parroquia = formData.get('parroquia');
+
+  if(!firstName){
+   errors = {
+    ...errors,
+    firstName:true
+   } 
+  }
+
+   if(!lastName){
+   errors = {
+    ...errors,
+    lastName:true
+   } 
+  }
+
+    if(!email){
+    errors = {
+      ...errors,
+      email:true
+    }
+  }
+
+   if(!phoneNumber){
+   errors = {
+    ...errors,
+    phoneNumber:true
+   }
+  }
+
+    if(!phoneNumber){
+   errors = {
+    ...errors,
+    gender:true
+   }
+  }
+
+   if(!gender){
+   errors = {
+    ...errors,
+    gender:true
+   }
+  }
+
+   if(!street){
+   errors = {
+    ...errors,
+    street:true
+   }
+  }
+
+   if(!city){
+   errors = {
+    ...errors,
+    city:true
+   }
+  }
+
+   if(!state){
+   errors = {
+    ...errors,
+   state:true
+   }
+  }
+
+   if(!zipcode){
+   errors = {
+    ...errors,
+    zipcode:true
+   }
+  }
+
+   if(!parroquia){
+   errors = {
+    ...errors,
+    parroquia:true
+   }
+  }
+  return errors;
+}
+
+// export const addStudent = async(previousState:unknown,formData:FormData) =>{
+
+//   const firstName = formData.get('firstName');
+//   const lastName = formData.get('lastName');
+//   const email = formData.get('email');
+//   const phoneNumber = formData.get('phoneNumber');
+//   const gender = formData.get('genderRadio');
+//   const street = formData.get('street');
+//   const city = formData.get('city');
+//   const state = formData.get('state');
+//   const zipcode = formData.get('zipcode');
+//   const parroquia = formData.get('parroquia');
+//   const medicalCondition = formData.get('medicalCondition');
+  
+//   const formErrors = validateStudentForm(formData);
+
+//   if(Object.keys(formErrors).length > 0){
+//     return formErrors;
+//   }
+  
+//   try{
+       
+//        const TOKEN = await getToken();
+//        const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/students`,{
+//          method:'POST',
+//          headers: {
+//            'Authorization': `Bearer ${TOKEN}`,
+//            'Content-Type': 'application/json'
+//         },
+//         body:JSON.stringify({
+//         first_name: firstName,
+//         last_name: lastName,
+//         email: email,
+//         phone: phoneNumber,
+//         gender: gender,
+//         direccion:`${street},${city},${state},${zipcode}`,
+//         parroquia:parroquia,
+//         asuntos_medicos: medicalCondition || "Ninguno"
+//         })
+//        })
+//        const response = await request.json();
+//        console.log(response);
+//   }
+//   catch(error){
+//     if(error instanceof Error){
+//         console.log(error);
+//       return{
+//               success:false,
+//               message: 'An unexpected error occurred',
+//         }
+//       } 
+//        console.log(error);
+//         return{
+//               success:false,
+//               message: 'An unexpected error occurred',
+//         }
+//   }
+
+  
+// }

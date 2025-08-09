@@ -52,6 +52,15 @@
     font-size: 1.125rem;
 }
 
+.submit_btn{
+    background:var(--primary_blue);
+    color:#fff;
+}
+.cancel_btn{
+    background:var(--primary_black);
+    color:#fff;
+}
+
 @media(max-width:767px){
     .sign_out_btn{
        background:none;
