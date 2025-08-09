@@ -27,7 +27,6 @@ body {
 
 :root {
  --primary_black:#11141A;
- --primary_blue:#5655D7;
  --radius:0.625rem;
  --background:oklch(1 0 0);
  --foreground:oklch(0.145 0 0);
@@ -73,7 +72,6 @@ html, body {
 
 body {
 line-height: 1.5;
-background:#F7F8FA;
 }
 img, picture, video, canvas, svg {
   display: block;
@@ -101,25 +99,6 @@ ul{
 a{
   text-decoration: none;
   color:inherit;
-}
-
-.container{
-  display:grid;
-  grid-template-columns: 1fr;
-}
-
-@media(min-width:767px){
-  .container{
-    grid-template-columns: 240px 1fr 1fr;
-    grid-template-rows: 80px 1fr 1fr;
-    height: 100%;
-  }
-
-  .main_content{
-    grid-column: 2/-1;
-    grid-row: 2/-1;
-    padding:4rem 1rem;
-  }
 }
 
 @theme inline {
