@@ -7,6 +7,7 @@ import { CiCalendar } from 'react-icons/ci';
 import { FaBookBible } from 'react-icons/fa6';
 import { getFormattedDate } from '@/lib/utils';
 import style from './style.module.css';
+import StudentActionMenu from '../Student-Action-Menu/StudentActionMenu';
 interface Props{
   student:Students
 }
@@ -40,7 +41,7 @@ const StudentTableItem = ({student}:Props) => {
       </div>
 
       <div className={style.student_right_col}>
-        <ActionButton/>
+        <ActionButton> {<StudentActionMenu/>} </ActionButton>
           <p className={style.student_info_text}> 
             <FaBookBible size={18} color="#5655D7" />
             {student._count.Enrollments}

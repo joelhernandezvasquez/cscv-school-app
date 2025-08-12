@@ -22,7 +22,6 @@ const StudentContentTable = async({query,currentPage,sortBy}:Props) => {
       })
     }
    </ul>
-
     <StudentTable studentsList={studentList}/>
    </>
   )

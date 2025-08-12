@@ -14,6 +14,7 @@ import ActionButton from "@/components/ui/action-button/ActionButton";
 import { Students } from "@/types";
 import { getFormattedDate } from "@/lib/utils";
 import style from './style.module.css';
+import StudentActionMenu from "../Student-Action-Menu/StudentActionMenu";
 interface Props{
   studentsList:Students[]
 }
@@ -62,7 +63,7 @@ const StudentTable = ({studentsList}:Props) => {
         </TableCell>
 
         <TableCell className={style.student_action}>
-            <ActionButton/>
+            <ActionButton> {<StudentActionMenu/>} </ActionButton>
         </TableCell>
     
     </TableRow> 
