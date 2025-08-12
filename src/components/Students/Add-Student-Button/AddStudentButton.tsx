@@ -5,10 +5,8 @@ import AddStudentForm from '../AddStudentForm/AddStudentForm';
 import { FaUserPlus } from 'react-icons/fa';
 import style from './style.module.css';
 
-
 const AddStudentButton = () => {
   const {isToggle,handleToggle} = UseToggle();
-
   return (
     <>
         <button className={style.mobile_student_btn} onClick={handleToggle}>

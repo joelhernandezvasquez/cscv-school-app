@@ -63,7 +63,7 @@ const StudentTable = ({studentsList}:Props) => {
         </TableCell>
 
         <TableCell className={style.student_action}>
-            <ActionButton> {<StudentActionMenu/>} </ActionButton>
+            <ActionButton> {<StudentActionMenu studentId={student.id}/>} </ActionButton>
         </TableCell>
     
     </TableRow> 
