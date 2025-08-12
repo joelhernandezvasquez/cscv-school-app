@@ -1,3 +1,7 @@
+
+.container_action{
+ position:relative;
+}
 .action_btn{
     display:flex;
     align-items: center;
@@ -10,3 +14,4 @@
     width: 25px;
    color:#A6A8A9;
 }
+
