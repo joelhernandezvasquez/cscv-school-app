@@ -59,6 +59,18 @@
 .cancel_btn{
     background:var(--primary_black);
     color:#fff;
+    padding:1rem;
+    border-radius:.5rem;
+    border:none;
+}
+
+.delete_btn{
+    border:none;
+    background:#C94736;
+    color:#ffffff;
+    padding:1rem;
+    border-radius: .5rem;
+    width:100%;
 }
 
 @media(max-width:767px){
