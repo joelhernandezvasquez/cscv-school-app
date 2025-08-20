@@ -48,11 +48,7 @@
    display:flex;
    justify-content: center;
 }
-.student_action button{
-    border:none;
-    background:none;
-    cursor: pointer;
-}
+
 
 .table_row{
     border-bottom: 1px solid #E2E2E3;

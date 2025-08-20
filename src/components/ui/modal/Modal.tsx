@@ -1,9 +1,8 @@
 
 import { ReactNode } from 'react';
 import { IoIosClose } from 'react-icons/io';
-import style from './style.module.css';
 import UseClickAway from '@/hooks/UseClickAway';
-
+import style from './style.module.css';
 interface Props{
     modalHeading:string,
     onCloseModal:() => void,

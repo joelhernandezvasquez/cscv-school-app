@@ -83,6 +83,14 @@ input[type="radio"]:focus {
 }
 
 
+.delete_form{
+     display:flex;
+    flex-direction: column;
+    gap:1rem;
+    margin-top:1.5rem;
+}
+
+
 @media(min-width:767px){
    .form_field label{
  font-size: 1.125rem;

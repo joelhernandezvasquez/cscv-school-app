@@ -3,6 +3,8 @@ import {useState} from 'react';
 import {usePathname, useRouter } from 'next/navigation';
 import Modal from '@/components/ui/modal/Modal';
 import AddStudentForm from '../AddStudentForm/AddStudentForm';
+import DeleteModal from '@/components/ui/modal/delete-modal/DeleteModal';
+import DeleteStudentForm from '../DeleteStudentForm/DeleteStudentForm';
 import style from './style.module.css';
 
 enum StudentActions {
@@ -50,12 +52,12 @@ const StudentActionMenu = ({studentId}:Props) => {
        )}
 
        {modalState === StudentActions.Delete && (
-        <Modal 
-        modalHeading='Delete Student' 
-        onCloseModal={()=>{}}
-        >
-        {<AddStudentForm onClose={()=>{}}/>}
-      </Modal>
+          <DeleteModal 
+          heading={`Delete`} 
+          subText='Are you sure you want to delete this student?'
+          >
+          {<DeleteStudentForm studentId={studentId}/>}
+        </DeleteModal>
        )}
     </div>
   )

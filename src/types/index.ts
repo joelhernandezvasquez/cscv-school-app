@@ -69,3 +69,8 @@ export interface AddStudentFormState {
     message:string,
     errors?: Record<string, string>;
 }
+
+export interface DeleteStudentForm{
+  success:boolean,
+  message:string,
+}
