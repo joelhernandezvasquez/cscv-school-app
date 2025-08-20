@@ -52,11 +52,11 @@ const StudentActionMenu = ({studentId}:Props) => {
        )}
 
        {modalState === StudentActions.Delete && (
-       <DeleteModal 
-       heading={`Delete`} 
-       subText='Are you sure you want to make this student inactive?'
-       >
-          <DeleteStudentForm/>
+          <DeleteModal 
+          heading={`Delete`} 
+          subText='Are you sure you want to delete this student?'
+          >
+          {<DeleteStudentForm studentId={studentId}/>}
         </DeleteModal>
        )}
     </div>
