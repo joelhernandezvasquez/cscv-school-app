@@ -59,6 +59,7 @@ export interface AddStudentFormState {
     email?: boolean,
     phoneNumber?: boolean;
     gender?: boolean;
+    active?:boolean;
     street?: boolean;
     city?: boolean;
     state?: boolean;

@@ -2,9 +2,10 @@
 import {useState} from 'react';
 import {usePathname, useRouter } from 'next/navigation';
 import Modal from '@/components/ui/modal/Modal';
-import AddStudentForm from '../AddStudentForm/AddStudentForm';
+import UpdateStudentForm from '../UpdateStudentForm/UpdateStudentForm';
 import DeleteModal from '@/components/ui/modal/delete-modal/DeleteModal';
 import DeleteStudentForm from '../DeleteStudentForm/DeleteStudentForm';
+import { Students } from '@/types';
 import style from './style.module.css';
 
 enum StudentActions {
@@ -14,17 +15,18 @@ enum StudentActions {
 }
 
 interface Props{
-  studentId:number
+student:Students
 }
 
-const StudentActionMenu = ({studentId}:Props) => {
+const StudentActionMenu = ({student}:Props) => {
+  const {id} = student;
  const pathName = usePathname();
  const router = useRouter();
  const [modalState,setModalState] = useState<StudentActions | null>(null);
 
   const handleStudentAction = (action:StudentActions) =>{
     if(action === StudentActions.View){
-      router.push(`${pathName}/${studentId}`);
+      router.push(`${pathName}/${id}`);
     }
     if(action === StudentActions.Update){
       setModalState(action);
@@ -45,9 +47,9 @@ const StudentActionMenu = ({studentId}:Props) => {
        {modalState === StudentActions.Update && (
         <Modal 
         modalHeading='Update Student' 
-        onCloseModal={()=>{}}
+        onCloseModal={()=>window.location.reload()}
         >
-        {<AddStudentForm onClose={()=>{}}/>}
+        {<UpdateStudentForm student={student}/>}
       </Modal>
        )}
 
@@ -56,7 +58,7 @@ const StudentActionMenu = ({studentId}:Props) => {
           heading={`Delete`} 
           subText='Are you sure you want to delete this student?'
           >
-          {<DeleteStudentForm studentId={studentId}/>}
+          {<DeleteStudentForm studentId={id}/>}
         </DeleteModal>
        )}
     </div>
