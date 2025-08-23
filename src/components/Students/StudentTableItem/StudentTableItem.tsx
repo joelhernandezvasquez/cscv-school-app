@@ -41,7 +41,7 @@ const StudentTableItem = ({student}:Props) => {
       </div>
 
       <div className={style.student_right_col}>
-        <ActionButton> {<StudentActionMenu studentId={student.id}/>} </ActionButton>
+        <ActionButton> {<StudentActionMenu student={student}/>} </ActionButton>
           <p className={style.student_info_text}> 
             <FaBookBible size={18} color="#5655D7" />
             {student._count.Enrollments}

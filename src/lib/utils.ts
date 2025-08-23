@@ -49,3 +49,14 @@ export const getFormattedDate = (date:Date) =>{
   day: 'numeric',
 });
 }
+
+export const getFormattedAddress = (address:string) =>{
+    const studentDirrection = address.split(',');
+    const studentAddress = {
+    street:studentDirrection[0],
+    city:studentDirrection[1],
+    state:studentDirrection[2],
+    zipcode:studentDirrection[3]
+   }
+   return studentAddress;
+}

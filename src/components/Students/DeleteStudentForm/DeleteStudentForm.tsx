@@ -2,7 +2,7 @@ import { useRouter } from 'next/navigation';
 import { toast, Toaster } from 'sonner';
 import { deleteStudent } from '@/lib/actions/students/deleteStudent';
 import forms from '../../../styles/forms.module.css';
-import button from '../../../styles/buttons.module.css'
+import button from '../../../styles/buttons.module.css';
 interface Props{
   studentId:number
 }
