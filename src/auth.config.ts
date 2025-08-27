@@ -11,15 +11,14 @@ export const authConfig:NextAuthConfig = {
        async jwt({token,user}) {
 
          if(user){
-          token.data = user
+          token.data = user;
          }
         return token;
        },
       async session({ session, token}) {
-        session = token.data as never;
-        //console.log(session)
+        session = token.data as never
         return session;
-      },
+        },
       },
 
          providers:[

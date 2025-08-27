@@ -20,7 +20,8 @@ export interface UserSession{
     },
     token: string,
     id: string,
-   expires: Date
+   expires: Date,
+   expiresAt:number
 }
 
 export type LoginError = {

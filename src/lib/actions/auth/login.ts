@@ -39,3 +39,18 @@ export const signInUser = async (email:string,password:string) =>{
         callbackUrl:'/dashboard'
       });
 }
+
+export const refreshToken = async(id:string)=>{
+  try{
+     const tokenRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/refresh-token/${id}`);
+      
+     return await tokenRequest.json();
+  
+    }
+  catch(error){
+    if(error instanceof Error){
+        console.log(error);
+        throw new Error(error.message);
+    } 
+}
+}

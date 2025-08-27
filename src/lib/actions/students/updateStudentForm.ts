@@ -1,9 +1,7 @@
 'use server';
-
-import { auth } from "@/auth.config";
 import { validateStudentForm } from "./index";
-import { Session } from "next-auth";
 import { AddStudentFormState } from "@/types";
+import { getValidatedToken } from "..";
 
 export const updateStudent = async (
   previousState: AddStudentFormState,
@@ -35,13 +33,12 @@ export const updateStudent = async (
   }
   
   try {
-    const session = await auth();
-    const TOKEN = (session as Session & { token?: string })?.token;
+    const token = await getValidatedToken();
        
     const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${studentId}`, {
       method: 'PUT',
       headers: {
-        'Authorization': `Bearer ${TOKEN}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
