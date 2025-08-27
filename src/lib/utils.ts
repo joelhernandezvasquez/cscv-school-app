@@ -28,7 +28,13 @@ export const getPageNameFromPath = (path:string) =>{
   let pathName = path.replace('/','');
   const firstLetter = pathName[0].toUpperCase();
   pathName = `${firstLetter}${pathName.slice(1)}`;
-  return pathName;
+  
+   // it is a Slug page then
+  if(pathName.includes('/')){
+    const slashIndex = pathName.indexOf('/');
+   return pathName.slice(0,slashIndex);
+  }
+   return pathName;
 }
 
 export const getFirstLetterUpperCase = (text:string) =>{
