@@ -7,6 +7,7 @@ import { LuUserCheck } from 'react-icons/lu';
 import { SiGoogleclassroom } from 'react-icons/si';
 import style from './style.module.css';
 import SignOutBtn from '../ui/sign-out-btn/SignOutBtn';
+import { getPageNameFromPath } from '@/lib/utils';
 
 export const navigationItems = [
     {
@@ -45,16 +46,15 @@ interface Props{
   closeMenu? : () => void
 }
 const Navigation = ({closeMenu}:Props) => {
-
-  const pathName = usePathname();
+  
+  const currentPath = usePathname();
+  const pathName = getPageNameFromPath(currentPath);
 
   const handleOnClick = (currentUrl:string) =>{
-    if(pathName!==currentUrl){
-      
+    if(pathName!==currentUrl){  
       if(closeMenu){
         closeMenu();
       }
-     
     }
   }
 
@@ -63,7 +63,7 @@ const Navigation = ({closeMenu}:Props) => {
      <ul className={style.nav_list}>
       {navigationItems.map((navItem)=>{
         return(
-        <li className={`${style.nav_item} ${pathName === navItem.url && style.active_link}`} key={navItem.id} onClick={() => handleOnClick(navItem.url)}>
+        <li className={`${style.nav_item} ${pathName === navItem.item && style.active_link}`} key={navItem.id} onClick={() => handleOnClick(navItem.url)}>
           <Link className={style.nav_link} href={navItem.url}> 
            {navItem.icon}
            {navItem.item}
