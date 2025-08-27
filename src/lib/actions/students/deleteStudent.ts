@@ -1,19 +1,17 @@
 'use server';
 
-import { auth } from "@/auth.config";
 import { DeleteStudentForm } from "@/types";
-import { Session } from "next-auth";
+import { getValidatedToken } from "..";
 
 export const deleteStudent = async (studentId:number):Promise<DeleteStudentForm> =>{
 
   try{
-      const session = await auth();
-      const TOKEN = (session as Session & { token?: string })?.token;
+       const token = await getValidatedToken();
       
       const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${studentId}`,{
          method: 'DELETE',
          headers: {
-           'Authorization': `Bearer ${TOKEN}`,
+           'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           }
       })

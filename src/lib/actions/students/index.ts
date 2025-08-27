@@ -1,23 +1,14 @@
-
-import { auth } from "@/auth.config";
 import { Students, StudentsPagination, StudentsSummary } from "@/types";
-import { Session } from "next-auth";
-
-export const getToken = async() =>{
-   const session = await auth();
-   const TOKEN = (session as Session & { token?: string })?.token;
-   return TOKEN;
-}
+import { getValidatedToken } from "../index";
 
 export const getStudentSummary = async():Promise<StudentsSummary> => {
     try{
-       const session = await auth();
-       const TOKEN = (session as Session & { token?: string })?.token;
-       
+      const token = await getValidatedToken();
+
       const summaryRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/summary`,{
          method: 'GET',
          headers: {
-           'Authorization': `Bearer ${TOKEN}`,
+           'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           }
       })
@@ -36,13 +27,11 @@ export const getStudentSummary = async():Promise<StudentsSummary> => {
 
 export const fetchStudents = async(query:string,page:string | number,sortBy:string):Promise<Students[]> =>{
   try{
-       const session = await auth();
-       const TOKEN = (session as Session & { token?: string })?.token;
-
+       const token = await getValidatedToken();
        const studentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/search?query=${query}&page=${page}&sortBy=${sortBy}`,{
          method: 'GET',
          headers: {
-           'Authorization': `Bearer ${TOKEN}`,
+           'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           }
       })
@@ -61,12 +50,11 @@ export const fetchStudents = async(query:string,page:string | number,sortBy:stri
 
 export const getStudentsPagination = async ():Promise<StudentsPagination> =>{
   try{
-      const session = await auth();
-      const TOKEN = (session as Session & { token?: string })?.token;
+      const token = await getValidatedToken();
       const paginationRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/pagination`,{
          method: 'GET',
          headers: {
-           'Authorization': `Bearer ${TOKEN}`,
+           'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
           }
       })
