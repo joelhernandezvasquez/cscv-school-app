@@ -166,3 +166,27 @@ export const validateStudentForm = (formData:FormData) =>{
   return errors;
 }
 
+ export const fetchStudent = async (studentId:string):Promise<Students> =>{
+   try{
+    const token = await getValidatedToken();
+
+     const studentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${studentId}`,{
+       method: 'GET',
+         headers: {
+           'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+     })
+
+     return studentRequest.json();
+   }
+   catch(error){
+      if(error instanceof Error){
+              console.log(error);
+              throw new Error(error.message);
+          } 
+            console.log(error);
+              throw new Error('Unknown error occurred while getting the student');
+        }
+ }
+

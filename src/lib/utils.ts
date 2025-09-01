@@ -45,7 +45,6 @@ export const getOnlyUserName = (userName:string) =>{
   const name = getFirstLetterUpperCase(userName);
   const whiteSpace = name.indexOf(' ');
   return `${name.slice(0,whiteSpace)}`;
-
 }
 
 export const getFormattedDate = (date:Date) =>{
