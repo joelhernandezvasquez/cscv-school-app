@@ -1,4 +1,5 @@
 import StudentCardDetail from "@/components/Students/StudentCardDetail/StudentCardDetail";
+import StudentPerformance from "@/components/Students/StudentPerformance/StudentPerformance";
 import { fetchStudent } from "@/lib/actions/students";
 import style from './style.module.css';
 import util from '../../../../styles/utils.module.css';
@@ -15,6 +16,7 @@ const StudentPage = async ({params}:StudentPageProps) => {
   return (
     <div className={`${style.student_grid} ${util.wrapper}`}>
       <StudentCardDetail student={studentInfo}/>
+      <StudentPerformance/>
     </div>
   )
 }
