@@ -1,4 +1,4 @@
-import { Students, StudentsPagination, StudentsSummary } from "@/types";
+import { StudentProgress, Students, StudentsPagination, StudentsSummary } from "@/types";
 import { getValidatedToken } from "../index";
 
 export const getStudentSummary = async():Promise<StudentsSummary> => {
@@ -181,6 +181,29 @@ export const validateStudentForm = (formData:FormData) =>{
      return studentRequest.json();
    }
    catch(error){
+      if(error instanceof Error){
+              console.log(error);
+              throw new Error(error.message);
+          } 
+            console.log(error);
+              throw new Error('Unknown error occurred while getting the student');
+        }
+ }
+
+ export const getStudentProgress = async (studentId:string):Promise<StudentProgress> =>{
+    try{
+      const token = await getValidatedToken();
+      const studentProgressRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${studentId}/progress`,{
+       method: 'GET',
+         headers: {
+           'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+     })
+
+     return await studentProgressRequest.json();
+    }
+    catch(error){
       if(error instanceof Error){
               console.log(error);
               throw new Error(error.message);

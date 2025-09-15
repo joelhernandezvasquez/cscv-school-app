@@ -1,52 +1,35 @@
 import ProgressBar from "@/components/ui/progress-bar/ProgressBar"
 import CourseCategoryPercentange from "@/components/ui/course-category-percentage/CourseCategoryPercentange";
+import { getStudentProgress } from "@/lib/actions/students";
+import { getCoursePercentange } from "@/lib/utils";
+import { colorLevels } from "@/lib/constants";
 import style from './style.module.css';
+interface Props{
+  studentId:string
+}
 
-const StudentPerformance = () => {
+const StudentPerformance = async({studentId}:Props) => {
+const {totalCourses,totalCoursesTaken,coursesTakenByLevel} = await getStudentProgress(studentId);
+const coursePercentage = getCoursePercentange(totalCoursesTaken,totalCourses);
+
   return (
     <div>
          <h2 className="title">Performance</h2>
           <div className={style.progress_bar_container}>
-              <ProgressBar value={40} max={100} theme={'#5655D7'}/>
+              <ProgressBar value={+coursePercentage} max={100} theme={'#5655D7'}/>
           </div>    
           
           <ul className={style.courses_progress_level}>
-            <li>
-                 <CourseCategoryPercentange 
-                   colorLevel={"#a30f12"} 
-                   level={"Nivel 1, Jesus Esta Vivo"} 
-                   courseLevelQuantity={14} 
-                   courseQuantityCompleted={6}                  
+            {coursesTakenByLevel.map((element,index)=>{
+             return <li key={colorLevels[index].id}>
+                     <CourseCategoryPercentange 
+                      colorLevel={colorLevels[index].color} 
+                      level={element.level} 
+                      courseLevelQuantity={element.courseLevelQuantity} 
+                      courseQuantityCompleted={element.coursesCompleted}                  
                  />
-            </li>
-
-              <li>
-                 <CourseCategoryPercentange 
-                   colorLevel={"#12a9a6"} 
-                   level={"Nivel 2, Jesus Nos Capacita"} 
-                   courseLevelQuantity={7} 
-                   courseQuantityCompleted={1}                  
-                 />
-            </li>
-
-              <li>
-                 <CourseCategoryPercentange 
-                   colorLevel={"#f5c544"} 
-                   level={"Nivel 3, Jesus Nos Envia"} 
-                   courseLevelQuantity={12} 
-                   courseQuantityCompleted={2}                  
-                 />
-            </li>
-
-             <li>
-                 <CourseCategoryPercentange 
-                   colorLevel={"#5655D7"} 
-                   level={"Retiro Renaceres"} 
-                   courseLevelQuantity={3} 
-                   courseQuantityCompleted={3}                  
-                 />
-            </li>
-          
+                   </li>
+            })}
           </ul>
     </div>
   )

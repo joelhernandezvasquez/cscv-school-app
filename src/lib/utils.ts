@@ -65,3 +65,7 @@ export const getFormattedAddress = (address:string) =>{
    }
    return studentAddress;
 }
+
+export const getCoursePercentange = (completed:number,currentQuantity:number) =>{
+  return (completed / currentQuantity * 100).toFixed(2);
+}

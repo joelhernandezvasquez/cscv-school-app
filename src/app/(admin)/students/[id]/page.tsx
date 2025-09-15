@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import StudentCardDetail from "@/components/Students/StudentCardDetail/StudentCardDetail";
 import StudentPerformance from "@/components/Students/StudentPerformance/StudentPerformance";
 import { fetchStudent } from "@/lib/actions/students";
@@ -11,12 +12,14 @@ interface StudentPageProps {
 const StudentPage = async ({params}:StudentPageProps) => {
   const {id} = params;
   const studentInfo = await fetchStudent(id);
-  console.log(studentInfo);
 
   return (
     <div className={`${style.student_grid} ${util.wrapper}`}>
       <StudentCardDetail student={studentInfo}/>
-      <StudentPerformance/>
+      <Suspense fallback="Loading..">
+         <StudentPerformance studentId = {id}/>
+      </Suspense>
+     
     </div>
   )
 }
