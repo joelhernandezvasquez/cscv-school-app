@@ -17,11 +17,15 @@ const StudentPage = async ({params}:StudentPageProps) => {
   return (
     <div className={`${style.student_grid} ${util.wrapper}`}>
       <StudentCardDetail student={studentInfo}/>
+      
       <Suspense fallback="Loading..">
          <StudentPerformance studentId = {id}/>
       </Suspense>
 
-      <PendingCoursesList/>
+       <Suspense fallback="Loading...">
+          <PendingCoursesList studentId={id}/>
+       </Suspense>
+     
 
     </div>
   )

@@ -1,4 +1,4 @@
-import { LoginError } from "@/types";
+import { LoginError, PendingCourses } from "@/types";
 import clsx, { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -69,3 +69,34 @@ export const getFormattedAddress = (address:string) =>{
 export const getCoursePercentange = (completed:number,currentQuantity:number) =>{
   return (completed / currentQuantity * 100).toFixed(2);
 }
+
+export const formatCourseLevel = (level:string) =>{
+       return level
+    .replace(/NIVEL_1_JESUS_ESTA_VIVO/, "level1")
+    .replace(/NIVEL_2_JESUS_NOS_CAPACITA/, "level2")
+    .replace(/NIVEL_3_JESUS_NOS_ENVIA/, "level3")
+    .replace(/RENACER_MUJERES/, "renacer")
+    .replace(/RENACER_HOMBRE/, "renacer")
+    .replace(/RENACER_PAREJAS/, "renacer");
+}
+
+export const formatCourseLevelName = (level:string) =>{
+       return level
+    .replace(/NIVEL_1_JESUS_ESTA_VIVO/, "Nivel 1")
+    .replace(/NIVEL_2_JESUS_NOS_CAPACITA/, "Nivel 2")
+    .replace(/NIVEL_3_JESUS_NOS_ENVIA/, "Nivel 3")
+    .replace(/RENACER_MUJERES/, "Renacer")
+    .replace(/RENACER_HOMBRE/, "Renacer")
+    .replace(/RENACER_PAREJAS/, "Renacer");
+}
+
+export const getPendingCoursesFormatted = (pendingCourses:PendingCourses []) =>{
+  return pendingCourses.map((course)=>{
+    return{
+      ...course,
+      level:formatCourseLevel(course.level),
+      nivel:formatCourseLevelName(course.level)
+    }
+  })
+}
+

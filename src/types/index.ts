@@ -89,3 +89,9 @@ export interface StudentProgress {
    totalCoursesTaken: number,
    coursesTakenByLevel: CoursesTakenByLevel []
 }
+
+export interface PendingCourses {
+   name: string,
+   description: string,
+   level: string
+}
