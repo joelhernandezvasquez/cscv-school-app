@@ -76,3 +76,22 @@ export interface DeleteStudentForm{
   success:boolean,
   message:string,
 }
+
+export type CoursesTakenByLevel = {
+  colorLevel?:string,
+  level: string,
+  courseLevelQuantity: number,
+  coursesCompleted: number
+}
+
+export interface StudentProgress {
+   totalCourses: number,
+   totalCoursesTaken: number,
+   coursesTakenByLevel: CoursesTakenByLevel []
+}
+
+export interface PendingCourses {
+   name: string,
+   description: string,
+   level: string
+}

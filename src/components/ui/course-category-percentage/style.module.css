@@ -1,0 +1,32 @@
+
+.container{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.category_block{
+    display:flex;
+    align-items: center;
+    gap:.5rem;
+}
+
+.color_category{
+    width:16px;
+    height: 16px;
+    border-radius: 3px;
+}
+.level_name{
+    font-size: .875rem;
+    color:#2E3135;
+}
+
+.level_quantity{
+    font-size: .875rem;
+    color:#2E3135;
+}
+.course_percentage{
+   color:#2E3135;
+   font-weight: 600; 
+   font-size: .875rem;
+}

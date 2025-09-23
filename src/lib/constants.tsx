@@ -35,3 +35,5 @@ export const filterStudentOptions = [
 export const sortStudentOptions = [
     'Name (A-Z)','Name (Z-A)','Recent','Oldest','Most Courses','Least Courses'
 ]
+
+export const colorLevels = [{id:'001',color:'#a30f12'},{id:'002',color:'#12a9a6'},{id:'003',color:'#f5c544'},{id:'004',color:'#5655D7'},{id:'005',color:'#002d88ff'}];
