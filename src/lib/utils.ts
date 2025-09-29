@@ -1,4 +1,4 @@
-import { LoginError, PendingCourses } from "@/types";
+import { CompletedCourse, LoginError, PendingCourses } from "@/types";
 import clsx, { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -90,8 +90,15 @@ export const formatCourseLevelName = (level:string) =>{
     .replace(/RENACER_PAREJAS/, "Renacer");
 }
 
-export const getPendingCoursesFormatted = (pendingCourses:PendingCourses []) =>{
-  return pendingCourses.map((course)=>{
+export const formatLevelName = (level:string) =>{
+       return level
+    .replace(/level1/, "Nivel 1")
+    .replace(/level2/, "Nivel 2")
+    .replace(/level3/, "Nivel 3")
+}
+
+export const getCoursesFormatted = (courses:PendingCourses [] | CompletedCourse[]) =>{
+  return courses.map((course)=>{
     return{
       ...course,
       level:formatCourseLevel(course.level),

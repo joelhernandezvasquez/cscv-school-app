@@ -1,0 +1,22 @@
+.course_card{
+    display:flex;
+    flex-direction: column;
+    gap:.5rem;
+    color:#2e3135;
+}
+.course_card_title{
+    font-size: 1.125rem;
+    font-weight: 600;
+    color:#2e3135;
+}
+.course_card_date{
+    display:flex;
+    flex-direction: column;
+    gap:.5rem;
+    font-weight: 600;
+}
+.course_card_footer{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
