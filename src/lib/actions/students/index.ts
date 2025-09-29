@@ -1,4 +1,4 @@
-import { PendingCourses, StudentProgress, Students, StudentsPagination, StudentsSummary } from "@/types";
+import { CompletedCourse, PendingCourses, StudentProgress, Students, StudentsPagination, StudentsSummary } from "@/types";
 import { getValidatedToken } from "../index";
 
 export const getStudentSummary = async():Promise<StudentsSummary> => {
@@ -60,7 +60,6 @@ export const getStudentsPagination = async ():Promise<StudentsPagination> =>{
       })
 
       return await paginationRequest.json();
-
   }
   catch(error){
    if(error instanceof Error){
@@ -236,4 +235,26 @@ export const validateStudentForm = (formData:FormData) =>{
         }
  }
 
+  export const getCompletedCoursesList = async (studentId:string):Promise<CompletedCourse[]> =>{
+    try{
+      const token = await getValidatedToken();
+      const completedCoursesRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${studentId}/complete-courses`,{
+       method: 'GET',
+         headers: {
+           'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+     })
+
+     return await completedCoursesRequest.json();
+    }
+    catch(error){
+      if(error instanceof Error){
+              console.log(error);
+              throw new Error(error.message);
+          } 
+            console.log(error);
+              throw new Error('Unknown error occurred while getting the courses');
+        }
+ }
 

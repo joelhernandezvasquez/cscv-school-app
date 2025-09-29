@@ -21,55 +21,6 @@
     gap:1rem;
 }
 
-.course_item_icon{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    min-width:40px;
-    height: 40px;
-    border-radius: 50%;
-}
-
-.level1{
-    background:#ffd9dc;
-}
-
-.level2{
- background:#12a9a6;
-}
-
-.level3{
- background:#ffefd9;
-}
-.renacer{
- background:#ddddf7;
-}
-
-.course_item_level{
-    padding: 4px 8px;
-    border-radius: 90px;
-    font-size: .75rem;
-    min-width: 55px;
-}
-.course_item_level.level1{
-     background:#ffd9dc;
-    color:#FF414B;
-}
-.course_item_level.level2{
-     background:#12a9a6;
-    color:white;
-}
-.course_item_level.level3{
-     background:#f5c544;;
-    color:white;
-}
-
-.course_item_level.renacer{
-     background:#e4e4fa;
-    color:#6a6add;
-}
-
-
 .course_item_info{
     margin-right: auto;
 }

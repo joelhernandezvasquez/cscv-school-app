@@ -1,0 +1,23 @@
+.course_item_icon{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    min-width:40px;
+    min-height: 40px;
+    border-radius: 50%;
+}
+
+.level1{
+    background:#ffd9dc;
+}
+
+.level2{
+ background:#12a9a6;
+}
+
+.level3{
+ background:#ffefd9;
+}
+.renacer{
+ background:#ddddf7;
+}

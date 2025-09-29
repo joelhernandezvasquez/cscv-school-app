@@ -1,6 +1,7 @@
-import Image from 'next/image';
 import { getPendingCoursesList } from '@/lib/actions/students';
-import {getPendingCoursesFormatted} from '@/lib/utils';
+import {getCoursesFormatted} from '@/lib/utils';
+import CourseLevelIcon from '@/components/ui/course-icon/CourseLevelIcon';
+import CourseLevelPill from '@/components/ui/course-level-pill/CourseLevelPill';
 import style from './style.module.css';
 import util from '../../../styles/utils.module.css';
 interface Props{
@@ -9,7 +10,7 @@ interface Props{
 
 const PendingCoursesList = async ({studentId}:Props) => {
   const pendingCourses = await getPendingCoursesList(studentId);
-  const pendingCoursesFormatted = getPendingCoursesFormatted(pendingCourses);
+  const pendingCoursesFormatted = getCoursesFormatted(pendingCourses);
   
    return (
     <section className={`${style.pending_course_container} ${util.card_container}`}>
@@ -19,23 +20,13 @@ const PendingCoursesList = async ({studentId}:Props) => {
        <ul className={style.course_list}>
         {pendingCoursesFormatted.map((course)=>{
          return <li key={course.name} className={style.course_item}>
-                  <div className={`${style.course_item_icon} ${style[course.level]}`}>
-                     <Image
-                     width={24}
-                     height={24}
-                     alt=""
-                     src={`/assets/${course.level}.svg`}
-                     />
-                  </div>
+                  <CourseLevelIcon level={course.level}/>
 
                   <div className={style.course_item_info}>
                      <p className={style.course_item_info_name}>{course.name}</p>
                      <p className={style.course_item_info_description}>{course.description}</p>
                   </div>
-
-                  <div className={`${style.course_item_level} ${style[course.level]}`}>
-                     <span>{course.nivel}</span>
-                  </div>
+                  <CourseLevelPill level={course.level}/>
 
                </li>
         })}
