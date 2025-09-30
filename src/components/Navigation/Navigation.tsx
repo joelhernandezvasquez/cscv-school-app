@@ -5,9 +5,9 @@ import { RxDashboard } from 'react-icons/rx';
 import { PiCalendarBlank, PiStudent } from 'react-icons/pi';
 import { LuUserCheck } from 'react-icons/lu';
 import { SiGoogleclassroom } from 'react-icons/si';
-import style from './style.module.css';
-import SignOutBtn from '../ui/sign-out-btn/SignOutBtn';
 import { getPageNameFromPath } from '@/lib/utils';
+import SignOutBtn from '../ui/sign-out-btn/SignOutBtn';
+import style from './style.module.css';
 
 export const navigationItems = [
     {
