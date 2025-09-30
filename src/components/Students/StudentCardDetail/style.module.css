@@ -28,6 +28,7 @@
 .student_card_detail_info_header{
     display:flex;
     justify-content: center;
+    align-items: center;
     gap:1.5rem;
 }
 .student_id{
@@ -86,3 +87,4 @@
 .student_card_detail_contact_list_item_content p:first-child{
  font-size: .875rem;
 }
+

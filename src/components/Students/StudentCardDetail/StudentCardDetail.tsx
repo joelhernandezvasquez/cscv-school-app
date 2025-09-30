@@ -8,7 +8,6 @@ import style from './style.module.css';
 interface Props{
    student:Students
 }
-
 const StudentCardDetail = ({student}:Props) => {
    const {id,first_name,last_name,active,gender,created_at,email,phone,direccion,parroquia,asuntos_medicos} = student;
    const enrollDate = getFormattedDate(created_at);
