@@ -13,7 +13,7 @@ const {totalCourses,totalCoursesTaken,coursesTakenByLevel} = await getStudentPro
 const coursePercentage = getCoursePercentange(totalCoursesTaken,totalCourses);
 
   return (
-    <div>
+    <div className={style.student_performance}>
          <h2 className="title">Performance</h2>
           <div className={style.progress_bar_container}>
               <ProgressBar value={+coursePercentage} max={100} theme={'#5655D7'}/>

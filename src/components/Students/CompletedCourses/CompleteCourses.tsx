@@ -13,7 +13,7 @@ const CompleteCourses = async({studentId}:Props) => {
    const completeCoursesFormatted = getCoursesFormatted(completedCourseList);
  
   return (
-    <section>
+    <section className={style.course_container}>
        <h2 className='title'> Courses Completed</h2>
        <ul className={style.courses_completed_list}>
           {completeCoursesFormatted.map((course)=>{
