@@ -1,5 +1,4 @@
 import style from './style.module.css';
-
 interface Props{
     status:'Active' | 'Inactive'
 }
@@ -14,11 +13,7 @@ const Badge = ({status}:Props) => {
      <div className={`${style.badge_desktop} ${status === 'Active' ? style.active_badge : style.inactive_badge}`}>
        <p>{status}</p>
     </div>
-
-
    </>
-
-    
   )
 }
 

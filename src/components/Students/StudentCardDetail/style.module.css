@@ -1,4 +1,5 @@
 .student_card_detail{
+    grid-column:1/-1;
     display:flex;
     flex-direction: column;
 }
@@ -28,6 +29,7 @@
 .student_card_detail_info_header{
     display:flex;
     justify-content: center;
+    align-items: center;
     gap:1.5rem;
 }
 .student_id{
@@ -85,4 +87,27 @@
 }
 .student_card_detail_contact_list_item_content p:first-child{
  font-size: .875rem;
+}
+
+@media(min-width:1200px){
+    .student_card_detail_contact h2{
+    font-size: 1.5rem;
+   }
+
+   .student_card_detail_contact_list{
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap:3rem;
+   }
+
+   .student_card_detail_contact_list_item_content p:first-child{
+       font-size: 1rem;
+    }
+    .student_card_detail_contact_list_item_icon{
+      padding:1rem;
+   }
+    .student_card_detail_contact_list_item_icon svg{
+     width: 25px;
+     height: 25px;
+   }
 }
