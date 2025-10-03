@@ -22,13 +22,13 @@ const StudentPage = async ({params}:StudentPageProps) => {
          <StudentPerformance studentId = {id}/>
       </Suspense>
 
-       <Suspense fallback="Loading...">
+       {/* <Suspense fallback="Loading...">
           <PendingCoursesList studentId={id}/>
        </Suspense>
 
        <Suspense fallback="Loading...">
          <CompleteCourses studentId={id}/>
-       </Suspense>
+       </Suspense> */}
      
     </div>
   )

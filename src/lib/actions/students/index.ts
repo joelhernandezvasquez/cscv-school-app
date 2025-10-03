@@ -199,12 +199,19 @@ export const validateStudentForm = (formData:FormData) =>{
             'Content-Type': 'application/json'
           }
      })
-
-     return await studentProgressRequest.json();
+      const result = await studentProgressRequest.json();
+       if(result.error){
+         return {
+          totalCourses: 0,
+          totalCoursesTaken: 0,
+          coursesTakenByLevel:[]
+         }
+       }
+     return result;
     }
     catch(error){
       if(error instanceof Error){
-              console.log(error);
+              console.log(error.message);
               throw new Error(error.message);
           } 
             console.log(error);
