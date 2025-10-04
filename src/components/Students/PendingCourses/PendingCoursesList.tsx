@@ -10,6 +10,7 @@ interface Props{
 
 const PendingCoursesList = async ({studentId}:Props) => {
   const pendingCourses = await getPendingCoursesList(studentId);
+  console.log(pendingCourses);
   const pendingCoursesFormatted = getCoursesFormatted(pendingCourses);
   
    return (
