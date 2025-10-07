@@ -46,7 +46,8 @@ export interface Students{
   asuntos_medicos: string,
   active: boolean,
   created_at: Date,
-  _count:{Enrollments:number}
+  _count:{Enrollments:number},
+  error?:string | boolean
 }
 
 export interface StudentsPagination{

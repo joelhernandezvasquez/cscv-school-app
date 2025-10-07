@@ -6,6 +6,7 @@ import CompleteCourses from "@/components/Students/CompletedCourses/CompleteCour
 import { fetchStudent } from "@/lib/actions/students";
 import style from './style.module.css';
 import util from '../../../../styles/utils.module.css';
+import { redirect } from "next/navigation";
 interface StudentPageProps {
   params: { id: string }
 }
@@ -13,6 +14,10 @@ interface StudentPageProps {
 const StudentPage = async ({params}:StudentPageProps) => {
   const {id} = params;
   const studentInfo = await fetchStudent(id);
+
+  if (studentInfo.error) {
+    redirect('/students');
+  }
 
   return (
     <div className={`${style.student_grid} ${util.wrapper}`}>
