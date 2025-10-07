@@ -229,8 +229,8 @@ export const validateStudentForm = (formData:FormData) =>{
             'Content-Type': 'application/json'
           }
      })
-     console.log(await pendingCoursesRequest.json());
-     return await pendingCoursesRequest.json();
+    return await pendingCoursesRequest.json();
+    
     }
     catch(error){
       if(error instanceof Error){

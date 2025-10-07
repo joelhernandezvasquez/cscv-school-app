@@ -28,7 +28,7 @@ const StudentPage = async ({params}:StudentPageProps) => {
 
        <Suspense fallback="Loading...">
          <CompleteCourses studentId={id}/>
-       </Suspense>
+       </Suspense> 
      
     </div>
   )
