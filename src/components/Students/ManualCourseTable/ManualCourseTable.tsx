@@ -1,74 +1,25 @@
 'use client';
-import { useState, useTransition } from "react";
-import { redirect } from "next/navigation";
 import Link from "next/link";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-
+import { Table,TableBody,TableCell,TableHead,TableHeader,TableRow} from "@/components/ui/table";
+import UseAddStudentCourse from "@/hooks/UseAddStudentCourse";
 import CourseLevelPill from "@/components/ui/course-level-pill/CourseLevelPill";
 import { AddPendingCourses } from "@/types";
+import {Toaster} from "sonner";
 import style from './style.module.css';
 import util from '../../../styles/utils.module.css';
-import { addStudentCourses } from "@/lib/actions/students/addStudentCourses";
-import { toast, Toaster } from "sonner";
-
 interface Props{
   pendingCourses:AddPendingCourses[],
   studentId:string
 }
 
 const ManualCourseTable = ({pendingCourses,studentId}:Props) => {
-  // TODO: move all its functionalites to a custom hook
-  const [coursesPending,setCourses] = useState<AddPendingCourses[]>(pendingCourses);
-  const [coursesAdded,setCoursesAdded] = useState(0);
-  const [isPending, startTransition] = useTransition();
-
-  const onSubmitCourses = async(formData:FormData) => {
-    const courses = coursesPending.filter((c)=> c.complete).map((course)=>{
-      return{
-        course_id:course.id
-      }
-    })
-
-    formData.set('studentId', studentId);
-    formData.set('courses', JSON.stringify(courses));
-
-      startTransition(async () => {
-       const result = await addStudentCourses(formData);
-  
-       if(result.success){
-         toast.success(result.message);
-         setTimeout(()=>{
-              redirect('/students');
-         },1500)
-       }
-    });
-
-  }
-
-  const onCheckCourse = (course:AddPendingCourses) =>{
-   const updateCourses = coursesPending.map((c)=>{
-    if(course.id === c.id){
-       return {
-        ...course,
-        complete:!course.complete
-       }
-    }
-    return c;
-   })
-    onSetCoursesAdded(updateCourses);
-    setCourses(updateCourses);
-  }
-
-  const onSetCoursesAdded = (coursesChecked:AddPendingCourses[]) =>{
-    setCoursesAdded(coursesChecked.filter(c => c.complete).length);
-  }
+const {
+  coursesPending,
+  coursesAdded,
+  isPending,
+  onCheckCourse,
+  onSubmitCourses
+  } = UseAddStudentCourse(pendingCourses,studentId);
 
   return (
     <section>
@@ -131,7 +82,6 @@ const ManualCourseTable = ({pendingCourses,studentId}:Props) => {
       <Toaster position="top-center" richColors  closeButton  />
 </section>
   )
-  
 }
 
 export default ManualCourseTable 
