@@ -11,6 +11,7 @@ interface Props{
 }
 const CourseCard = ({completedCourse}:Props) => {
   const {name,level,description,completeAt} = completedCourse;
+  console.log(level)
 
   return (
     <li className={`${style.course_card} ${util.card_container}`}>

@@ -107,3 +107,16 @@ export const getCoursesFormatted = (courses:PendingCourses [] | CompletedCourse[
   })
 }
 
+export const mappedPendingCourses = (pendingCourses:PendingCourses[]) =>{
+ return pendingCourses.map((course)=>{
+  return{
+     id:course.id,
+     name:course.name,
+     description:course.description,
+     level:formatCourseLevel(course.level),
+     complete:false,
+     date:null
+  }
+ })
+}
+

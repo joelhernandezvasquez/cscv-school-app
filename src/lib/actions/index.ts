@@ -1,3 +1,4 @@
+'use server'
 import { auth } from "@/auth.config";
 import { Session } from "next-auth";
 import { refreshToken } from "./auth/login";

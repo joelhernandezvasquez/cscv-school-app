@@ -1,4 +1,7 @@
 .course_item_level{
+    display:flex;
+    align-items: center;
+    justify-content: center;
     padding: 4px 8px;
     border-radius: 90px;
     font-size: .75rem;

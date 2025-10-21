@@ -92,6 +92,7 @@ export interface StudentProgress {
 }
 
 export interface PendingCourses {
+   id:number,
    name: string,
    description: string,
    level: string,
@@ -101,4 +102,16 @@ export interface CompletedCourse{
   description:string,
   level:string,
   completeAt: null | Date
+}
+
+export interface AddPendingCourses {
+     id:number,
+     name:string,
+     description:string,
+     level:string,
+     complete:boolean
+     date?:Date | null
+}
+export interface CourseIds{
+  course_id: number;
 }
