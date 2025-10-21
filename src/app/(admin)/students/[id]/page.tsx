@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { redirect } from "next/navigation";
 import StudentCardDetail from "@/components/Students/StudentCardDetail/StudentCardDetail";
 import StudentPerformance from "@/components/Students/StudentPerformance/StudentPerformance";
 import PendingCoursesList from "@/components/Students/PendingCourses/PendingCoursesList";
@@ -6,7 +7,6 @@ import CompleteCourses from "@/components/Students/CompletedCourses/CompleteCour
 import { fetchStudent } from "@/lib/actions/students";
 import style from './style.module.css';
 import util from '../../../../styles/utils.module.css';
-import { redirect } from "next/navigation";
 interface StudentPageProps {
   params: { id: string }
 }

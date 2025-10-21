@@ -10,8 +10,7 @@ const CourseLevelPill = ({level}:Props) => {
 
   return (
     <div className={`${style.course_item_level} ${style[level]}`}>
-        <span>{nivel}</span> 
-        
+        <span>{nivel}</span>  
     </div>
   )
 }
