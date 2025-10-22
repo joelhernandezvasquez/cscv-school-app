@@ -13,7 +13,6 @@ interface Props{
 }
 
 const StudentTableItem = ({student}:Props) => {
-
   const {first_name,last_name,phone,active,created_at} = student;
   const enrollmentDate = getFormattedDate(created_at);
 
@@ -44,7 +43,7 @@ const StudentTableItem = ({student}:Props) => {
         <ActionButton> {<StudentActionMenu student={student}/>} </ActionButton>
           <p className={style.student_info_text}> 
             <FaBookBible size={18} color="#5655D7" />
-            {student._count.Enrollments}
+            {student._count.StudentCourses}
            </p>
              <Badge status= {active ? 'Active' : 'Inactive'}/>
           

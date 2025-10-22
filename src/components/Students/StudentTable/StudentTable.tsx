@@ -51,7 +51,7 @@ const StudentTable = ({studentsList}:Props) => {
 
         <TableCell className={`${style.student_courses}`}>
           <FaBookBible size={18} color="#5655D7" />
-          <p>{student._count.Enrollments}</p>
+          <p>{student._count.StudentCourses}</p>
         </TableCell>
 
         <TableCell>
