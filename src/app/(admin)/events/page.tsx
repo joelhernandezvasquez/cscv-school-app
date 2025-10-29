@@ -1,7 +1,15 @@
+import { Suspense } from "react";
+import EventsMetrics from "@/components/Events/events-metrics/EventsMetrics";
+import util from '../../../styles/utils.module.css';
 
-const EventPage = () => {
+const EventPage = async() => {
   return (
-    <h1>EventPage</h1>
+    <main className={util.wrapper}>
+     <Suspense fallback="Loading...">
+       <EventsMetrics/>
+     </Suspense>
+
+    </main>
   )
 }
 
