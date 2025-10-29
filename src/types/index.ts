@@ -115,3 +115,9 @@ export interface AddPendingCourses {
 export interface CourseIds{
   course_id: number;
 }
+
+export interface EventsSummary{
+    total:number,
+    upcoming:number,
+    completed:number
+}
