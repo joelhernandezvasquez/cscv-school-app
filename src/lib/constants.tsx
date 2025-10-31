@@ -32,6 +32,26 @@ export const filterStudentOptions = [
     'All','Active','Inactive'
 ]
 
+export const eventTabs = [
+    {
+        id:'event-filter-all',
+        value:'All'
+    },
+    {
+        id:'event-filter-active',
+        value:'Active'
+    },
+    {
+        id:'event-filter-upcoming',
+        value:'Upcoming'
+    },
+    {
+        id:'event-filter-completed',
+        value:'Completed'
+    }
+
+];
+
 export const sortStudentOptions = [
     'Name (A-Z)','Name (Z-A)','Recent','Oldest','Most Courses','Least Courses'
 ]
