@@ -7,11 +7,11 @@
     font-size: .75rem;
     min-width: 55px;
 }
-.course_item_level.level1{
+.course_item_level.level1, .course_item_level.ongoing{
      background:#ffd9dc;
     color:#FF414B;
 }
-.course_item_level.level2{
+.course_item_level.level2, .course_item_level.completed{
      background:#12a9a6;
     color:white;
 }
@@ -20,7 +20,7 @@
     color:white;
 }
 
-.course_item_level.renacer{
+.course_item_level.renacer, .course_item_level.upcoming {
      background:#e4e4fa;
     color:#6a6add;
 }

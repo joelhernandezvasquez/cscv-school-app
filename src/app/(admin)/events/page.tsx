@@ -3,8 +3,21 @@ import EventsMetrics from "@/components/Events/events-metrics/EventsMetrics";
 import FilterEventTabs from "@/components/Events/filter-event-tabs/FilterEventTabs";
 import util from '../../../styles/utils.module.css';
 import style from './style.module.css';
+import EventsGridContainer from "@/components/Events/events-grid-container/EventsGridContainer";
 
-const EventPage = async() => {
+export default async function EventPage (props:{
+   searchParams?: Promise<{
+    query?: string;
+    page?: string;
+    sortBy?:string
+  }>;
+}) {
+
+  const searchParams = await props.searchParams;
+  const query = searchParams?.query || '';
+  const currentPage = Number(searchParams?.page) || 1;
+
+
   return (
     <main className={util.wrapper}>
      <Suspense fallback="Loading...">
@@ -15,15 +28,15 @@ const EventPage = async() => {
          <FilterEventTabs/>
          <button className={style.add_event_btn}>Add Event</button>
        </header> 
-{/*        
-       <Suspense key={query + currentPage} fallback={'Loading Table...'}>
-        
-       </Suspense> */}
-      
      </section>
+
+     <Suspense key={query + currentPage} fallback={'Loading Events...'}>
+        <EventsGridContainer
+         query={query}
+         currentPage={currentPage}
+        />
+    </Suspense> 
 
     </main>
   )
 }
-
-export default EventPage

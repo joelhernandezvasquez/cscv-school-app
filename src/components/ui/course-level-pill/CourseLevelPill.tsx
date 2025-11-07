@@ -7,6 +7,7 @@ interface Props{
 
 const CourseLevelPill = ({level}:Props) => {
    const nivel = formatLevelName(level);
+  
 
   return (
     <div className={`${style.course_item_level} ${style[level]}`}>
