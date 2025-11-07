@@ -75,6 +75,17 @@
     cursor: pointer;
 }
 
+.add_button{
+     border:none;
+    background: var(--primary_blue);
+    border-radius: .5rem;
+    padding:8px 24px;
+    font-size: 1rem;
+    color:#fff;
+    cursor: pointer;
+    font-weight: 500;
+}
+
 @media(max-width:767px){
     .sign_out_btn{
        background:none;

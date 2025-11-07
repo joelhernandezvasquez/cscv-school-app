@@ -121,3 +121,29 @@ export interface EventsSummary{
     upcoming:number,
     completed:number
 }
+
+export interface Events {
+        id: number;
+        name: string;
+        course_id: number;
+        created_at: Date;
+        status: string;
+        price: number;
+        start_date: Date;
+        end_date: Date;
+        location: string;
+}
+export interface EventItem{
+        id: number;
+        name: string;
+        course_id: number;
+        created_at: Date;
+        status: string;
+        price: number;
+        start_date: Date;
+        end_date: Date;
+        course:{
+          level:string
+        }
+       
+}

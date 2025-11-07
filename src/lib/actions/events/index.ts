@@ -1,4 +1,4 @@
-import { EventsSummary } from "@/types";
+import { EventItem, EventsSummary } from "@/types";
 import { getValidatedToken } from "../index";
 
 export const getEventsSummary = async():Promise<EventsSummary> => {
@@ -14,6 +14,30 @@ export const getEventsSummary = async():Promise<EventsSummary> => {
       })
 
       return await summaryRequest.json();
+    }
+    catch(error){
+      if(error instanceof Error){
+        console.log(error);
+        throw new Error(error.message);
+    } 
+       console.log(error);
+        throw new Error('Unknown error occurred while getting the events summary');
+    }
+}
+
+export const getEvents = async(query:string,currentPage:number):Promise<EventItem[]> => {
+    try{
+      const token = await getValidatedToken();
+
+      const eventsRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/events/search?query=${query}&page=${currentPage}`,{
+         method: 'GET',
+         headers: {
+           'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+      })
+    
+      return await eventsRequest.json()
     }
     catch(error){
       if(error instanceof Error){
