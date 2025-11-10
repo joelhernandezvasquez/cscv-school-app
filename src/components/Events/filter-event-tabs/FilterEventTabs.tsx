@@ -12,7 +12,7 @@ import UseClickAway from '@/hooks/UseClickAway';
 
 const FilterEventTabs = () => {
 
-   const [currentActiveTab,setCurrentActiveTab] = useState('All');
+   const [currentActiveTab,setCurrentActiveTab] = useState('Active');
    const {isToggle,handleToggle} = UseToggle();
    const dropdownRef = UseClickAway(handleToggle);
    const searchParams = useSearchParams();

@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { getStudentsPagination } from '@/lib/actions/students';
 import StudentMetrics from '@/components/Students/Students-Metrics/StudentMetrics';
 import Search from '@/components/ui/search/Search';
 import FilterDropdown from '@/components/ui/filter-dropdown/FilterDropdown';
@@ -18,10 +19,14 @@ export default async function Page(props: {
   }>;
 }) {
 
-  const searchParams = await props.searchParams;
+  const [searchParams, pagination] = await Promise.all([
+  props.searchParams,
+  getStudentsPagination()
+]);
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
   const sortBy = searchParams?.sortBy;
+
   return (
     <main className={util.wrapper}>
      <Suspense fallback="Loading...">
@@ -46,7 +51,12 @@ export default async function Page(props: {
               sortBy={sortBy}
              /> 
         </Suspense>
-        <PaginationContainer currentPage={currentPage} query={query} sortBy={sortBy}/>
+        <PaginationContainer 
+           currentPage={currentPage} 
+           query={query} 
+           sortBy={sortBy}
+           pagination={pagination}
+           />
      </section>
 
     </main>

@@ -1,9 +1,11 @@
 import { Suspense } from "react";
 import EventsMetrics from "@/components/Events/events-metrics/EventsMetrics";
 import FilterEventTabs from "@/components/Events/filter-event-tabs/FilterEventTabs";
+import EventsGridContainer from "@/components/Events/events-grid-container/EventsGridContainer";
+import PaginationContainer from "@/components/ui/pagination/PaginationContainer";
+import { getEventsPagination } from "@/lib/actions/events";
 import util from '../../../styles/utils.module.css';
 import style from './style.module.css';
-import EventsGridContainer from "@/components/Events/events-grid-container/EventsGridContainer";
 
 export default async function EventPage (props:{
    searchParams?: Promise<{
@@ -13,10 +15,12 @@ export default async function EventPage (props:{
   }>;
 }) {
 
-  const searchParams = await props.searchParams;
+  const [searchParams, pagination] = await Promise.all([
+  props.searchParams,
+  getEventsPagination()
+]);
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
-
 
   return (
     <main className={util.wrapper}>
@@ -36,6 +40,12 @@ export default async function EventPage (props:{
          currentPage={currentPage}
         />
     </Suspense> 
+
+      <PaginationContainer 
+        currentPage={currentPage} 
+        query={query}
+        pagination={pagination}
+        />
 
     </main>
   )
