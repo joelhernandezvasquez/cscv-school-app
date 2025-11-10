@@ -50,9 +50,9 @@ export interface Students{
   error?:string | boolean
 }
 
-export interface StudentsPagination{
+export interface PaginationData{
   totalPages:number,
-  totalStudents:number;
+  totalCount:number;
 }
 
 export interface AddStudentFormState {

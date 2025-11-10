@@ -1,4 +1,4 @@
-import { CompletedCourse, PendingCourses, StudentProgress, Students, StudentsPagination, StudentsSummary } from "@/types";
+import { CompletedCourse, PaginationData, PendingCourses, StudentProgress, Students, StudentsSummary } from "@/types";
 import { getValidatedToken } from "../index";
 
 export const getStudentSummary = async():Promise<StudentsSummary> => {
@@ -48,7 +48,7 @@ export const fetchStudents = async(query:string,page:string | number,sortBy:stri
   }
 }
 
-export const getStudentsPagination = async ():Promise<StudentsPagination> =>{
+export const getStudentsPagination = async ():Promise<PaginationData> =>{
   try{
       const token = await getValidatedToken();
       const paginationRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/pagination`,{

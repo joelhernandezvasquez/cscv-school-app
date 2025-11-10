@@ -1,4 +1,4 @@
-import { EventItem, EventsSummary } from "@/types";
+import { EventItem, EventsSummary, PaginationData } from "@/types";
 import { getValidatedToken } from "../index";
 
 export const getEventsSummary = async():Promise<EventsSummary> => {
@@ -47,4 +47,28 @@ export const getEvents = async(query:string,currentPage:number):Promise<EventIte
        console.log(error);
         throw new Error('Unknown error occurred while getting the events summary');
     }
+}
+
+export const getEventsPagination = async ():Promise<PaginationData> =>{
+  try{
+      const token = await getValidatedToken();
+      const paginationRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/events/pagination`,{
+         method: 'GET',
+         headers: {
+           'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+      })
+
+      return await paginationRequest.json();
+  }
+  catch(error){
+   if(error instanceof Error){
+        console.log(error);
+        throw new Error(error.message);
+    } 
+       console.log(error);
+        throw new Error('Unknown error occurred while getting the students pagination');
+  }
+
 }

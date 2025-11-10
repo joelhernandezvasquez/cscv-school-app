@@ -1,25 +1,25 @@
 
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
-import { getStudentsPagination } from '@/lib/actions/students';
 import {Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious} from '../pagination';
+import { PaginationData } from '@/types';
 import style from './style.module.css';
-
 
 interface Props{
   currentPage:number,
   query?:string,
-  sortBy?:string
+  sortBy?:string,
+  pagination:PaginationData
 }
 
-const PaginationContainer = async ({currentPage,query,sortBy}:Props) => {
+const PaginationContainer = async ({currentPage,query,sortBy,pagination}:Props) => {
   
-  const {totalPages,totalStudents} = await getStudentsPagination();
+  const {totalPages,totalCount} = pagination
   const pages = Array.from({length:totalPages},(_,i)=> i + 1 );
 
   return (
     <div className={style.pagination_container}>
        <div className={style.pagination_info}>
-        <p className={style.pagination_text}>Showing {currentPage}-{totalPages} of {totalStudents}</p>
+        <p className={style.pagination_text}>Showing {currentPage}-{totalPages} of {totalCount}</p>
        </div>
 
        <div className={style.pagination}>
