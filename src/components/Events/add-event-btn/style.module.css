@@ -1,0 +1,10 @@
+.add_event_btn{
+    border:none;
+    background: #CDDEFF;
+    border-radius: .5rem;
+    padding:8px 24px;
+    font-size: 1rem;
+    color:#2E3135;
+    cursor: pointer;
+    font-weight: 500;
+}
