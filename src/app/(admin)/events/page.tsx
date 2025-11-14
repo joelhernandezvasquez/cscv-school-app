@@ -4,9 +4,10 @@ import FilterEventTabs from "@/components/Events/filter-event-tabs/FilterEventTa
 import EventsGridContainer from "@/components/Events/events-grid-container/EventsGridContainer";
 import PaginationContainer from "@/components/ui/pagination/PaginationContainer";
 import { getEventsPagination } from "@/lib/actions/events";
+import AddEventButton from "@/components/Events/add-event-btn/AddEventButton";
 import util from '../../../styles/utils.module.css';
 import style from './style.module.css';
-import AddEventButton from "@/components/Events/add-event-btn/AddEventButton";
+import EventCourseDropdownWrapper from "@/components/Events/event-course-dropdown/EventCourseDropdownWrapper";
 
 export default async function EventPage (props:{
    searchParams?: Promise<{
@@ -31,7 +32,9 @@ export default async function EventPage (props:{
       <section className={`${util.card_container} ${style.events_container}`}>
        <header className={style.event_header}>
          <FilterEventTabs/>
-         <AddEventButton/>
+         <AddEventButton>
+           <EventCourseDropdownWrapper/>
+         </AddEventButton>
        </header> 
      </section>
 

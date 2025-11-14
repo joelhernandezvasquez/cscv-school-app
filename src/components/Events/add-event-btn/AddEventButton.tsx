@@ -1,22 +1,31 @@
 'use client';
 
+import { ReactNode } from 'react';
 import UseToggle from '@/hooks/UseToggle';
 import Modal from '@/components/ui/modal/Modal';
 import AddEventForm from '../addEventForm/AddEventForm';
 import style from './style.module.css';
 
-const AddEventButton = () => {
+interface Props{
+ children:ReactNode
+}
+
+const AddEventButton = ({children}:Props) => {
     const {isToggle,handleToggle} = UseToggle();
   return (
     <>
-       <button className={style.add_event_btn} onClick={handleToggle}>Add Event</button>
+       <button type='button' className={style.add_event_btn} onClick={handleToggle}>Add Event</button>
      
     {isToggle && 
        <Modal 
         modalHeading='Add New Event' 
         onCloseModal={handleToggle}
         subText='Complete the information to create an event.'>
-        {<AddEventForm onClose={handleToggle}/>}
+        {
+          <AddEventForm>
+            {children}
+          </AddEventForm>
+        }
       </Modal>
       }
 

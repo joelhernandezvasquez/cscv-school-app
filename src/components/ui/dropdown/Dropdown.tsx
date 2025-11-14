@@ -13,7 +13,7 @@ const Dropdown = ({className,items,onClose}:Props) => {
         <ul className={style.dropdown_menu}>
           {
             items.map((item)=>{
-                return <li key={item} onClick={() => onClose(item)}>{item}</li>
+                return <li key={item} onClick={(e) => { e.stopPropagation(); onClose(item)}}>{item}</li>
             })
           }
         </ul>

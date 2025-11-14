@@ -1,0 +1,39 @@
+
+.dropdown_container{
+    position:relative;
+}
+
+.button{
+     display:flex;
+     align-items: center;
+     justify-content: space-between;
+     gap:.5rem;
+     border:none;
+     background: #FAFAFA;
+     border-radius: .5rem;
+     padding:6px 10px;
+     font-size:1rem;
+     color:#2E3135;
+     font-weight: 500;
+     cursor: pointer;
+    
+ 
+}
+
+.dropdown_style{
+    position:absolute;
+    top:35px;
+    left:0;
+    z-index: 2;
+    width: 260px;
+    height: 300px;
+    overflow: auto;
+}
+
+@media(min-width:767px){
+    .dropdown_style{
+    width: 300px;
+  
+}
+
+}

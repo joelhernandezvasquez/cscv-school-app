@@ -105,6 +105,14 @@ input[type="radio"]:focus {
     margin-top:1.5rem;
 }
 
+.form_field_two_column{
+    display:flex;
+   align-items: center;
+   gap:.5rem;
+   margin-bottom:1.5rem;
+   
+}
+
 
 @media(min-width:767px){
    .form_field label{
