@@ -1,12 +1,17 @@
-import { ReactNode,useState } from 'react';
-import style from '../../../styles/forms.module.css';
+import { ReactNode,useState,useActionState, useContext } from 'react';
+import { type DateRange } from "react-day-picker";
+import { EventFormContext } from '../context/EventFormContext';
 import { CalendarRange } from '../calendar-range/CalendarRange';
 import Dropdown from '@/components/ui/dropdown/Dropdown';
 import {eventStatus} from '@/lib/constants';
 import UseToggle from '@/hooks/UseToggle';
+import { AddEventFormState } from '@/types';
 import form from './form.module.css';
 import button from '../../../styles/buttons.module.css';
+import style from '../../../styles/forms.module.css';
+import { addEvent } from '@/lib/actions/events/addEvent';
 
+//TODO:// REFACTOR NEEDED
 interface Props{
   onClose:() => void,
   children:ReactNode
@@ -14,16 +19,25 @@ interface Props{
 const AddEventForm = ({children,onClose}:Props) => {
      const {isToggle,handleToggle} = UseToggle();
      const [eventState,setEventStatus] = useState(eventStatus[0]);
+     const [pickDate,setPickDate] = useState<DateRange>();
+     const context = useContext(EventFormContext);
+     const {course} = context;
 
-  // const onSubmit = () =>{
-     
-  // }
+     const [data, action, isPending] = useActionState<AddEventFormState, FormData>(
+       addEvent,
+       { success: false, message: '', errors: {} },
+     );
+
+  const onChange = (dateRange:DateRange|undefined) =>{
+    setPickDate(dateRange);
+  }
+
   const getClose = (item:string) =>{
     setEventStatus(item);
     handleToggle();
   }
   return (
-    <form className={style.form}>
+    <form className={style.form} action={action}>
        <div className={style.form_field}>
           <label htmlFor='name'>Event Name</label>
           <input  type='text' name='name' id='name'/>
@@ -33,6 +47,7 @@ const AddEventForm = ({children,onClose}:Props) => {
          <div className={style.form_field_two_column}>
               <label htmlFor='course'>Course</label>
                {children}
+                <input type="hidden" name="course" value={course as string} />
                {/* <EventCourseDropdown/> */}
                {/* {data?.errors?.zipcode && <ErrorMessage message='Zip code is missing.'/>} */}
           </div>
@@ -41,11 +56,6 @@ const AddEventForm = ({children,onClose}:Props) => {
               <label htmlFor='price'>Price</label>
               <input  type='number' name='price' id='price'/>
                {/* {data?.errors?.zipcode && <ErrorMessage message='Zip code is missing.'/>} */}
-          </div>
-
-          <div className={style.form_field}>
-            <label htmlFor='date'>Select Date</label>
-             <CalendarRange/>
           </div>
 
           <div className={`${style.form_field_two_column} ${form.dropdown_container}`}>
@@ -64,17 +74,27 @@ const AddEventForm = ({children,onClose}:Props) => {
                     onClose={getClose}
                     />
               )}
-             
+             <input type="hidden" name="eventState" value={eventState} />
+          </div>
+
+          <div className={`${style.form_field}`}>
+            <label htmlFor='date'>Select Date</label>
+             <CalendarRange onChange={onChange}/>
+             <input 
+                type="hidden" 
+                name="eventDate" 
+                value={JSON.stringify({ from: pickDate?.from?.toISOString(),to: pickDate?.to?.toISOString()})} 
+              />
           </div>
 
            <div className={style.buttons_container}>
             <button className={`${button.primary_btn} ${button.cancel_btn}`} onClick={() => onClose()}>Cancel</button>
             <button 
               className={`${button.primary_btn} ${button.submit_btn}`}
-              // disabled={isPending}
+              disabled={isPending}
               >
-              {/* {isPending ? 'Submiting...' : 'Add' } */}
-              Add
+              {isPending ? 'Submiting...' : 'Add' }
+             
             </button>
      </div>
 

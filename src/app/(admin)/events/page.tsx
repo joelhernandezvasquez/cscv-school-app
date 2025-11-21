@@ -5,9 +5,9 @@ import EventsGridContainer from "@/components/Events/events-grid-container/Event
 import PaginationContainer from "@/components/ui/pagination/PaginationContainer";
 import { getEventsPagination } from "@/lib/actions/events";
 import AddEventButton from "@/components/Events/add-event-btn/AddEventButton";
+import EventCourseDropdownWrapper from "@/components/Events/event-course-dropdown/EventCourseDropdownWrapper";
 import util from '../../../styles/utils.module.css';
 import style from './style.module.css';
-import EventCourseDropdownWrapper from "@/components/Events/event-course-dropdown/EventCourseDropdownWrapper";
 
 export default async function EventPage (props:{
    searchParams?: Promise<{

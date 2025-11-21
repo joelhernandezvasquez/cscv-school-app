@@ -144,8 +144,7 @@ export interface EventItem{
         end_date: Date;
         course:{
           level:string
-        }
-       
+        }      
 }
 
 export interface Courses{
@@ -153,4 +152,15 @@ export interface Courses{
   name: string,
   description: string,
   level: string
+}
+
+export interface AddEventFormState {
+    name?: string,
+    course?: string,
+    price?: number,
+    status?: string,
+    date?: Date,
+    success:boolean,
+    message:string,
+    errors?: Record<string, string>;
 }

@@ -1,22 +1,25 @@
 'use client';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { EventFormContext } from '../context/EventFormContext';
 import UseToggle from '@/hooks/UseToggle';
 import Dropdown from '@/components/ui/dropdown/Dropdown';
 import UseClickAway from '@/hooks/UseClickAway';
 import style from './style.module.css';
-
 
 interface Props{
   itemList:string[]
 }
 
 const EventCourseDropdown = ({itemList}:Props) => {
+     const context = useContext(EventFormContext);
      const {isToggle,handleToggle} = UseToggle();
      const dropdownRef = UseClickAway(handleToggle);
      const [selectedCourse,setSelectedCourse] = useState('not selected');
+     const { setCourse } = context;
 
      const onClose = (item:string) =>{
       setSelectedCourse(item);
+      setCourse(item);
       handleToggle();
      }
 

@@ -1,11 +1,11 @@
 'use client';
 
 import { ReactNode } from 'react';
+import { EventFormProvider } from '../context/EventFormContext';
 import UseToggle from '@/hooks/UseToggle';
 import Modal from '@/components/ui/modal/Modal';
 import AddEventForm from '../addEventForm/AddEventForm';
 import style from './style.module.css';
-
 interface Props{
  children:ReactNode
 }
@@ -22,9 +22,13 @@ const AddEventButton = ({children}:Props) => {
         onCloseModal={handleToggle}
         subText='Complete the information to create an event.'>
         {
-          <AddEventForm>
-            {children}
-          </AddEventForm>
+
+           <EventFormProvider>
+               <AddEventForm onClose={handleToggle}>
+                {children}
+              </AddEventForm>
+           </EventFormProvider>
+       
         }
       </Modal>
       }
