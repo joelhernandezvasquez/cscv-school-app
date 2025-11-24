@@ -1,8 +1,8 @@
 'use server';
 
-//import { validateStudentForm } from "./index";
 import { AddEventFormState } from "@/types";
 import { getValidatedToken } from "..";
+import { validateEventForm } from ".";
 
 export const addEvent = async (
   previousState: AddEventFormState,
@@ -21,16 +21,16 @@ export const addEvent = async (
  console.log(course);
 
 
-  
-//   const formErrors = validateStudentForm(formData);
+const formErrors = validateEventForm(formData);
 
-//   if (Object.keys(formErrors).length > 0) {
-//     return {
-//       success: false,
-//       message: 'Validation Failed',
-//       errors: formErrors
-//     };
-//   }
+console.log(formErrors);
+  if (Object.keys(formErrors).length > 0) {
+    return {
+      success: false,
+      message: 'Validation Failed',
+      errors: formErrors
+    };
+  }
   
 //   try {
 //    const token = await getValidatedToken();

@@ -10,6 +10,7 @@ import form from './form.module.css';
 import button from '../../../styles/buttons.module.css';
 import style from '../../../styles/forms.module.css';
 import { addEvent } from '@/lib/actions/events/addEvent';
+import ErrorMessage from '@/components/ui/error/ErrorMessage';
 
 //TODO:// REFACTOR NEEDED
 interface Props{
@@ -40,22 +41,21 @@ const AddEventForm = ({children,onClose}:Props) => {
     <form className={style.form} action={action}>
        <div className={style.form_field}>
           <label htmlFor='name'>Event Name</label>
-          <input  type='text' name='name' id='name'/>
-          {/* {data?.errors?.firstName && <ErrorMessage message='First Name is required.'/>} */}
+          <input className={`${data?.errors?.name && style.error}`}  type='text' name='name' id='name'/>
+          {data?.errors?.name && <ErrorMessage message='Event Name is required.'/>}
        </div>
 
          <div className={style.form_field_two_column}>
               <label htmlFor='course'>Course</label>
                {children}
                 <input type="hidden" name="course" value={course as string} />
-               {/* <EventCourseDropdown/> */}
-               {/* {data?.errors?.zipcode && <ErrorMessage message='Zip code is missing.'/>} */}
+               {data?.errors?.course && <ErrorMessage message='Course is missing please select one.'/>}
           </div>
 
          <div className={style.form_field}>
               <label htmlFor='price'>Price</label>
-              <input  type='number' name='price' id='price'/>
-               {/* {data?.errors?.zipcode && <ErrorMessage message='Zip code is missing.'/>} */}
+              <input className={`${data?.errors?.price && style.error}`} type='number' name='price' id='price'/>
+               {data?.errors?.price && <ErrorMessage message='Price is required.'/>}
           </div>
 
           <div className={`${style.form_field_two_column} ${form.dropdown_container}`}>
@@ -79,12 +79,14 @@ const AddEventForm = ({children,onClose}:Props) => {
 
           <div className={`${style.form_field}`}>
             <label htmlFor='date'>Select Date</label>
+            {data?.errors?.eventDate && <ErrorMessage message='Date is required.'/>}
              <CalendarRange onChange={onChange}/>
              <input 
                 type="hidden" 
                 name="eventDate" 
                 value={JSON.stringify({ from: pickDate?.from?.toISOString(),to: pickDate?.to?.toISOString()})} 
               />
+              
           </div>
 
            <div className={style.buttons_container}>
