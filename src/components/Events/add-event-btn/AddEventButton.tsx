@@ -32,7 +32,6 @@ const AddEventButton = ({children}:Props) => {
         }
       </Modal>
       }
-
     </>
     
   )
