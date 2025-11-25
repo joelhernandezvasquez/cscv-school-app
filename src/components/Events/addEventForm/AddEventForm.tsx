@@ -1,4 +1,5 @@
 import { ReactNode,useState,useActionState, useContext, useEffect } from 'react';
+import { useRouter } from 'next/navigation'
 import { type DateRange } from "react-day-picker";
 import { EventFormContext } from '../context/EventFormContext';
 import { CalendarRange } from '../calendar-range/CalendarRange';
@@ -6,20 +7,19 @@ import Dropdown from '@/components/ui/dropdown/Dropdown';
 import {eventStatus} from '@/lib/constants';
 import UseToggle from '@/hooks/UseToggle';
 import { AddEventFormState } from '@/types';
+import { addEvent } from '@/lib/actions/events/addEvent';
+import ErrorMessage from '@/components/ui/error/ErrorMessage';;
+import { toast, Toaster } from 'sonner';
 import form from './form.module.css';
 import button from '../../../styles/buttons.module.css';
 import style from '../../../styles/forms.module.css';
-import { addEvent } from '@/lib/actions/events/addEvent';
-import ErrorMessage from '@/components/ui/error/ErrorMessage';
-import { useRouter } from 'next/navigation';
-import { toast, Toaster } from 'sonner';
 
-//TODO:// REFACTOR NEEDED
 interface Props{
   onClose:() => void,
   children:ReactNode
 }
 const AddEventForm = ({children,onClose}:Props) => {
+     const router = useRouter();
      const {isToggle,handleToggle} = UseToggle();
      const [eventState,setEventStatus] = useState(eventStatus[0]);
      const [pickDate,setPickDate] = useState<DateRange>();
@@ -31,8 +31,6 @@ const AddEventForm = ({children,onClose}:Props) => {
        { success: false, message: '', errors: {} },
      );
 
-     const router = useRouter();
- 
   useEffect(()=>{
     if(data?.success){
       toast.success(data?.message);
@@ -101,8 +99,7 @@ const AddEventForm = ({children,onClose}:Props) => {
                 type="hidden" 
                 name="eventDate" 
                 value={JSON.stringify({ from: pickDate?.from?.toISOString(),to: pickDate?.to?.toISOString()})} 
-              />
-              
+              />  
           </div>
 
            <div className={style.buttons_container}>
@@ -112,7 +109,6 @@ const AddEventForm = ({children,onClose}:Props) => {
               disabled={isPending}
               >
               {isPending ? 'Submiting...' : 'Add' }
-             
             </button>
      </div>
        <Toaster position="top-center" richColors  closeButton  />

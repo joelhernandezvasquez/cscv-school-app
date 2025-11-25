@@ -1,6 +1,6 @@
 
 import { fetchCourses } from '@/lib/actions/courses'
-import EventCourseDropdown from './EventCourseDropdown'
+import EventCourseDropdown from './EventCourseDropdown';
 
 const EventCourseDropdownWrapper = async() => {
   const courses = await fetchCourses();

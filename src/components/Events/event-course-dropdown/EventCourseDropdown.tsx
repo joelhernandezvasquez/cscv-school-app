@@ -1,5 +1,5 @@
 'use client';
-import { useContext, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { EventFormContext } from '../context/EventFormContext';
 import UseToggle from '@/hooks/UseToggle';
 import Dropdown from '@/components/ui/dropdown/Dropdown';
@@ -17,13 +17,15 @@ const EventCourseDropdown = ({itemList}:Props) => {
      const dropdownRef = UseClickAway(handleToggle);
      const [selectedCourse,setSelectedCourse] = useState('not selected');
      const { setCourse } = context;
-     const itemListCourse = itemList.map((course)=> course.name); // TODO:memo this array value
+     const itemListCourse = useMemo(() => itemList.map(course => course.name), [itemList]);
 
-     const onClose = (item:string) =>{
-      setSelectedCourse(item);
-      const courseId = itemList.find((x)=> x.name === item)
-      setCourse(courseId?.id as number);
-      handleToggle();
+     const handleSelectCourse = (item:string) =>{
+       setSelectedCourse(item);
+       const selectedCourse = itemList.find((x) => x.name===item)?.id;
+      if(selectedCourse){
+        setCourse(selectedCourse);
+        handleToggle();
+      }
      }
 
   return (
@@ -41,7 +43,7 @@ const EventCourseDropdown = ({itemList}:Props) => {
           <Dropdown 
             className={style.dropdown_style} 
             items={itemListCourse}
-            onClose={onClose}
+            onClose={handleSelectCourse}
           />
         </div>  
      }

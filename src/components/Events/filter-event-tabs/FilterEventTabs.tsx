@@ -5,10 +5,10 @@ import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { eventTabs } from '@/lib/constants';
-import style from './style.module.css';
 import Dropdown from '@/components/ui/dropdown/Dropdown';
 import UseToggle from '@/hooks/UseToggle';
 import UseClickAway from '@/hooks/UseClickAway';
+import style from './style.module.css';
 
 const FilterEventTabs = () => {
 
