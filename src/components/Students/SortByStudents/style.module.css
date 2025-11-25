@@ -31,5 +31,6 @@
     right:0;
     left:0;
     width: 170px;
+    z-index: 2;
 }
 }
