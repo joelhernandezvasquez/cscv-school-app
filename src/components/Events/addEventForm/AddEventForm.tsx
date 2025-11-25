@@ -1,4 +1,4 @@
-import { ReactNode,useState,useActionState, useContext } from 'react';
+import { ReactNode,useState,useActionState, useContext, useEffect } from 'react';
 import { type DateRange } from "react-day-picker";
 import { EventFormContext } from '../context/EventFormContext';
 import { CalendarRange } from '../calendar-range/CalendarRange';
@@ -11,6 +11,8 @@ import button from '../../../styles/buttons.module.css';
 import style from '../../../styles/forms.module.css';
 import { addEvent } from '@/lib/actions/events/addEvent';
 import ErrorMessage from '@/components/ui/error/ErrorMessage';
+import { useRouter } from 'next/navigation';
+import { toast, Toaster } from 'sonner';
 
 //TODO:// REFACTOR NEEDED
 interface Props{
@@ -28,6 +30,20 @@ const AddEventForm = ({children,onClose}:Props) => {
        addEvent,
        { success: false, message: '', errors: {} },
      );
+
+     const router = useRouter();
+ 
+  useEffect(()=>{
+    if(data?.success){
+      toast.success(data?.message);
+      setTimeout(()=>{
+       router.refresh();
+        onClose();
+      },1000)
+     
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[data?.success])
 
   const onChange = (dateRange:DateRange|undefined) =>{
     setPickDate(dateRange);
@@ -48,7 +64,7 @@ const AddEventForm = ({children,onClose}:Props) => {
          <div className={style.form_field_two_column}>
               <label htmlFor='course'>Course</label>
                {children}
-                <input type="hidden" name="course" value={course as string} />
+                <input type="hidden" name="course" value={course ?? ""} />
                {data?.errors?.course && <ErrorMessage message='Course is missing please select one.'/>}
           </div>
 
@@ -99,7 +115,7 @@ const AddEventForm = ({children,onClose}:Props) => {
              
             </button>
      </div>
-
+       <Toaster position="top-center" richColors  closeButton  />
     </form>
   )
 }

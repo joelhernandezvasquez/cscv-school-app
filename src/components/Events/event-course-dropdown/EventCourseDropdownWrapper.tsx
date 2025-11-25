@@ -4,10 +4,9 @@ import EventCourseDropdown from './EventCourseDropdown'
 
 const EventCourseDropdownWrapper = async() => {
   const courses = await fetchCourses();
-  const itemList = courses.map((course)=> course.name);
 
   return (
-    <EventCourseDropdown itemList={itemList}/>
+    <EventCourseDropdown itemList={courses}/>
   )
 }
 

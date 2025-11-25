@@ -4,10 +4,11 @@ import { EventFormContext } from '../context/EventFormContext';
 import UseToggle from '@/hooks/UseToggle';
 import Dropdown from '@/components/ui/dropdown/Dropdown';
 import UseClickAway from '@/hooks/UseClickAway';
+import { Courses } from '@/types';
 import style from './style.module.css';
 
 interface Props{
-  itemList:string[]
+  itemList:Courses[]
 }
 
 const EventCourseDropdown = ({itemList}:Props) => {
@@ -16,10 +17,12 @@ const EventCourseDropdown = ({itemList}:Props) => {
      const dropdownRef = UseClickAway(handleToggle);
      const [selectedCourse,setSelectedCourse] = useState('not selected');
      const { setCourse } = context;
+     const itemListCourse = itemList.map((course)=> course.name); // TODO:memo this array value
 
      const onClose = (item:string) =>{
       setSelectedCourse(item);
-      setCourse(item);
+      const courseId = itemList.find((x)=> x.name === item)
+      setCourse(courseId?.id as number);
       handleToggle();
      }
 
@@ -37,7 +40,7 @@ const EventCourseDropdown = ({itemList}:Props) => {
         <div ref={dropdownRef}>
           <Dropdown 
             className={style.dropdown_style} 
-            items={itemList}
+            items={itemListCourse}
             onClose={onClose}
           />
         </div>  
