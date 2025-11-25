@@ -72,3 +72,50 @@ export const getEventsPagination = async ():Promise<PaginationData> =>{
   }
 
 }
+
+export const validateEventForm = (formData:FormData) =>{
+ let errors = {};
+
+ const name = formData.get('name');
+ const price = formData.get('price');
+ const status = formData.get('eventState');
+ const eventDate = JSON.parse(formData.get('eventDate') as string);
+ const course = formData.get('course');
+
+  if(!name){
+   errors = {
+    ...errors,
+    name:true
+   } 
+  }
+
+   if(!price){
+   errors = {
+    ...errors,
+    price:true
+   } 
+  }
+    if(!status){
+    errors = {
+      ...errors,
+      status:true
+    }
+  }
+
+   if(!eventDate.from || !eventDate.to){
+   errors = {
+    ...errors,
+    eventDate:true
+   }
+  }
+
+    if(!course){
+   errors = {
+    ...errors,
+    course:true
+   }
+  }
+
+   
+  return errors;
+}

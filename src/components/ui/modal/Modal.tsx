@@ -1,7 +1,7 @@
 
 import { ReactNode } from 'react';
 import { IoIosClose } from 'react-icons/io';
-import UseClickAway from '@/hooks/UseClickAway';
+//import UseClickAway from '@/hooks/UseClickAway';
 import style from './style.module.css';
 interface Props{
     modalHeading:string,
@@ -11,11 +11,11 @@ interface Props{
 }
 
 const Modal = ({modalHeading,onCloseModal,subText,children}:Props) => {
-  const modalRef = UseClickAway(onCloseModal);
+  //const modalRef = UseClickAway(onCloseModal);
   
   return (
     <div className={style.modal_container}>
-        <div className={style.inner_modal} ref={modalRef}>
+        <div className={style.inner_modal}>
           <header className={style.modal_header}>
               <h2 className={style.heading}>{modalHeading}</h2>
               <IoIosClose className={style.close_icon} size={30} onClick={onCloseModal} />
