@@ -144,7 +144,8 @@ export interface EventItem{
         end_date: Date;
         course:{
           level:string
-        }      
+        },
+         error?:string | boolean     
 }
 
 export interface Courses{

@@ -11,8 +11,8 @@ interface StudentPageProps {
   params: { id: string }
 }
 
-const StudentPage = async ({params}:StudentPageProps) => {
-  const {id} = params;
+const StudentPage = async ({ params }: StudentPageProps) => {
+  const { id } = await params;
   const studentInfo = await fetchStudent(id);
 
   if (studentInfo.error) {
@@ -21,22 +21,22 @@ const StudentPage = async ({params}:StudentPageProps) => {
 
   return (
     <div className={`${style.student_grid} ${util.wrapper}`}>
-      <StudentCardDetail student={studentInfo}/>
-      
+      <StudentCardDetail student={studentInfo} />
+
       <Suspense fallback="Loading..">
-         <StudentPerformance studentId = {id}/>
+        <StudentPerformance studentId={id} />
       </Suspense>
 
-       <Suspense fallback="Loading...">
-          <PendingCoursesList studentId={id}/>
-       </Suspense>
+      <Suspense fallback="Loading...">
+        <PendingCoursesList studentId={id} />
+      </Suspense>
 
-       <Suspense fallback="Loading...">
-         <CompleteCourses studentId={id}/>
-       </Suspense> 
-     
+      <Suspense fallback="Loading...">
+        <CompleteCourses studentId={id} />
+      </Suspense>
+
     </div>
-  )
+  );
 }
 
 export default StudentPage
