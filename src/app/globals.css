@@ -97,7 +97,7 @@ main{
 
 .title{
   color:#2e3135;
-  font-size:1.5rem;
+  font-size:1.125rem;
 }
 ul{
   list-style-type: none;
@@ -126,6 +126,9 @@ a{
     grid-row: 2/-1;
     padding:4rem 1.5rem;
   }
+  .title{
+  font-size:1.5rem;
+}
 }
 
 @media(min-width:1200px){

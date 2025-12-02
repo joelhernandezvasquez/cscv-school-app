@@ -86,6 +86,28 @@
     font-weight: 500;
     text-align: center;
 }
+.outline_button{
+    display:flex;
+    align-items: center;
+    gap:.5rem;
+    border:none;
+    padding: 10px 16px;
+    background: #fff;
+    color: #333;
+    border: 1px solid #dcdcdc;
+    border-radius: 14px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.outline_button:hover {
+  background: #f2f2f2;
+}
+
+.outline_button:active {
+  background: #e5e5e5;
+}
 
 @media(max-width:767px){
     .sign_out_btn{
