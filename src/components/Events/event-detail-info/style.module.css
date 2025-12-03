@@ -1,0 +1,36 @@
+
+.event_info_container{
+ margin:1.5rem 0;    
+ padding:1rem;
+ border: 1px solid #dcdcdc;
+ border-radius: 1rem;
+}
+
+.event_info{
+    display:flex;
+    flex-direction: column;
+    gap:.5rem;
+    padding:.5rem 0;
+}
+
+.event_info_col{
+  display:flex;
+  align-items: center;
+  gap:.5rem;
+}
+
+@media(min-width:1200px){
+
+.event_info_container{
+ padding:1rem 1.5rem;
+}
+
+  .event_info{
+    gap:1rem;   
+}
+
+.event_info_col{
+  font-size: 1.125rem;
+}
+
+}
