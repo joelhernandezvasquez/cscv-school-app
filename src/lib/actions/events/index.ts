@@ -45,7 +45,31 @@ export const getEvents = async(query:string,currentPage:number):Promise<EventIte
         throw new Error(error.message);
     } 
        console.log(error);
-        throw new Error('Unknown error occurred while getting the events summary');
+        throw new Error('Unknown error occurred while getting the events');
+    }
+}
+
+export const getEvent = async(eventId:string):Promise<EventItem> => {
+    try{
+      const token = await getValidatedToken();
+
+      const eventsRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/events/${eventId}`,{
+         method: 'GET',
+         headers: {
+           'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+      })
+    
+      return await eventsRequest.json()
+    }
+    catch(error){
+      if(error instanceof Error){
+        console.log(error);
+        throw new Error(error.message);
+    } 
+       console.log(error);
+        throw new Error('Unknown error occurred while getting the event');
     }
 }
 

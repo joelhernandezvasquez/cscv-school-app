@@ -7,3 +7,17 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.event_body{
+ margin:1.5rem 0;    
+ padding:1rem;
+ border-radius: 1rem;
+ border: 1px solid #dcdcdc;
+}
+
+@media(min-width:1200px){
+.event_body{
+ padding:1rem 1.5rem;
+}
+
+}

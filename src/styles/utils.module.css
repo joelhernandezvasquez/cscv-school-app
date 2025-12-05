@@ -18,6 +18,13 @@
 .text-right{
     text-align: right;
 }
+.flex{
+    display:flex;
+}
+.flex_center_space_between{
+    align-items: center;
+    justify-content: space-between;
+}
 
 @media(min-width:767px){
     .wrapper{

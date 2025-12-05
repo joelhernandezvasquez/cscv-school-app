@@ -1,4 +1,4 @@
-
+import Link from 'next/link';
 import CourseLevelIcon from '@/components/ui/course-icon/CourseLevelIcon';
 import CourseLevelPill from '@/components/ui/course-level-pill/CourseLevelPill';
 import { Calendar} from 'lucide-react';
@@ -42,10 +42,10 @@ const EventCard = ({event}:Props) => {
         <span className={style.event_price_icon}>
         <HiUsers size={20} color='#11141A' />
         </span>
-        <p>15</p>
+        <p>0</p>
       </div>
-
-       <button className={buttons.add_button}>See details</button>
+      
+        <Link href={`/events/${event.id}`} className={buttons.add_button}>See details</Link>
     </div>
   )
 }
