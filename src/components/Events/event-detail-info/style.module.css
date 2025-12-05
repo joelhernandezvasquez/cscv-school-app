@@ -1,11 +1,4 @@
 
-.event_info_container{
- margin:1.5rem 0;    
- padding:1rem;
- border: 1px solid #dcdcdc;
- border-radius: 1rem;
-}
-
 .event_info{
     display:flex;
     flex-direction: column;
@@ -20,10 +13,6 @@
 }
 
 @media(min-width:1200px){
-
-.event_info_container{
- padding:1rem 1.5rem;
-}
 
   .event_info{
     gap:1rem;   

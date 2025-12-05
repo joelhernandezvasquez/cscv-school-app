@@ -1,12 +1,12 @@
 
 import { EventItem} from '@/types';
-import style from './style.module.css';
 import { getFormattedDate } from '@/lib/utils';
 import { Calendar } from 'lucide-react';
 import { MdOutlinePriceChange } from 'react-icons/md';
 import { HiUsers } from 'react-icons/hi';
 import CourseLevelPill from '@/components/ui/course-level-pill/CourseLevelPill';
 import { RiProgress1Line } from 'react-icons/ri';
+import style from './style.module.css';
 
 interface Props{
     event:EventItem
@@ -15,7 +15,7 @@ interface Props{
 const EventDetailInfo = ({event}:Props) => {
     console.log(event);
   return (
-    <div className={style.event_info_container}>
+    <div>
         <h3 className='title'> Event Information</h3>
         <ul className={style.event_info}>
             <li className={style.event_info_col}>

@@ -75,6 +75,18 @@
     cursor: pointer;
 }
 
+.delete_btn_v2{
+    font-size: 1rem;
+    border:none;
+    background:#C94736;
+    color:#ffffff;
+    padding:8px 24px;
+    border-radius: .5rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+
 .add_button{
     border:none;
     background: var(--primary_blue);
