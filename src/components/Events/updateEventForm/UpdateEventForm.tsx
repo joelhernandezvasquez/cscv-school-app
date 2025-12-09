@@ -1,24 +1,24 @@
 'use client';
-
-import { ReactNode,useState,useActionState, useContext, useEffect } from 'react';
-import { useRouter } from 'next/navigation'
+import { useState } from "react";
+// import { ReactNode,useState,useActionState, useContext, useEffect } from 'react';
+// import { useRouter } from 'next/navigation'
 import { type DateRange } from "react-day-picker";
-import { EventFormContext } from '../context/EventFormContext';
+//import { EventFormContext } from '../context/EventFormContext';
 import { CalendarRange } from '../calendar-range/CalendarRange';
 import Dropdown from '@/components/ui/dropdown/Dropdown';
 import {eventStatus} from '@/lib/constants';
 import UseToggle from '@/hooks/UseToggle';
-import { AddEventFormState, EventItem } from '@/types';
-import { addEvent } from '@/lib/actions/events/addEvent';
-import ErrorMessage from '@/components/ui/error/ErrorMessage';;
-import { toast, Toaster } from 'sonner';
+import { EventItem } from '@/types';
+// import { addEvent } from '@/lib/actions/events/addEvent';
+// import ErrorMessage from '@/components/ui/error/ErrorMessage';;
+// import { toast, Toaster } from 'sonner';
 import style from './style.module.css';
 import button from '../../../styles/buttons.module.css';
 import form from '../../../styles/forms.module.css';
 
 interface Props{
     event:EventItem
-//   onClose:() => void,
+   //onClose:() => void,
 }
  const UpdateEventForm = ({event}:Props) => {
     console.log(event);
@@ -105,7 +105,7 @@ interface Props{
           </div>
 
            <div className={form.buttons_container}>
-            <button className={`${button.primary_btn} ${button.cancel_btn}`} onClick={() => onClose()}>Cancel</button>
+            <button className={`${button.primary_btn} ${button.cancel_btn}`} onClick={()=>{}}>Cancel</button>
             <button 
               className={`${button.primary_btn} ${button.submit_btn}`}
             //   disabled={isPending}
