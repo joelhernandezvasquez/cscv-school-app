@@ -13,7 +13,7 @@ interface Props{
 }
 
 const EventDetailInfo = ({event}:Props) => {
-    console.log(event);
+    
   return (
     <div>
         <h3 className='title'> Event Information</h3>
