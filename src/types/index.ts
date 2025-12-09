@@ -143,7 +143,8 @@ export interface EventItem{
         start_date: Date;
         end_date: Date;
         course:{
-          level:string
+          level:string,
+          name:string
         },
          error?:string | boolean     
 }
