@@ -1,76 +1,74 @@
 'use client';
-import { useState } from "react";
-// import { ReactNode,useState,useActionState, useContext, useEffect } from 'react';
-// import { useRouter } from 'next/navigation'
+import {useState,useActionState,useEffect } from 'react';
 import { type DateRange } from "react-day-picker";
-//import { EventFormContext } from '../context/EventFormContext';
 import { CalendarRange } from '../calendar-range/CalendarRange';
 import Dropdown from '@/components/ui/dropdown/Dropdown';
 import {eventStatus} from '@/lib/constants';
 import UseToggle from '@/hooks/UseToggle';
-import { EventItem } from '@/types';
-// import { addEvent } from '@/lib/actions/events/addEvent';
-// import ErrorMessage from '@/components/ui/error/ErrorMessage';;
-// import { toast, Toaster } from 'sonner';
+import { EventItem, UpdateEventFormState } from '@/types';
+import { updateEvent } from '@/lib/actions/events/updateEvent';
+import ErrorMessage from '@/components/ui/error/ErrorMessage';;
+import { toast, Toaster } from 'sonner';
 import style from './style.module.css';
 import button from '../../../styles/buttons.module.css';
 import form from '../../../styles/forms.module.css';
 
 interface Props{
-    event:EventItem
-   //onClose:() => void,
+    event:EventItem,
 }
  const UpdateEventForm = ({event}:Props) => {
-    console.log(event);
-    const {name,price,status,start_date,end_date,course} = event;
-    //  const router = useRouter();
+     const {id,name,course_id,price,status,start_date,end_date,course} = event;
      const {isToggle,handleToggle} = UseToggle();
      const [eventState,setEventStatus] = useState(status);
-     const [pickDate,setPickDate] = useState<DateRange | undefined>({from:start_date,to:end_date});
+     const [pickDate,setPickDate] = useState<DateRange>({from:start_date,to:end_date});
 
-    //  const [data, action, isPending] = useActionState<AddEventFormState, FormData>(
-    //    addEvent,
-    //    { success: false, message: '', errors: {} },
-    //  );
+     const [data, action, isPending] = useActionState<UpdateEventFormState, FormData>(
+       updateEvent,
+       { success: false, message: '', errors: {} },
+     );
 
-//   useEffect(()=>{
-//     if(data?.success){
-//       toast.success(data?.message);
-//       setTimeout(()=>{
-//        router.refresh();
-//         onClose();
-//       },1000)
+  useEffect(()=>{
+    if(data?.success){
+      toast.success(data?.message);
+      setTimeout(()=>{
+       refreshPage();
+      },1000)
      
-//     }
-//   // eslint-disable-next-line react-hooks/exhaustive-deps
-//   },[data?.success])
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[data?.success])
 
-  const onChangeDate = (dateRange:DateRange|undefined) =>{
-    setPickDate(dateRange);
+  const onChangeDate = (dateRange:DateRange | undefined) =>{
+    setPickDate(dateRange!);
   }
 
   const getClose = (item:string) =>{
     setEventStatus(item);
     handleToggle();
   }
+
+  const refreshPage = () =>{
+    window.location.reload();
+  }
   return (
-    <form className={form.form} action={()=>{}}>
+    <form className={form.form} action={action}>
        <div className={form.form_field}>
           <label htmlFor='name'>Event Name</label>
           <input type='text' name='name' id='name' defaultValue={name}/>
-          {/* {data?.errors?.name && <ErrorMessage message='Event Name is required.'/>} */}
+          <input type="hidden" name="id" value={id} />
+          {data?.errors?.name && <ErrorMessage message='Event Name is required.'/>}
        </div>
-
+         
         <div className={form.form_field}>
               <label htmlFor='course'>Course</label>
-                <input type="text" name="course" defaultValue={course.name} disabled />
+                <input type="text" name="courseName" defaultValue={course.name} disabled />
+                <input type="hidden" name="course" value={course_id}/>
           </div>
-
 
          <div className={form.form_field}>
               <label htmlFor='price'>Price</label>
               <input type='number' name='price' id='price' defaultValue={price}/>
-               {/* {data?.errors?.price && <ErrorMessage message='Price is required.'/>} */}
+               {data?.errors?.price && <ErrorMessage message='Price is required.'/>}
           </div>
 
           <div className={`${form.form_field_two_column} ${style.dropdown_container}`}>
@@ -89,32 +87,31 @@ interface Props{
                     onClose={getClose}
                     />
               )}
-             {/* <input type="hidden" name="eventState" value={eventState} /> */}
+             <input type="hidden" name="eventState"defaultValue={eventState} />
           </div>
 
           <div className={`${form.form_field}`}>
             <label htmlFor='date'>Select Date</label>
-            {/* {data?.errors?.eventDate && <ErrorMessage message='Date is required.'/>} */}
+            {data?.errors?.eventDate && <ErrorMessage message='Date is required.'/>}
              <CalendarRange onChange={onChangeDate} rangeDates={pickDate}/>
             
-             {/* <input 
+             <input 
                 type="hidden" 
                 name="eventDate" 
-                value={JSON.stringify({ from: pickDate?.from?.toISOString(),to: pickDate?.to?.toISOString()})} 
-              />   */}
+                defaultValue={JSON.stringify({ from: pickDate?.from,to: pickDate?.to})}
+              /> 
           </div>
 
            <div className={form.buttons_container}>
-            <button className={`${button.primary_btn} ${button.cancel_btn}`} onClick={()=>{}}>Cancel</button>
+            <button className={`${button.primary_btn} ${button.cancel_btn}`} onClick={()=>refreshPage()}>Cancel</button>
             <button 
               className={`${button.primary_btn} ${button.submit_btn}`}
-            //   disabled={isPending}
+               disabled={isPending}
               >
-              {/* {isPending ? 'Submiting...' : 'Add' } */}
-              Update
+              {isPending ? 'Submiting...' : 'Update' }
             </button>
      </div>
-       {/* <Toaster position="top-center" richColors  closeButton  /> */}
+       <Toaster position="top-center" richColors  closeButton  />
     </form>
   )
 }

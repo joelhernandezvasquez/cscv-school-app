@@ -166,3 +166,16 @@ export interface AddEventFormState {
     message:string,
     errors?: Record<string, string>;
 }
+
+export interface UpdateEventFormState {
+    id?:string,
+    name?: string,
+    course?: string,
+    price?: number,
+    status?: string,
+    date?: Date,
+    success:boolean,
+    message:string,
+    errors?: Record<string, string>;
+}
+
