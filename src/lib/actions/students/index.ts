@@ -25,10 +25,33 @@ export const getStudentSummary = async():Promise<StudentsSummary> => {
     }
 }
 
-export const fetchStudents = async(query:string,page:string | number,sortBy:string):Promise<Students[]> =>{
+export const fetchStudents = async(query:string,page?:string | number,sortBy?:string):Promise<Students[]> =>{
   try{
        const token = await getValidatedToken();
        const studentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/search?query=${query}&page=${page}&sortBy=${sortBy}`,{
+         method: 'GET',
+         headers: {
+           'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+      })
+      return await studentRequest.json();
+
+  }
+  catch(error){
+        if(error instanceof Error){
+        console.log(error);
+        throw new Error(error.message);
+    } 
+       console.log(error);
+        throw new Error('Unknown error occurred while getting the students');
+  }
+}
+
+export const searchStudents = async(query:string):Promise<Students[]> =>{
+  try{
+       const token = await getValidatedToken();
+       const studentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/search?query=${query}`,{
          method: 'GET',
          headers: {
            'Authorization': `Bearer ${token}`,
