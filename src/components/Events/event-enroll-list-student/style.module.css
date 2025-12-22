@@ -1,0 +1,25 @@
+
+.student_list_container{
+ max-width: 600px;
+ padding:1.5rem 0;
+}
+
+.student_item{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:1.5rem 0;
+    border-top: 1px solid #e2e2e3;
+}
+
+.student_item_info_header{
+  display:flex;
+}
+.student_item_info_header p{
+    flex: 1;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap:3rem;
+    color:var(--primary_black);
+}
