@@ -6,7 +6,11 @@ import { Students } from '@/types';
 import { LuSearch } from 'react-icons/lu';
 import style from './style.module.css';
 
-const EnrollEventForm = () => {
+interface Props{
+  eventId:number,
+}
+
+const EnrollEventForm = ({eventId}:Props) => {
   const [query,setQuery] = useState('');
   const [result,setResult] = useState<Students[]>([]);
 
@@ -29,7 +33,7 @@ const EnrollEventForm = () => {
          />
       </div>
       {
-        query && <EventEnrollStudentList studentList={result}/>
+        query && <EventEnrollStudentList studentList={result} eventId={eventId} resetSearch={setQuery}/>
       }
         
     </section>

@@ -24,7 +24,7 @@ const EventEnrollmentTable = ({event}:Props) => {
              course={course.name}
              date={course_date}
             >
-            <EnrollEventForm/>
+            <EnrollEventForm eventId={event.id}/>
           </RegisterStudentBtn>
         </header>
 
