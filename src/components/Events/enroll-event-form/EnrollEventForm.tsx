@@ -19,7 +19,7 @@ const EnrollEventForm = ({eventId}:Props) => {
        setQuery(value);
        
        startTransition(async()=>{
-          const result = await searchStudents(value);
+          const result = await searchStudents(value,eventId);
           setResult(result);
        })
     }

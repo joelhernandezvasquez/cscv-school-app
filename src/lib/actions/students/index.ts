@@ -48,10 +48,10 @@ export const fetchStudents = async(query:string,page?:string | number,sortBy?:st
   }
 }
 
-export const searchStudents = async(query:string):Promise<Students[]> =>{
+export const searchStudents = async(query:string,eventId:number):Promise<Students[]> =>{
   try{
        const token = await getValidatedToken();
-       const studentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/enrollments/search?query=${query}`,{
+       const studentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/enrollments/search/${eventId}?query=${query}`,{
          method: 'GET',
          headers: {
            'Authorization': `Bearer ${token}`,
