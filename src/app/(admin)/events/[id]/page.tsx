@@ -6,13 +6,14 @@ import EventEnrollmentTable from "@/components/Events/event-enrollment-table/Eve
 import UpdateEventForm from "@/components/Events/updateEventForm/UpdateEventForm";
 import style from '../style.module.css';
 import util from '../../../../styles/utils.module.css';
+import { getEnrollmentsPerEvent } from "@/lib/actions/enrollments";
 interface EventDetailPageProps {
   params: { id: string }
 }
 
 const EventDetailPage = async ({ params }: EventDetailPageProps) => {
     const {id} = await params;
-    const event = await getEvent(id);
+    const [event,enrollmentsEvent] = await Promise.all([getEvent(id),getEnrollmentsPerEvent(id)]);
 
     if(event.error){
      redirect('/events');
@@ -31,7 +32,7 @@ const EventDetailPage = async ({ params }: EventDetailPageProps) => {
       
       <div className={style.event_body}>
         <EventDetailInfo event={event}/>
-        <EventEnrollmentTable event={event}/>
+        <EventEnrollmentTable event={event} enrollmentEvent={enrollmentsEvent}/>
       </div>
     
     </section>

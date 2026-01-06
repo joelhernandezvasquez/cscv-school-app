@@ -179,3 +179,14 @@ export interface UpdateEventFormState {
     errors?: Record<string, string>;
 }
 
+export interface EnrollmentEvent{
+  enrollmentId:string,
+  studentId: number,
+  fullName: string,
+  phone: string,
+  email: string,
+  enrollmentDate: Date,
+  courseTitle: string,
+  status: string
+}
+
