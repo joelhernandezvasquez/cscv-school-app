@@ -31,8 +31,7 @@ const EventDetailPage = async ({ params }: EventDetailPageProps) => {
       
       <div className={style.event_body}>
         <EventDetailInfo event={event}/>
-        <EventEnrollmentTable/>
-      
+        <EventEnrollmentTable event={event}/>
       </div>
     
     </section>
