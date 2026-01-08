@@ -1,12 +1,11 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import EnrollEventForm from '../enroll-event-form/EnrollEventForm';
 import RegisterStudentBtn from './RegisterStudentBtn';
-import ActionButton from '@/components/ui/action-button/ActionButton';
 import { EnrollmentEvent, EventItem } from '@/types';
 import { getFormattedDate } from '@/lib/utils';
 import style from './style.module.css';
 import buttons from '../../../styles/buttons.module.css';
-import util from '../../../styles/utils.module.css';
+import EmptyEnrollmentState from '../empty-enrollment-table/EmptyEnrollmentTable';
 
 interface Props{
   event:EventItem,
@@ -16,7 +15,7 @@ interface Props{
 const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
    const {course,start_date,end_date} = event;
    const course_date = (`${getFormattedDate(start_date)} - ${getFormattedDate(end_date)}`);
-
+ 
   return (
     <div className={style.event_enrollment_table}>
         <header className={style.event_enrollment_header}>
@@ -28,8 +27,10 @@ const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
             <EnrollEventForm eventId={event.id}/>
           </RegisterStudentBtn>
         </header>
-
-     <Table className={style.enrollment_table}>
+     {
+       enrollmentEvent.length > 0 ?
+       (
+          <Table className={style.enrollment_table}>
       <TableHeader>
         <TableRow>
           <TableHead className={style.table_text}>Name</TableHead>
@@ -41,6 +42,7 @@ const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
     </TableHeader>
 
   <TableBody>
+    
     {enrollmentEvent.map((enroll)=>{
       return <TableRow className={style.table_row} key={enroll.enrollmentId}>
                 <TableCell className={`${style.event_row}`}>
@@ -68,10 +70,15 @@ const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
         </TableRow>
     })}
 
-  </TableBody> 
+            </TableBody> 
 
-</Table> 
-          
+        </Table> 
+       )
+       :
+        <EmptyEnrollmentState/>
+
+     }
+           
 </div>
   )
 }
