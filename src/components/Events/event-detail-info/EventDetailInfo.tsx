@@ -9,10 +9,11 @@ import { RiProgress1Line } from 'react-icons/ri';
 import style from './style.module.css';
 
 interface Props{
-    event:EventItem
+    event:EventItem,
+    amountEnrolled:number
 }
 
-const EventDetailInfo = ({event}:Props) => {
+const EventDetailInfo = ({event,amountEnrolled}:Props) => {
     
   return (
     <div>
@@ -30,7 +31,7 @@ const EventDetailInfo = ({event}:Props) => {
 
             <li className={style.event_info_col}>
                 <HiUsers size={20} color='#11141A' />
-                <p>0</p>
+                <p>{amountEnrolled}</p>
             </li>
 
             <li className={style.event_info_col}>

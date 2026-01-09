@@ -1,4 +1,5 @@
 import {useTransition} from 'react';
+import { useRouter } from 'next/navigation';
 import {enrollStudentIntoEvent} from '@/lib/actions/enrollments/enrollStudentIntoEvent.ts';
 import { toast, Toaster } from 'sonner';
 import Avatar from '@/components/ui/avatar/Avatar';
@@ -16,6 +17,7 @@ interface Props{
 const EventEnrollStudentList = ({studentList,eventId,resetSearch}:Props) => {   
     
    const [isPending, startTransition] = useTransition();
+   const router = useRouter();
    
   const handleEnrollStudentIntoEvent = (studentId:number) =>{
       startTransition(async()=>{
@@ -25,6 +27,7 @@ const EventEnrollStudentList = ({studentList,eventId,resetSearch}:Props) => {
           toast.success(message); 
           setTimeout(()=>{
               resetSearch('');
+              router.refresh();
           },1500)
            
         }

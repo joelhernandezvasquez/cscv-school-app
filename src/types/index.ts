@@ -146,6 +146,7 @@ export interface EventItem{
           level:string,
           name:string
         },
+         enrollmentCount: number,
          error?:string | boolean     
 }
 

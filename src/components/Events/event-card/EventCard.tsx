@@ -42,7 +42,7 @@ const EventCard = ({event}:Props) => {
         <span className={style.event_price_icon}>
         <HiUsers size={20} color='#11141A' />
         </span>
-        <p>0</p>
+        <p>{event.enrollmentCount}</p>
       </div>
       
         <Link href={`/events/${event.id}`} className={buttons.add_button}>See details</Link>
