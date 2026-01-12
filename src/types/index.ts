@@ -146,6 +146,7 @@ export interface EventItem{
           level:string,
           name:string
         },
+         enrollmentCount: number,
          error?:string | boolean     
 }
 
@@ -177,5 +178,16 @@ export interface UpdateEventFormState {
     success:boolean,
     message:string,
     errors?: Record<string, string>;
+}
+
+export interface EnrollmentEvent{
+  enrollmentId:string,
+  studentId: number,
+  fullName: string,
+  phone: string,
+  email: string,
+  enrollmentDate: Date,
+  courseTitle: string,
+  status: string
 }
 

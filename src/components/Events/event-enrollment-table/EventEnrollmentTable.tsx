@@ -1,21 +1,21 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import EnrollEventForm from '../enroll-event-form/EnrollEventForm';
 import RegisterStudentBtn from './RegisterStudentBtn';
-import ActionButton from '@/components/ui/action-button/ActionButton';
-import { EventItem } from '@/types';
+import { EnrollmentEvent, EventItem } from '@/types';
 import { getFormattedDate } from '@/lib/utils';
 import style from './style.module.css';
 import buttons from '../../../styles/buttons.module.css';
-import util from '../../../styles/utils.module.css';
+import EmptyEnrollmentState from '../empty-enrollment-table/EmptyEnrollmentTable';
 
 interface Props{
-  event:EventItem
+  event:EventItem,
+  enrollmentEvent:EnrollmentEvent[]
 }
 
-const EventEnrollmentTable = ({event}:Props) => {
+const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
    const {course,start_date,end_date} = event;
-   const course_date = (`${getFormattedDate(start_date)} - ${getFormattedDate(end_date)}`) 
-
+   const course_date = (`${getFormattedDate(start_date)} - ${getFormattedDate(end_date)}`);
+ 
   return (
     <div className={style.event_enrollment_table}>
         <header className={style.event_enrollment_header}>
@@ -27,8 +27,10 @@ const EventEnrollmentTable = ({event}:Props) => {
             <EnrollEventForm eventId={event.id}/>
           </RegisterStudentBtn>
         </header>
-
-     <Table className={style.enrollment_table}>
+     {
+       enrollmentEvent.length > 0 ?
+       (
+          <Table className={style.enrollment_table}>
       <TableHeader>
         <TableRow>
           <TableHead className={style.table_text}>Name</TableHead>
@@ -39,277 +41,45 @@ const EventEnrollmentTable = ({event}:Props) => {
         </TableRow>
     </TableHeader>
 
-  {/* <TableBody>
-
-      <TableRow className={style.table_row}>
-        <TableCell className={`${style.event_row}`}>
-          <div className={style.student_name}>
-            <p>Joel Hernandez</p>
-          </div>
-        </TableCell>
+  <TableBody>
+    
+    {enrollmentEvent.map((enroll)=>{
+      return <TableRow className={style.table_row} key={enroll.enrollmentId}>
+                <TableCell className={`${style.event_row}`}>
+                    <div className={style.student_name}>
+                      <p>{enroll.fullName}</p>
+                    </div>
+                </TableCell>
      
-        <TableCell className={`${style.event_row}`}>
-          <p>joel.h@gmail.com</p>
-        </TableCell>
+                <TableCell className={`${style.event_row}`}>
+                  <p>{enroll.email}</p>
+                </TableCell>
 
-        <TableCell className={`${style.event_row}`}>
-          <p>(646)-841-6837</p>
-        </TableCell>
+                <TableCell className={`${style.event_row}`}>
+                  <p>{enroll.phone}</p>
+                </TableCell>
 
-        <TableCell className={`${style.event_row}`}>
-        <p>Enrolled</p>
-        </TableCell>
+              <TableCell className={`${style.event_row}`}>
+              <p>{enroll.status}</p>
+              </TableCell>
 
-        <TableCell className={style.enrollment_action}>
-         <button className={buttons.add_button}>Complete</button>
-         <button className={buttons.delete_btn_v2}>Cancel</button>
-        </TableCell>
-    
-    </TableRow> 
+              <TableCell className={style.enrollment_action}>
+                <button className={buttons.add_button}>Complete</button>
+                <button className={buttons.delete_btn_v2}>Cancel</button>
+              </TableCell>
+        </TableRow>
+    })}
 
-      <TableRow className={style.table_row}>
-        <TableCell className={`${style.event_row} ${style.student_name_container}`}>
-          <div className={style.student_name}>
-            <p>Joel Hernandez</p>
-          </div>
-        </TableCell>
-     
-        <TableCell className={`${style.student_courses}`}>
-          <p>joel.h@gmail.com</p>
-        </TableCell>
+            </TableBody> 
 
-        <TableCell>
-          <p>(646)-841-6837</p>
-        </TableCell>
+        </Table> 
+       )
+       :
+        <EmptyEnrollmentState/>
 
-        <TableCell className={`${style.status_action}`}>
-        <p>Enrolled</p>
-        </TableCell>
-
-        <TableCell className={style.enrollment_action}>
-         <button className={buttons.add_button}>Complete</button>
-         <button className={buttons.delete_btn_v2}>Cancel</button>
-        </TableCell>
-    
-    </TableRow> 
-
-      <TableRow className={style.table_row}>
-        <TableCell className={`${style.student_row} ${style.student_name_container}`}>
-          <div className={style.student_name}>
-            <p>Joel Hernandez</p>
-          </div>
-        </TableCell>
-
-        <TableCell className={`${style.student_courses}`}>
-          <p>joel.h@gmail.com</p>
-        </TableCell>
-
-        <TableCell>
-          <p>(646)-841-6837</p>
-        </TableCell>
-
-        <TableCell className={`${style.status_action}`}>
-        <p>Enrolled</p>
-        </TableCell>
-
-        <TableCell className={style.enrollment_action}>
-         <button className={buttons.add_button}>Complete</button>
-         <button className={buttons.delete_btn_v2}>Cancel</button>
-        </TableCell>
-    
-    </TableRow> 
-
-      <TableRow className={style.table_row}>
-        <TableCell>
-          <div className={style.student_name}>
-            <p>Joel Hernandez</p>
-          </div>
-        </TableCell>
-
-        <TableCell className={`${style.student_courses}`}>
-          <p>joel.h@gmail.com</p>
-        </TableCell>
-
-        <TableCell>
-          <p>(646)-841-6837</p>
-        </TableCell>
-
-        <TableCell className={`${style.status_action}`}>
-        <p>Enrolled</p>
-        </TableCell>
-
-        <TableCell className={style.enrollment_action}>
-         <button className={buttons.add_button}>Complete</button>
-         <button className={buttons.delete_btn_v2}>Cancel</button>
-        </TableCell>
-    
-    </TableRow> 
-
-      <TableRow className={style.table_row}>
-        <TableCell className={`${style.student_row} ${style.student_name_container}`}>
-          <div className={style.student_name}>
-            <p>Joel Hernandez</p>
-          </div>
-        </TableCell>
-    
-        <TableCell className={`${style.student_courses}`}>
-          <p>joel.h@gmail.com</p>
-        </TableCell>
-
-        <TableCell>
-          <p>(646)-841-6837</p>
-        </TableCell>
-
-        <TableCell className={`${style.status_action}`}>
-        <p>Enrolled</p>
-        </TableCell>
-
-        <TableCell className={style.enrollment_action}>
-         <button className={buttons.add_button}>Complete</button>
-         <button className={buttons.delete_btn_v2}>Cancel</button>
-        </TableCell>
-    
-    </TableRow> 
-
-    <TableRow className={style.table_row}>
-        <TableCell className={`${style.event_row}`}>
-          <div className={style.student_name}>
-            <p>Joel Hernandez</p>
-          </div>
-        </TableCell>
-     
-
-        <TableCell className={`${style.event_row}`}>
-          <p>joel.h@gmail.com</p>
-        </TableCell>
-
-        <TableCell className={`${style.event_row}`}>
-          <p>(646)-841-6837</p>
-        </TableCell>
-
-        <TableCell className={`${style.event_row}`}>
-        <p>Enrolled</p>
-        </TableCell>
-
-        <TableCell className={style.enrollment_action}>
-         <button className={buttons.add_button}>Complete</button>
-         <button className={buttons.delete_btn_v2}>Cancel</button>
-        </TableCell>
-    
-    </TableRow> 
-
-      <TableRow className={style.table_row}>
-        <TableCell className={`${style.event_row} ${style.student_name_container}`}>
-          <div className={style.student_name}>
-            <p>Joel Hernandez</p>
-          </div>
-        </TableCell>
-     
-
-        <TableCell className={`${style.student_courses}`}>
-          <p>joel.h@gmail.com</p>
-        </TableCell>
-
-        <TableCell>
-          <p>(646)-841-6837</p>
-        </TableCell>
-
-        <TableCell className={`${style.status_action}`}>
-        <p>Enrolled</p>
-        </TableCell>
-
-        <TableCell className={style.enrollment_action}>
-         <button className={buttons.add_button}>Complete</button>
-         <button className={buttons.delete_btn_v2}>Cancel</button>
-        </TableCell>
-    
-    </TableRow> 
-
-      <TableRow className={style.table_row}>
-        <TableCell className={`${style.student_row} ${style.student_name_container}`}>
-          <div className={style.student_name}>
-            <p>Joel Hernandez</p>
-          </div>
-        </TableCell>
-     
-
-        <TableCell className={`${style.student_courses}`}>
-          <p>joel.h@gmail.com</p>
-        </TableCell>
-
-        <TableCell>
-          <p>(646)-841-6837</p>
-        </TableCell>
-
-        <TableCell className={`${style.status_action}`}>
-        <p>Enrolled</p>
-        </TableCell>
-
-        <TableCell className={style.enrollment_action}>
-         <button className={buttons.add_button}>Complete</button>
-         <button className={buttons.delete_btn_v2}>Cancel</button>
-        </TableCell>
-    
-    </TableRow> 
-
-      <TableRow className={style.table_row}>
-        <TableCell className={`${style.student_row} ${style.student_name_container}`}>
-          <div className={style.student_name}>
-            <p>Joel Hernandez</p>
-          </div>
-        </TableCell>
-  
-        <TableCell className={`${style.student_courses}`}>
-          <p>joel.h@gmail.com</p>
-        </TableCell>
-
-        <TableCell>
-          <p>(646)-841-6837</p>
-        </TableCell>
-
-        <TableCell className={`${style.status_action}`}>
-        <p>Enrolled</p>
-        </TableCell>
-
-        <TableCell className={style.enrollment_action}>
-         <button className={buttons.add_button}>Complete</button>
-         <button className={buttons.delete_btn_v2}>Cancel</button>
-        </TableCell>
-    
-    </TableRow> 
-
-      <TableRow className={style.table_row}>
-        <TableCell className={`${style.student_row} ${style.student_name_container}`}>
-          <div className={style.student_name}>
-            <p>Joel Hernandez</p>
-          </div>
-        </TableCell>
-
-        <TableCell className={`${style.student_courses}`}>
-          <p>joel.h@gmail.com</p>
-        </TableCell>
-
-        <TableCell>
-          <p>(646)-841-6837</p>
-        </TableCell>
-
-        <TableCell className={`${style.status_action}`}>
-        <p>Enrolled</p>
-        </TableCell>
-
-        <TableCell className={style.enrollment_action}>
-         <button className={buttons.add_button}>Complete</button>
-         <button className={buttons.delete_btn_v2}>Cancel</button>
-        </TableCell>
-    
-    </TableRow> 
-  
-  </TableBody> */}
-
-</Table> 
-  
-        
-    </div>
+     }
+           
+</div>
   )
 }
 

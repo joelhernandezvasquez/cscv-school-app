@@ -8,6 +8,7 @@ interface Props{
 }
 const EventsGridContainer = async({query,currentPage}:Props) => {
  const events = await getEvents(query,currentPage);
+ console.log(events);
 
   return (
     <ul className={style.events_grid}>

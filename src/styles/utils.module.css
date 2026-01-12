@@ -21,6 +21,12 @@
 .flex{
     display:flex;
 }
+.flex_col{
+    flex-direction: column;
+}
+.gap_5{
+    gap:.5rem;
+}
 .flex_center_space_between{
     align-items: center;
     justify-content: space-between;
