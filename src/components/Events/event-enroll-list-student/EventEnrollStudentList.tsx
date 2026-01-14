@@ -19,6 +19,7 @@ const EventEnrollStudentList = ({studentList,eventId,resetSearch}:Props) => {
    const [isPending, startTransition] = useTransition();
    const router = useRouter();
    
+     //TODO:This function needs to go to a custom hook that manages enrollment
   const handleEnrollStudentIntoEvent = (studentId:number) =>{
       startTransition(async()=>{
         const {success,message} = await enrollStudentIntoEvent(studentId,eventId);

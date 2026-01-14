@@ -15,7 +15,7 @@ interface Props{
 const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
    const {course,start_date,end_date} = event;
    const course_date = (`${getFormattedDate(start_date)} - ${getFormattedDate(end_date)}`);
-
+  
   return (
     <div className={style.event_enrollment_table}>
         <header className={style.event_enrollment_header}>
@@ -64,7 +64,10 @@ const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
               </TableCell>
 
               <TableCell className={style.enrollment_action}>
-                  <EventEnrollmentsAction enrollStatus={enroll.status}/>
+                  <EventEnrollmentsAction 
+                    enrollStatus={enroll.status}
+                    enrollmentId={enroll.enrollmentId}
+                  />
               </TableCell>
         </TableRow>
     })}
