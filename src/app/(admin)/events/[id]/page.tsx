@@ -20,7 +20,7 @@ const EventDetailPage = async ({ params }: EventDetailPageProps) => {
     if(event.error){
      redirect('/events');
     }
-
+    
   return (
    <main className={util.wrapper}>
     <section className={util.card_container}>
@@ -30,9 +30,13 @@ const EventDetailPage = async ({ params }: EventDetailPageProps) => {
           <GoBackLink/>
         </div>
         
-        <EditEventButton>
-           <UpdateEventForm event={event}/>
-        </EditEventButton>
+        {
+          event.status!=='completed' && (
+             <EditEventButton>
+                <UpdateEventForm event={event}/>
+             </EditEventButton>
+          )
+        }
        
       </header>
       

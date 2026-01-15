@@ -20,12 +20,16 @@ const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
     <div className={style.event_enrollment_table}>
         <header className={style.event_enrollment_header}>
             <h2 className='title'>Enrollment</h2>
-            <RegisterStudentBtn
-             course={course.name}
-             date={course_date}
-            >
-            <EnrollEventForm eventId={event.id}/>
-          </RegisterStudentBtn>
+            {
+              event.status!=='completed' && (
+                 <RegisterStudentBtn
+                    course={course.name}
+                    date={course_date}
+                  >
+                      <EnrollEventForm eventId={event.id}/>
+                  </RegisterStudentBtn>
+              )
+            }
         </header>
      {
        enrollmentEvent.length > 0 ?
