@@ -5,8 +5,8 @@ import { EnrollmentEvent, EventItem } from '@/types';
 import { getFormattedDate } from '@/lib/utils';
 import EmptyEnrollmentState from '../empty-enrollment-table/EmptyEnrollmentTable';
 import EventEnrollmentsAction from '../event-enrollments-action/EventEnrollmentsAction';
+import EnrollLabelStatus from '@/components/Enrollment/enroll-label-status/EnrollLabelStatus';
 import style from './style.module.css';
-
 interface Props{
   event:EventItem,
   enrollmentEvent:EnrollmentEvent[]
@@ -60,7 +60,7 @@ const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
                 </TableCell>
 
               <TableCell className={`${style.event_row}`}>
-              <p>{enroll.status}</p>
+                 <EnrollLabelStatus status={enroll.status}/>
               </TableCell>
 
               <TableCell className={style.enrollment_action}>
@@ -78,7 +78,6 @@ const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
        )
        :
         <EmptyEnrollmentState/>
-
      }
            
 </div>
