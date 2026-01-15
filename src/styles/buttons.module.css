@@ -85,6 +85,16 @@
     cursor: pointer;
     font-weight: 500;
 }
+.no_show_btn{
+   font-size: 1rem;
+    border:none;
+    background:#4ABDE8;
+    color:#ffffff;
+    padding:8px 24px;
+    border-radius: .5rem;
+    cursor: pointer;
+    font-weight: 500;
+}
 
 
 .add_button{

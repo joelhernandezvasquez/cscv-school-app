@@ -3,10 +3,10 @@ import EnrollEventForm from '../enroll-event-form/EnrollEventForm';
 import RegisterStudentBtn from './RegisterStudentBtn';
 import { EnrollmentEvent, EventItem } from '@/types';
 import { getFormattedDate } from '@/lib/utils';
-import style from './style.module.css';
-import buttons from '../../../styles/buttons.module.css';
 import EmptyEnrollmentState from '../empty-enrollment-table/EmptyEnrollmentTable';
-
+import EventEnrollmentsAction from '../event-enrollments-action/EventEnrollmentsAction';
+import EnrollLabelStatus from '@/components/Enrollment/enroll-label-status/EnrollLabelStatus';
+import style from './style.module.css';
 interface Props{
   event:EventItem,
   enrollmentEvent:EnrollmentEvent[]
@@ -15,7 +15,7 @@ interface Props{
 const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
    const {course,start_date,end_date} = event;
    const course_date = (`${getFormattedDate(start_date)} - ${getFormattedDate(end_date)}`);
- 
+  
   return (
     <div className={style.event_enrollment_table}>
         <header className={style.event_enrollment_header}>
@@ -60,12 +60,14 @@ const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
                 </TableCell>
 
               <TableCell className={`${style.event_row}`}>
-              <p>{enroll.status}</p>
+                 <EnrollLabelStatus status={enroll.status}/>
               </TableCell>
 
               <TableCell className={style.enrollment_action}>
-                <button className={buttons.add_button}>Complete</button>
-                <button className={buttons.delete_btn_v2}>Cancel</button>
+                  <EventEnrollmentsAction 
+                    enrollStatus={enroll.status}
+                    enrollmentId={enroll.enrollmentId}
+                  />
               </TableCell>
         </TableRow>
     })}
@@ -76,7 +78,6 @@ const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
        )
        :
         <EmptyEnrollmentState/>
-
      }
            
 </div>

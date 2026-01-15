@@ -188,6 +188,8 @@ export interface EnrollmentEvent{
   email: string,
   enrollmentDate: Date,
   courseTitle: string,
-  status: string
+  status: string,
+  success?: boolean,
+  message?: string,
 }
 
