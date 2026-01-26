@@ -41,7 +41,10 @@ const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
           <TableHead className={style.table_text}>Email </TableHead>
           <TableHead className={style.table_text}>Phone Number</TableHead>
           <TableHead className={style.table_text}>Status</TableHead>
-          <TableHead className={style.text_center}>Actions</TableHead>
+          {
+            event.status!=='completed' && <TableHead className={style.text_center}>Actions</TableHead>
+          }
+          
         </TableRow>
     </TableHeader>
 
@@ -67,12 +70,17 @@ const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
                  <EnrollLabelStatus status={enroll.status}/>
               </TableCell>
 
-              <TableCell className={style.enrollment_action}>
-                  <EventEnrollmentsAction 
-                    enrollStatus={enroll.status}
-                    enrollmentId={enroll.enrollmentId}
-                  />
+             {
+               event.status!=='completed' && (
+                    <TableCell className={style.enrollment_action}>
+                      <EventEnrollmentsAction 
+                        enrollStatus={enroll.status}
+                        enrollmentId={enroll.enrollmentId}
+                      />
               </TableCell>
+               )
+             }
+             
         </TableRow>
     })}
 
