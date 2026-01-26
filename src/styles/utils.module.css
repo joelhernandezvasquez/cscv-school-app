@@ -31,6 +31,14 @@
     align-items: center;
     justify-content: space-between;
 }
+.flex_center_aside{
+    align-items:center;
+    justify-content: space-between;
+    gap:1rem;
+}
+.flex_right_auto{
+    margin-right:auto;
+}
 
 @media(min-width:767px){
     .wrapper{

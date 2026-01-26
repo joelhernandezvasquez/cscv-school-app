@@ -3,10 +3,11 @@ import { ReactNode } from 'react';
 import { IoIosClose } from 'react-icons/io';
 import style from './style.module.css';
 
+
 interface Props{
     heading:string,
     subText?:string,
-    children:ReactNode,
+    children?:ReactNode,
 }
 
 const DeleteModal = ({heading,subText,children}:Props) => {
