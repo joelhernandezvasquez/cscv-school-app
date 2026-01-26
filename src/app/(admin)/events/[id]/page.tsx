@@ -39,7 +39,7 @@ const EventDetailPage = async ({ params }: EventDetailPageProps) => {
           )
         }
           {
-          event.status ==='ongoing' && (
+          (event.status ==='ongoing' && enrollmentsEvent.length > 0) && (
              <CompleteEventButton>
                 <CompleteEventForm eventId={event.id}/>
              </CompleteEventButton>

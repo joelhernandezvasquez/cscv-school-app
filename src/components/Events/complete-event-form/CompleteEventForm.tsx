@@ -20,7 +20,7 @@ const CompleteEventForm = ({eventId}:Props) => {
      startTransition(async() =>{
         try{
           const request = await completeEvent(eventId);
-           console.log('enter here');
+        
           if(request.success){
             toast.success(request.message); 
               setTimeout(()=>{
