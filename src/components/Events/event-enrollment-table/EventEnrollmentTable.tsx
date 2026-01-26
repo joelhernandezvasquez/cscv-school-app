@@ -15,7 +15,7 @@ interface Props{
 const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
    const {course,start_date,end_date} = event;
    const course_date = (`${getFormattedDate(start_date)} - ${getFormattedDate(end_date)}`);
-  
+   
   return (
     <div className={style.event_enrollment_table}>
         <header className={style.event_enrollment_header}>

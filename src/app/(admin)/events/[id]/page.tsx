@@ -4,11 +4,12 @@ import EditEventButton from "@/components/Events/edit-event-btn/EditEventButton"
 import EventDetailInfo from "@/components/Events/event-detail-info/EventDetailInfo";
 import EventEnrollmentTable from "@/components/Events/event-enrollment-table/EventEnrollmentTable";
 import UpdateEventForm from "@/components/Events/updateEventForm/UpdateEventForm";
+import CompleteEventForm from "@/components/Events/complete-event-form/CompleteEventForm";
 import GoBackLink from "@/components/ui/go-back-link/GoBackLink";
 import { getEnrollmentsPerEvent } from "@/lib/actions/enrollments";
+import CompleteEventButton from "@/components/Events/complete-event-btn/CompleteEventBtn";
 import style from '../style.module.css';
 import util from '../../../../styles/utils.module.css';
-
 interface EventDetailPageProps {
   params: { id: string }
 }
@@ -16,7 +17,7 @@ interface EventDetailPageProps {
 const EventDetailPage = async ({ params }: EventDetailPageProps) => {
     const {id} = await params;
     const [event,enrollmentsEvent] = await Promise.all([getEvent(id),getEnrollmentsPerEvent(id)]);
-  
+    
     if(event.error){
      redirect('/events');
     }
@@ -24,8 +25,8 @@ const EventDetailPage = async ({ params }: EventDetailPageProps) => {
   return (
    <main className={util.wrapper}>
     <section className={util.card_container}>
-      <header className={`${util.flex} ${util.flex_center_space_between}`}>
-        <div className={`${util.flex} ${util.flex_col} ${util.gap_5}`}>
+      <header className={`${util.flex} ${util.flex_center_aside}`}>
+        <div className={`${util.flex} ${util.flex_col} ${util.gap_5} ${util.flex_right_auto}`}>
           <h2 className='title'>{event.name}</h2>
           <GoBackLink/>
         </div>
@@ -35,6 +36,13 @@ const EventDetailPage = async ({ params }: EventDetailPageProps) => {
              <EditEventButton>
                 <UpdateEventForm event={event}/>
              </EditEventButton>
+          )
+        }
+          {
+          event.status ==='ongoing' && (
+             <CompleteEventButton>
+                <CompleteEventForm eventId={event.id}/>
+             </CompleteEventButton>
           )
         }
        
