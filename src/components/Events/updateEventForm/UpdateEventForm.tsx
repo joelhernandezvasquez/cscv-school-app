@@ -1,14 +1,14 @@
 'use client';
-import {useState,useActionState,useEffect } from 'react';
+import {useState,useActionState} from 'react';
 import { type DateRange } from "react-day-picker";
 import { CalendarRange } from '../calendar-range/CalendarRange';
+import useEventManagement from '@/hooks/UseEventManagement';
 import Dropdown from '@/components/ui/dropdown/Dropdown';
 import {eventStatus} from '@/lib/constants';
 import UseToggle from '@/hooks/UseToggle';
 import { EventItem, UpdateEventFormState } from '@/types';
-import { updateEvent } from '@/lib/actions/events/updateEvent';
 import ErrorMessage from '@/components/ui/error/ErrorMessage';;
-import { toast, Toaster } from 'sonner';
+import {Toaster} from 'sonner';
 import style from './style.module.css';
 import button from '../../../styles/buttons.module.css';
 import form from '../../../styles/forms.module.css';
@@ -21,22 +21,12 @@ interface Props{
      const {isToggle,handleToggle} = UseToggle();
      const [eventState,setEventStatus] = useState(status);
      const [pickDate,setPickDate] = useState<DateRange>({from:start_date,to:end_date});
+     const {customUpdateEvent} = useEventManagement();
 
      const [data, action, isPending] = useActionState<UpdateEventFormState, FormData>(
-       updateEvent,
+       customUpdateEvent,
        { success: false, message: '', errors: {} },
      );
-
-  useEffect(()=>{
-    if(data?.success){
-      toast.success(data?.message);
-      setTimeout(()=>{
-       refreshPage();
-      },1000)
-     
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[data?.success])
 
   const onChangeDate = (dateRange:DateRange | undefined) =>{
     setPickDate(dateRange!);
@@ -103,7 +93,7 @@ interface Props{
           </div>
 
            <div className={form.buttons_container}>
-            <button className={`${button.primary_btn} ${button.cancel_btn}`} onClick={()=>refreshPage()}>Cancel</button>
+            <button type='button' className={`${button.primary_btn} ${button.cancel_btn}`} onClick={()=>refreshPage()}>Cancel</button>
             <button 
               className={`${button.primary_btn} ${button.submit_btn}`}
                disabled={isPending}

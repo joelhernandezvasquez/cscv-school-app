@@ -144,6 +144,7 @@ export const validateEventForm = (formData:FormData) =>{
   return errors;
 }
 
+
 export const completeEvent = async (eventId:number) =>{
 
 try {
