@@ -1,49 +1,23 @@
 'use client';
 import {useTransition} from 'react';
-import { useRouter } from 'next/navigation';
-import { toast, Toaster } from 'sonner';
+import {Toaster} from 'sonner';
+import useEventManagement from '@/hooks/UseEventManagement';
 import buttons from '../../../styles/buttons.module.css';
 import style from './style.module.css';
-import { completeEvent } from '@/lib/actions/events';
 
 interface Props{
   eventId:number;
 }
 const CompleteEventForm = ({eventId}:Props) => {
-   const [pending,startTransition] = useTransition();
-   const router = useRouter();
+   const [pending] = useTransition();
+   const {submitEventCompletion} = useEventManagement();
 
-  //TODO: MOVE THIS FUNCTION TO THE CUSTOM HOOK
-  const submitEventCompletion = async(event: React.FormEvent<HTMLFormElement>) =>{
-    event.preventDefault();
-
-     startTransition(async() =>{
-        try{
-          const request = await completeEvent(eventId);
-        
-          if(request.success){
-            toast.success(request.message); 
-              setTimeout(()=>{
-                router.refresh();
-              },1000)
-          }
-        }
-        catch(error){
-            if(error instanceof Error){
-              console.log(error);
-              throw new Error(error.message);
-          } 
-            console.log(error);
-              throw new Error('Unknown error occurred while getting the events');
-          }
-     })
-  }
  const onCancel = () =>{
     window.location.reload();
  }
 
   return (
-    <form className={style.form_complete_event} onSubmit={submitEventCompletion}>
+    <form className={style.form_complete_event} onSubmit={(event: React.FormEvent<HTMLFormElement>) => submitEventCompletion(event, eventId)}>
        <button className={buttons.add_button}> {!pending ? 'Complete' : 'Completing'}</button>
         <button type="button" className={buttons.delete_btn_v2} onClick={onCancel}>Cancel</button>
         <Toaster position="top-center" richColors  closeButton  />

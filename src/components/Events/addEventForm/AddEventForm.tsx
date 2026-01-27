@@ -1,4 +1,4 @@
-import { ReactNode,useState,useActionState, useContext, useEffect } from 'react';
+import { ReactNode,useState,useActionState, useContext } from 'react';
 import { useRouter } from 'next/navigation'
 import { type DateRange } from "react-day-picker";
 import { EventFormContext } from '../context/EventFormContext';
@@ -26,22 +26,22 @@ const AddEventForm = ({children,onClose}:Props) => {
      const context = useContext(EventFormContext);
      const {course} = context;
 
+     const customAddEvent = async (prevState: AddEventFormState, formData: FormData) => {
+       const result = await addEvent(prevState, formData);
+       if (result.success) {
+         toast.success(result.message);
+         setTimeout(() => {
+           router.refresh();
+           onClose();
+         }, 1000);
+       }
+       return result;
+     };
+
      const [data, action, isPending] = useActionState<AddEventFormState, FormData>(
-       addEvent,
+       customAddEvent,
        { success: false, message: '', errors: {} },
      );
-
-  useEffect(()=>{
-    if(data?.success){
-      toast.success(data?.message);
-      setTimeout(()=>{
-       router.refresh();
-        onClose();
-      },1000)
-     
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[data?.success])
 
   const onChange = (dateRange:DateRange|undefined) =>{
     setPickDate(dateRange);
@@ -103,7 +103,7 @@ const AddEventForm = ({children,onClose}:Props) => {
           </div>
 
            <div className={style.buttons_container}>
-            <button className={`${button.primary_btn} ${button.cancel_btn}`} onClick={() => onClose()}>Cancel</button>
+            <button type='button' className={`${button.primary_btn} ${button.cancel_btn}`} onClick={() => onClose()}>Cancel</button>
             <button 
               className={`${button.primary_btn} ${button.submit_btn}`}
               disabled={isPending}

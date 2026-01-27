@@ -1,7 +1,6 @@
 import {useTransition} from 'react';
-import { useRouter } from 'next/navigation';
-import {enrollStudentIntoEvent} from '@/lib/actions/enrollments/enrollStudentIntoEvent.ts';
-import { toast, Toaster } from 'sonner';
+import useEventManagement from '@/hooks/UseEventManagement';
+import {Toaster } from 'sonner';
 import Avatar from '@/components/ui/avatar/Avatar';
 import EmptyStudentSearch from '../empty-student-search/EmptyStudentSearch';
 import { Students } from '@/types';
@@ -16,25 +15,9 @@ interface Props{
 
 const EventEnrollStudentList = ({studentList,eventId,resetSearch}:Props) => {   
     
-   const [isPending, startTransition] = useTransition();
-   const router = useRouter();
+   const [isPending] = useTransition();
+   const {handleEnrollStudentIntoEvent} = useEventManagement()
    
-     //TODO:This function needs to go to a custom hook that manages enrollment
-  const handleEnrollStudentIntoEvent = (studentId:number) =>{
-      startTransition(async()=>{
-        const {success,message} = await enrollStudentIntoEvent(studentId,eventId);
-  
-        if(success){
-          toast.success(message); 
-          setTimeout(()=>{
-              resetSearch('');
-              router.refresh();
-          },1500)
-           
-        }
-      })
-  }
-
   return (
     <>
      {
@@ -57,7 +40,7 @@ const EventEnrollStudentList = ({studentList,eventId,resetSearch}:Props) => {
 
                         <button 
                          className={button.add_button} 
-                         onClick={()=>handleEnrollStudentIntoEvent(student.id)}>{!isPending? 'Register' :'Registering...'}
+                         onClick={()=>handleEnrollStudentIntoEvent(student.id,eventId,resetSearch)}>{!isPending? 'Register' :'Registering...'}
                         </button>
                       </li>
               })}
