@@ -7,7 +7,7 @@ interface Props {
 }
 
 const StudentManualCourse = async ({params}:Props) => {
-  const {id} = params;
+  const {id} = await params;
   const pendingCourses = mappedPendingCourses(await getPendingCoursesList(id));
   
   return (
