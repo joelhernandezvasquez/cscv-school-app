@@ -34,12 +34,12 @@ export const navigationItems = [
         url:'/enrollment',
         icon:<LuUserCheck size={24} />
     },
-    {
-        id:'005-courses',
-        item:'Courses',
-        url:'/courses',
-        icon:<SiGoogleclassroom size={24} />
-    }
+    // {
+    //     id:'005-courses',
+    //     item:'Courses',
+    //     url:'/courses',
+    //     icon:<SiGoogleclassroom size={24} />
+    // }
 ]
 
 interface Props{
