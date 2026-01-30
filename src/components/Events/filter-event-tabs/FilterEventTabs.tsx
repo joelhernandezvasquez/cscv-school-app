@@ -11,13 +11,12 @@ import UseClickAway from '@/hooks/UseClickAway';
 import style from './style.module.css';
 
 const FilterEventTabs = () => {
-
-   const [currentActiveTab,setCurrentActiveTab] = useState('Active');
    const {isToggle,handleToggle} = UseToggle();
    const dropdownRef = UseClickAway(handleToggle);
    const searchParams = useSearchParams();
    const pathname = usePathname();
    const {replace} = useRouter();
+   const [currentActiveTab,setCurrentActiveTab] = useState(searchParams.get('query') || 'All');
 
    const onChangeTab = (value:string) =>{
       setCurrentActiveTab(value);
