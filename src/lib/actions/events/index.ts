@@ -73,10 +73,10 @@ export const getEvent = async(eventId:string):Promise<EventItem> => {
     }
 }
 
-export const getEventsPagination = async ():Promise<PaginationData> =>{
+export const getEventsPagination = async (query:string,currentPage:number):Promise<PaginationData> =>{
   try{
       const token = await getValidatedToken();
-      const paginationRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/events/pagination`,{
+      const paginationRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/events/pagination?query=${query}&page=${currentPage}`,{
          method: 'GET',
          headers: {
            'Authorization': `Bearer ${token}`,

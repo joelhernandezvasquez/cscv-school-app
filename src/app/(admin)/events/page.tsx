@@ -17,12 +17,11 @@ export default async function EventPage (props:{
   }>;
 }) {
 
-  const [searchParams, pagination] = await Promise.all([
-  props.searchParams,
-  getEventsPagination()
-]);
+  const searchParams = await(props.searchParams);
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
+  const pagination = await getEventsPagination(query,currentPage);
+
 
   return (
     <main className={util.wrapper}>
@@ -49,7 +48,7 @@ export default async function EventPage (props:{
         currentPage={currentPage} 
         query={query}
         pagination={pagination}
-        />
+      />
 
     </main>
   )
