@@ -14,12 +14,20 @@
 
 .student_item_info_header{
   display:flex;
+  gap:1rem;
 }
-.student_item_info_header p{
+
+.container_contact{
+    display:flex;
+    flex-direction: column;
+    gap:.3rem;
+}
+
+/* .student_item_info_header p{
     flex: 1;
     display:flex;
     align-items: center;
     justify-content: center;
     gap:3rem;
     color:var(--primary_black);
-}
+} */

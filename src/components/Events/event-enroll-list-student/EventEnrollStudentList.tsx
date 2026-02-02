@@ -28,12 +28,11 @@ const EventEnrollStudentList = ({studentList,eventId,resetSearch}:Props) => {
                 return <li className={style.student_item} key={student.id}>
                         <div className={style.student_item_info_header}>
                             <Avatar width={40} height={40}/>
-                            <div>
+                            <div className={style.container_contact}>
                                 <h3>{student.first_name} {student.last_name}</h3>
-                                  <p>
-                                    <span>{student.email} </span>
-                                    <span>{student.phone}</span>
-                                  </p>
+                                    <p>{student.email} </p>
+                                    <p>{student.phone}</p>
+                                
                             </div>
                             
                         </div>
