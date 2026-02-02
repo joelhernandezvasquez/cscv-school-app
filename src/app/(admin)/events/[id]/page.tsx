@@ -25,7 +25,7 @@ const EventDetailPage = async ({ params }: EventDetailPageProps) => {
   return (
    <main className={util.wrapper}>
     <section className={util.card_container}>
-      <header className={`${util.flex} ${util.flex_center_aside}`}>
+      <header className={`${style.event_header}`}>
         <div className={`${util.flex} ${util.flex_col} ${util.gap_5} ${util.flex_right_auto}`}>
           <h2 className='title'>{event.name}</h2>
           <GoBackLink/>

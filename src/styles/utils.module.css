@@ -1,5 +1,7 @@
 .wrapper{
    padding:1rem; 
+   width: 380px;
+   margin:0 auto;
 }
 
 .card_container{
@@ -38,6 +40,12 @@
 }
 .flex_right_auto{
     margin-right:auto;
+}
+
+@media(min-width:500px){
+    .wrapper{
+        width: 100%;
+    }
 }
 
 @media(min-width:767px){

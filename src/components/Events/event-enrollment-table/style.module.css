@@ -1,5 +1,6 @@
 .event_enrollment_table{
     margin:1rem 0;
+    overflow:auto;
 }
 .event_enrollment_table tr{
  text-align: center;

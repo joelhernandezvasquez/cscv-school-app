@@ -135,4 +135,8 @@
     .sign_out_btn{
        background:none;
     }
+    .add_button{
+    padding:8px 12px;
+    font-size: .875rem;
+}
 }
