@@ -15,11 +15,7 @@ const PaginationContainer = async ({currentPage,query,sortBy,pagination}:Props) 
   
   const {totalPages,totalCount} = pagination;
   const pages = Array.from({length:totalPages},(_,i)=> i + 1 );
-  console.log(currentPage)
-  console.log(query)
-  console.log(sortBy)
 
-  console.log(pagination);
 
   return (
     <div className={style.pagination_container}>
