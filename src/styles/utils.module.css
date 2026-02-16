@@ -41,6 +41,9 @@
 .flex_right_auto{
     margin-right:auto;
 }
+.flex_center{
+    align-items: center;
+}
 
 @media(min-width:500px){
     .wrapper{

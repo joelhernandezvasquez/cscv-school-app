@@ -1,12 +1,12 @@
+import Link from 'next/link';
 import { auth } from '@/auth.config';
 import { getPendingCoursesList } from '@/lib/actions/students';
 import {getCoursesFormatted} from '@/lib/utils';
 import CourseLevelIcon from '@/components/ui/course-icon/CourseLevelIcon';
 import CourseLevelPill from '@/components/ui/course-level-pill/CourseLevelPill';
+import { SessionUser } from '@/types';
 import style from './style.module.css';
 import util from '../../../styles/utils.module.css';
-import Link from 'next/link';
-import { SessionUser } from '@/types';
 interface Props{
    studentId:string
 }
@@ -16,7 +16,6 @@ const PendingCoursesList = async ({studentId}:Props) => {
   const pendingCoursesFormatted = getCoursesFormatted(pendingCourses);
   const session = await auth();
   
-
    return (
     <section className={`${style.pending_course_container} ${util.card_container}`}>
        <header className={style.header}>

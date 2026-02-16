@@ -2,7 +2,7 @@ import { getDashboardEventsSummary } from '@/lib/actions/dashboard';
 import BlockMetric from '@/components/ui/block-metric/BlockMetric';
 import { MdOutlineAirplay } from 'react-icons/md';
 import { CiCalendar, CiWarning } from 'react-icons/ci';
-import style from './style.module.css';
+import style from '../dashboard.module.css';
 
 const DashboardEventsMetrics = async () => {
    const {upcomingEvents,activeEvents,pendingCompletionEvents} = await getDashboardEventsSummary();
