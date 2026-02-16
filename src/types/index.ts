@@ -193,3 +193,19 @@ export interface EnrollmentEvent{
   message?: string,
 }
 
+
+export interface DashboardEventSummary{
+      upcomingEvents:{
+           events:Events[],
+           amount:number,
+           nextEventInDays:number
+         },
+         activeEvents:{
+          events:Events[],
+          amount:number
+         },
+         pendingCompletionEvents:{
+          events:Events[],
+          amount:number
+         }
+       }

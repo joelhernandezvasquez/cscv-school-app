@@ -1,11 +1,15 @@
-import { getDashboardEventsSummary } from '@/lib/actions/dashboard';
+import { DashboardEventSummary } from '@/types';
 import BlockMetric from '@/components/ui/block-metric/BlockMetric';
 import { MdOutlineAirplay } from 'react-icons/md';
 import { CiCalendar, CiWarning } from 'react-icons/ci';
 import style from '../dashboard.module.css';
 
-const DashboardEventsMetrics = async () => {
-   const {upcomingEvents,activeEvents,pendingCompletionEvents} = await getDashboardEventsSummary();
+interface Props{
+  dashboardEventSummary:DashboardEventSummary
+}
+
+const DashboardEventsMetrics = ({dashboardEventSummary}:Props) => {
+   const {upcomingEvents,activeEvents,pendingCompletionEvents} = dashboardEventSummary;
     
   return (
     <section className={style.dashboard_events_metric_container}>
