@@ -124,7 +124,7 @@ export const mappedPendingCourses = (pendingCourses:PendingCourses[]) =>{
  })
 }
 
-export const getDiffDays = (eventDate) =>{
+export const getDiffDays = (eventDate:Date) =>{
   const today = new Date();
    const diffTime = Math.abs(new Date(eventDate).getTime() - today.getTime());
    const diffDays = Math.ceil(diffTime/(1000 * 60 * 60 * 24));

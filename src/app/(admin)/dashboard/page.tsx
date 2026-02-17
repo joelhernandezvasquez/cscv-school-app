@@ -4,6 +4,7 @@ import DashboardMetrics from "@/components/Dashboard/Dashboard-Metrics/Dashboard
 import DashboardEventsMetrics from "@/components/Dashboard/Dashboard-Events-Metrics/DashboardEventsMetrics";
 import DashboardEventsAttention from "@/components/Dashboard/Dashboard-Events-Attention/DashboardEventsAttention";
 import util from '../../../styles/utils.module.css';
+import DashboardStudentsRisk from "@/components/Dashboard/Dashboard-Students-Risk/DashboardStudentsRisk";
 
 
 const DashboardPage = async () => {
@@ -20,7 +21,8 @@ const DashboardPage = async () => {
      </Suspense>
      
       <DashboardEventsAttention dashboardEventSummary={dashboardEventsSummary}/>
-    
+      
+      <DashboardStudentsRisk/>
 
     </main>
   )
