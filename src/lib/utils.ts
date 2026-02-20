@@ -1,3 +1,4 @@
+
 import { CompletedCourse, LoginError, PendingCourses } from "@/types";
 import clsx, { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -123,4 +124,22 @@ export const mappedPendingCourses = (pendingCourses:PendingCourses[]) =>{
   }
  })
 }
+
+export const getDiffDays = (eventDate:Date) =>{
+  const today = new Date();
+   const diffTime = Math.abs(new Date(eventDate).getTime() - today.getTime());
+   const diffDays = Math.ceil(diffTime/(1000 * 60 * 60 * 24));
+   return diffDays;
+}
+
+
+export function getMonthDifference(eventDate: Date): number {
+  const today = new Date();
+  const d2 = new Date(eventDate);
+  return Math.abs(
+    (today.getFullYear() - d2.getFullYear()) * 12 +
+    (today.getMonth() - d2.getMonth())
+  );
+}
+
 

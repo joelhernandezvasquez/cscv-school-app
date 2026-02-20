@@ -1,0 +1,33 @@
+.block{
+ display:grid;
+ flex-direction: column;
+ gap:.5rem;
+ background:#fff;   
+ padding:.5rem 1rem;
+ border-radius: 12px;
+ box-shadow: 0px 2px 6px 0px rgba(144, 146, 148, 0.20);
+}
+
+.block_header, .block_body{
+    display:flex;
+    align-items: center;
+    gap:1rem;
+}
+
+.block_header h3{
+    font-size: 1.125rem;
+}
+.block_header{
+    padding-bottom: .5rem;
+    border-bottom: 1px solid #E9E9E9;
+}
+.block_body{
+    margin-left:.5rem;
+}
+.info_text{
+    font-size: 1.125rem;
+}
+.block_metric{
+    font-size: 2rem;
+    font-weight: 700;
+}

@@ -99,6 +99,12 @@ main{
   color:#2e3135;
   font-size:1.125rem;
 }
+.sub_title{
+  font-size: 1.25rem;
+  color: #2e3135;
+  font-weight: 700;
+  text-transform: capitalize;
+}
 ul{
   list-style-type: none;
 }
@@ -129,6 +135,7 @@ a{
   .title{
   font-size:1.5rem;
 }
+
 }
 
 @media(min-width:1200px){

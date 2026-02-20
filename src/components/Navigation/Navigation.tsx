@@ -28,12 +28,12 @@ export const navigationItems = [
         url:'/events',
         icon:<PiCalendarBlank size={24} />
     },
-    {
-        id:'004-enroll',
-        item:'Enrollment',
-        url:'/enrollment',
-        icon:<LuUserCheck size={24} />
-    },
+    // {
+    //     id:'004-enroll',
+    //     item:'Enrollment',
+    //     url:'/enrollment',
+    //     icon:<LuUserCheck size={24} />
+    // },
     // {
     //     id:'005-courses',
     //     item:'Courses',
