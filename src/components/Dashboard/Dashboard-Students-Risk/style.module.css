@@ -2,7 +2,7 @@
 
 .dashboard_students_risk{
     display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
     gap:1rem;
     background: #fff;
     border-radius: 1rem;
@@ -26,6 +26,7 @@
 .student_risk_card_header{
   display:flex;
   align-items: center;
+  gap:.5rem;
 }
 
 .student_risk_item_name{

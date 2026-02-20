@@ -3,9 +3,8 @@ import { getDashboardEventsSummary } from "@/lib/actions/dashboard";
 import DashboardMetrics from "@/components/Dashboard/Dashboard-Metrics/DashboardMetrics";
 import DashboardEventsMetrics from "@/components/Dashboard/Dashboard-Events-Metrics/DashboardEventsMetrics";
 import DashboardEventsAttention from "@/components/Dashboard/Dashboard-Events-Attention/DashboardEventsAttention";
-import util from '../../../styles/utils.module.css';
 import DashboardStudentsRisk from "@/components/Dashboard/Dashboard-Students-Risk/DashboardStudentsRisk";
-
+import util from '../../../styles/utils.module.css';
 
 const DashboardPage = async () => {
   const dashboardEventsSummary = await getDashboardEventsSummary();
@@ -20,10 +19,14 @@ const DashboardPage = async () => {
        <DashboardEventsMetrics dashboardEventSummary={dashboardEventsSummary}/>
      </Suspense>
      
-      <DashboardEventsAttention dashboardEventSummary={dashboardEventsSummary}/>
-      
-      <DashboardStudentsRisk/>
-
+     <Suspense fallback="Loading...">
+        <DashboardEventsAttention dashboardEventSummary={dashboardEventsSummary}/>
+     </Suspense>
+    
+      <Suspense fallback="Loading...">
+         <DashboardStudentsRisk/>
+      </Suspense>
+     
     </main>
   )
 }

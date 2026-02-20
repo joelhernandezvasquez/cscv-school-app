@@ -3,7 +3,6 @@ import { getDashboardSummary } from '@/lib/actions/dashboard';
 import util from '../../../styles/utils.module.css';
 import style from '../dashboard.module.css';
 
-
 const DashboardMetrics = async() => {
 const {totalStudents,totalEnrollments,totalEvents}= await getDashboardSummary();
 

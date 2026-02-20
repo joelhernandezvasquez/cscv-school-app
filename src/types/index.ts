@@ -209,3 +209,27 @@ export interface DashboardEventSummary{
           amount:number
          }
        }
+
+       export interface StudentNoCourse{
+         id: number, 
+         first_name: string, 
+         last_name: string
+       }
+
+       export interface EnrollmentStudent{
+        enrolled_at: Date,
+        event_id:number,
+        id:string,
+        status:string,
+        student_id:number
+      }
+
+  export interface DashboardStudentRisk{
+    studentsNoCourse: StudentNoCourse[],
+    studentsPastEnrollment: {
+      id: number,
+      first_name: string,
+      last_name: string,
+      Enrollments: EnrollmentStudent[]
+    }[]
+  }
