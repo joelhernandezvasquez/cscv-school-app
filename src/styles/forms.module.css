@@ -23,12 +23,17 @@
  color:var(--primary_black);
  font-size: 1rem;
 }
+.form_field .bold_label{
+  font-size:1.125rem;
+  font-weight: 700;
+}
 
 .form_field input{
  padding:.5rem 1rem;
  border-radius:5px;
  border:1px solid #e5e7eb;
  font-size: 1rem;
+ background:none;
 }
 .form_field input:focus{
  outline:1.5px solid  #5655D7;
@@ -63,6 +68,7 @@
 }
 .input_wrapper input:focus{
     outline: unset;
+    
 }
 .input_wrapper:focus-within svg, .input_wrapper:focus-within span{
     color:#5655D7;
