@@ -7,6 +7,8 @@ import AddStudentButton from '@/components/Students/Add-Student-Button/AddStuden
 import SortByStudents from '@/components/Students/SortByStudents/SortByStudents';
 import StudentContentTable from '@/components/Students/StudentContentTable/StudentContentTable';
 import PaginationContainer from '@/components/ui/pagination/PaginationContainer';
+import GridStatSkeleton from '@/components/ui/grid-stat-skeleton/GridStatSkeleton';
+import TableSkeleton from '@/components/ui/table-skeleton/TableSkeleton';
 import { filterStudentOptions, sortStudentOptions } from '@/lib/constants';
 import util from '../../../styles/utils.module.css';
 import style from './style.module.css';
@@ -29,7 +31,7 @@ export default async function Page(props: {
 
   return (
     <main className={util.wrapper}>
-     <Suspense fallback="Loading...">
+     <Suspense fallback={<GridStatSkeleton/>}>
         <StudentMetrics/>
      </Suspense>
 
@@ -44,7 +46,7 @@ export default async function Page(props: {
          <AddStudentButton/>
        </header> 
 
-        <Suspense key={query + currentPage} fallback={'Loading Table...'}>
+        <Suspense key={query + currentPage} fallback={<TableSkeleton/>}>
             <StudentContentTable 
               query={query} 
               currentPage={currentPage}

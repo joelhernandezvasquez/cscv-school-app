@@ -6,6 +6,8 @@ import PaginationContainer from "@/components/ui/pagination/PaginationContainer"
 import { getEventsPagination } from "@/lib/actions/events";
 import AddEventButton from "@/components/Events/add-event-btn/AddEventButton";
 import EventCourseDropdownWrapper from "@/components/Events/event-course-dropdown/EventCourseDropdownWrapper";
+import GridStatSkeleton from "@/components/ui/grid-stat-skeleton/GridStatSkeleton";
+import TableSkeleton from "@/components/ui/table-skeleton/TableSkeleton";
 import util from '../../../styles/utils.module.css';
 import style from './style.module.css';
 
@@ -25,7 +27,7 @@ export default async function EventPage (props:{
 
   return (
     <main className={util.wrapper}>
-     <Suspense fallback="Loading...">
+     <Suspense fallback={<GridStatSkeleton/>}>
        <EventsMetrics/>
      </Suspense>
       <section className={`${util.card_container} ${style.events_container}`}>
@@ -37,7 +39,7 @@ export default async function EventPage (props:{
        </header> 
      </section>
 
-     <Suspense key={query + currentPage} fallback={'Loading Events...'}>
+     <Suspense key={query + currentPage} fallback={<TableSkeleton/>}>
         <EventsGridContainer
          query={query}
          currentPage={currentPage}
