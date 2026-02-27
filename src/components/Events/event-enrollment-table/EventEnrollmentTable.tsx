@@ -21,7 +21,7 @@ const EventEnrollmentTable = ({event,enrollmentEvent}:Props) => {
         <header className={style.event_enrollment_header}>
             <h2 className='title'>Enrollment</h2>
             {
-              event.status!=='completed' && (
+              event.status!=='completed' && event.status!=='cancelled'  && (
                  <RegisterStudentBtn
                     course={course.name}
                     date={course_date}

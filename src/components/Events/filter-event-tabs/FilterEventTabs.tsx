@@ -52,9 +52,9 @@ const FilterEventTabs = () => {
      {isToggle &&
         <div ref={dropdownRef}>
           <Dropdown 
-          className={style.dropdown_style} 
-          items={eventTabs.map((item)=> item.value)}
-          onClose={onChangeTab}
+           className={style.dropdown_style} 
+           items={eventTabs.map((item)=> item.value)}
+           onClose={onChangeTab}
           />
         </div>  
      }

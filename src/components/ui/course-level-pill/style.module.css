@@ -16,11 +16,16 @@
     color:white;
 }
 .course_item_level.level3{
-     background:#f5c544;;
+     background:#f5c544;
     color:white;
 }
 
 .course_item_level.renacer, .course_item_level.upcoming {
      background:#e4e4fa;
     color:#6a6add;
+}
+
+.course_item_level.renacer, .course_item_level.cancelled{
+     background:#FF414B;
+    color:#FFF;
 }
