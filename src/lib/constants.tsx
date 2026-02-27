@@ -48,6 +48,10 @@ export const eventTabs = [
     {
         id:'event-filter-completed',
         value:'Completed'
+    },
+    {
+        id:'event-filter-canceled',
+        value:'Cancelled'
     }
 
 ];

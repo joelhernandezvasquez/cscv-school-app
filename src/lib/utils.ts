@@ -99,7 +99,7 @@ export const formatLevelName = (level:string) =>{
     .replace(/ongoing/,"Active")
     .replace(/upcoming/,"Upcoming")
     .replace(/complete/,"Complete")
-  
+    .replace(/cancelled/,"Cancel")
 }
 
 export const getCoursesFormatted = (courses:PendingCourses [] | CompletedCourse[]) =>{
