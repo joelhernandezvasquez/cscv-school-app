@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { Metadata } from "next";
 import EventsMetrics from "@/components/Events/events-metrics/EventsMetrics";
 import FilterEventTabs from "@/components/Events/filter-event-tabs/FilterEventTabs";
 import EventsGridContainer from "@/components/Events/events-grid-container/EventsGridContainer";
@@ -10,6 +11,12 @@ import GridStatSkeleton from "@/components/ui/grid-stat-skeleton/GridStatSkeleto
 import TableSkeleton from "@/components/ui/table-skeleton/TableSkeleton";
 import util from '../../../styles/utils.module.css';
 import style from './style.module.css';
+
+
+export const metadata: Metadata = {
+  title: "Events",
+  description: "CSCV Academy",
+};
 
 export default async function EventPage (props:{
    searchParams?: Promise<{

@@ -9,7 +9,7 @@
  width:100%;
  font-size: 1.125rem;
  cursor:pointer;
-}
+}   
 
  .btn_login {
     margin:1rem 0;
@@ -28,6 +28,9 @@
     overflow: hidden;
     transition: transform 0.15s, box-shadow 0.15s;
     margin-bottom: 20px;
+  }
+  .btn_login:focus-within{
+     outline:3px solid #A6A8A9;
   }
 
   .btn_login::before {

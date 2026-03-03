@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { Metadata } from 'next';
 import { getStudentsPagination } from '@/lib/actions/students';
 import StudentMetrics from '@/components/Students/Students-Metrics/StudentMetrics';
 import Search from '@/components/ui/search/Search';
@@ -12,6 +13,12 @@ import TableSkeleton from '@/components/ui/table-skeleton/TableSkeleton';
 import { filterStudentOptions, sortStudentOptions } from '@/lib/constants';
 import util from '../../../styles/utils.module.css';
 import style from './style.module.css';
+
+
+export const metadata: Metadata = {
+  title: "Students",
+  description: "CSCV Academy",
+};
 
 export default async function Page(props: {
   searchParams?: Promise<{

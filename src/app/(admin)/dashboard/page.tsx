@@ -1,4 +1,5 @@
-import { Suspense } from "react"
+import { Suspense } from "react";
+import { Metadata } from "next";
 import { getDashboardEventsSummary } from "@/lib/actions/dashboard";
 import DashboardMetrics from "@/components/Dashboard/Dashboard-Metrics/DashboardMetrics";
 import DashboardEventsMetrics from "@/components/Dashboard/Dashboard-Events-Metrics/DashboardEventsMetrics";
@@ -6,6 +7,12 @@ import DashboardEventsAttention from "@/components/Dashboard/Dashboard-Events-At
 import DashboardStudentsRisk from "@/components/Dashboard/Dashboard-Students-Risk/DashboardStudentsRisk";
 import GridStatSkeleton from "@/components/ui/grid-stat-skeleton/GridStatSkeleton";
 import util from '../../../styles/utils.module.css';
+
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+  description: "CSCV Academy",
+};
 
 const DashboardPage = async () => {
   const dashboardEventsSummary = await getDashboardEventsSummary();
