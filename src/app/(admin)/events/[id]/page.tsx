@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
 import { getEvent } from "@/lib/actions/events";
 import EditEventButton from "@/components/Events/edit-event-btn/EditEventButton";
 import EventDetailInfo from "@/components/Events/event-detail-info/EventDetailInfo";
@@ -10,6 +11,11 @@ import { getEnrollmentsPerEvent } from "@/lib/actions/enrollments";
 import CompleteEventButton from "@/components/Events/complete-event-btn/CompleteEventBtn";
 import style from '../style.module.css';
 import util from '../../../../styles/utils.module.css';
+
+export const metadata: Metadata = {
+  title: "Event",
+  description: "CSCV Academy",
+};
 interface EventDetailPageProps {
   params: { id: string }
 }

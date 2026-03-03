@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
 import StudentCardDetail from "@/components/Students/StudentCardDetail/StudentCardDetail";
 import StudentPerformance from "@/components/Students/StudentPerformance/StudentPerformance";
@@ -7,6 +8,12 @@ import CompleteCourses from "@/components/Students/CompletedCourses/CompleteCour
 import { fetchStudent } from "@/lib/actions/students";
 import style from './style.module.css';
 import util from '../../../../styles/utils.module.css';
+
+
+export const metadata: Metadata = {
+  title: "Student",
+  description: "CSCV Academy",
+};
 interface StudentPageProps {
   params: { id: string }
 }
