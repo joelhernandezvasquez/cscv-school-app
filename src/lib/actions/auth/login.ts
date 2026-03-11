@@ -10,6 +10,7 @@ export const authenticateUser = async(email:string,password:string):Promise<User
        method:'POST',
         headers:{
         "Content-Type":"application/json",
+     
     },
     body:JSON.stringify({
         email,
