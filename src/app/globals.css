@@ -1,7 +1,7 @@
 
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* @import "tailwindcss";
 
@@ -27,6 +27,7 @@ body {
 
 :root {
  --primary_black:#11141A;
+ --primary_blue:#5655D7;
  --radius:0.625rem;
  --background:oklch(1 0 0);
  --foreground:oklch(0.145 0 0);
@@ -72,6 +73,7 @@ html, body {
 
 body {
 line-height: 1.5;
+background:#F7F8FA;
 }
 img, picture, video, canvas, svg {
   display: block;
@@ -92,6 +94,17 @@ p, h1, h2, h3, h4, h5, h6 {
 main{
   position: relative;
 }
+
+.title{
+  color:#2e3135;
+  font-size:1.125rem;
+}
+.sub_title{
+  font-size: 1.25rem;
+  color: #2e3135;
+  font-weight: 700;
+  text-transform: capitalize;
+}
 ul{
   list-style-type: none;
 }
@@ -99,6 +112,37 @@ ul{
 a{
   text-decoration: none;
   color:inherit;
+}
+
+
+.container{
+  display:grid;
+  grid-template-columns: 1fr;
+}
+
+@media(min-width:767px){
+  .container{
+    grid-template-columns: 240px 1fr 1fr;
+    grid-template-rows: 80px 1fr 1fr;
+    height: 100%;
+  }
+
+  .main_content{
+    grid-column: 2/-1;
+    grid-row: 2/-1;
+    padding:4rem 1.5rem;
+  }
+  .title{
+  font-size:1.5rem;
+}
+
+}
+
+@media(min-width:1200px){
+   .main_content{
+    padding-left:2rem;
+    padding-right: 2rem;
+  }
 }
 
 @theme inline {

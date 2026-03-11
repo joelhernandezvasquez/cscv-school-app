@@ -1,0 +1,12 @@
+
+.go_back_btn{
+ border:none;
+ background:none;
+ display:flex;
+ align-items: center;
+ gap:.3rem;
+ font-size: 1.25rem;
+ cursor: pointer;
+ color:var(--primary_black);
+ font-weight: 500;
+}

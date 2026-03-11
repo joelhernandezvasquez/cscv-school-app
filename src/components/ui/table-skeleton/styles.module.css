@@ -1,0 +1,62 @@
+.wrapper {
+  width: 100%;
+  border-radius: 16px;
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+/* Shared grid layout (must match real table) */
+.header,
+.row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 120px;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Header */
+.header {
+  margin-bottom: 24px;
+}
+
+.headerCell {
+  height: 16px;
+  border-radius: 6px;
+}
+
+/* Rows */
+.row {
+  padding: 16px 0;
+  border-top: 1px solid #f2f2f2;
+}
+
+/* First column with avatar */
+.firstColumn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.name {
+  width: 140px;
+  height: 16px;
+}
+
+/* Regular cells */
+.cell {
+  height: 16px;
+  border-radius: 6px;
+}
+
+/* Action buttons area */
+.actions {
+  height: 32px;
+  border-radius: 8px;
+}
