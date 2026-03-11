@@ -8,6 +8,7 @@ import DashboardStudentsRisk from "@/components/Dashboard/Dashboard-Students-Ris
 import GridStatSkeleton from "@/components/ui/grid-stat-skeleton/GridStatSkeleton";
 import util from '../../../styles/utils.module.css';
 
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: "Dashboard",

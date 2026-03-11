@@ -14,6 +14,7 @@ import { filterStudentOptions, sortStudentOptions } from '@/lib/constants';
 import util from '../../../styles/utils.module.css';
 import style from './style.module.css';
 
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: "Students",
