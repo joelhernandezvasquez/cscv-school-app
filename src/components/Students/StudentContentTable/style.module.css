@@ -1,0 +1,12 @@
+
+.student_items_container{
+  display:flex;
+  flex-direction: column;
+  margin:1.5rem 0;
+}
+
+@media(min-width:1100px){
+    .student_items_container{
+        display:none;
+    }
+}

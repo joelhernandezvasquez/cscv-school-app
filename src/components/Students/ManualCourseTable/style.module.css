@@ -1,0 +1,79 @@
+.student_table{
+    display:table;
+    table-layout: auto;
+    width:100%;
+    border-collapse: collapse;
+}
+
+
+.table_row{
+    border-bottom: 1px solid #E2E2E3;
+}
+
+.table_text{
+    color:#4D5154;
+    font-weight: 700;
+    text-align: left;
+    padding:.5rem 0;
+}
+.student_row{
+    padding:1rem 0;
+    text-align: center;
+    font-size: 1rem;
+     color:#4D5154;
+     font-weight: 500;
+}
+.student_name_container{
+ display:flex;
+ align-items: center;
+ gap:5px;
+ width:fit-content;
+
+}
+.student_name{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+.student_email{
+    font-size: .875rem;
+    color:#2e3135;
+    font-weight: 500;
+}
+.student_courses{
+ display:flex;
+ align-items: center;
+ gap:5px;
+ 
+}
+.student_action{
+   display:flex;
+   justify-content: center;
+}
+.buttons_container{
+    display:flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap:1rem;
+    padding:1rem;
+}
+.cancel_btn{
+    border:1px solid oklch(87.2% 0.01 258.338);
+    padding:.7rem 1.5rem;
+    border-radius: .5rem;
+    cursor: pointer;
+}
+.add_courses_btn{
+    padding:.7rem 1rem;
+    border-radius: .5rem;
+    background:var(--primary_blue);
+    border:none;
+    color:white;
+    cursor: pointer;
+}
+
+.checkbox{
+    width:20px;
+    height: 20px;
+}

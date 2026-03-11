@@ -1,0 +1,67 @@
+import { redirect } from "next/navigation";
+import { Metadata } from "next";
+import { getEvent } from "@/lib/actions/events";
+import EditEventButton from "@/components/Events/edit-event-btn/EditEventButton";
+import EventDetailInfo from "@/components/Events/event-detail-info/EventDetailInfo";
+import EventEnrollmentTable from "@/components/Events/event-enrollment-table/EventEnrollmentTable";
+import UpdateEventForm from "@/components/Events/updateEventForm/UpdateEventForm";
+import CompleteEventForm from "@/components/Events/complete-event-form/CompleteEventForm";
+import GoBackLink from "@/components/ui/go-back-link/GoBackLink";
+import { getEnrollmentsPerEvent } from "@/lib/actions/enrollments";
+import CompleteEventButton from "@/components/Events/complete-event-btn/CompleteEventBtn";
+import style from '../style.module.css';
+import util from '../../../../styles/utils.module.css';
+
+export const metadata: Metadata = {
+  title: "Event",
+  description: "CSCV Academy",
+};
+interface EventDetailPageProps {
+  params: { id: string }
+}
+
+const EventDetailPage = async ({ params }: EventDetailPageProps) => {
+    const {id} = await params;
+    const [event,enrollmentsEvent] = await Promise.all([getEvent(id),getEnrollmentsPerEvent(id)]);
+    
+    if(event.error){
+     redirect('/events');
+    }
+    
+  return (
+   <main className={util.wrapper}>
+    <section className={util.card_container}>
+      <header className={`${style.event_header}`}>
+        <div className={`${util.flex} ${util.flex_col} ${util.gap_5} ${util.flex_right_auto}`}>
+          <h2 className='title'>{event.name}</h2>
+          <GoBackLink/>
+        </div>
+        
+        {
+          event.status!=='completed' && (
+             <EditEventButton>
+                <UpdateEventForm event={event}/>
+             </EditEventButton>
+          )
+        }
+          {
+          (event.status ==='ongoing' && enrollmentsEvent.length > 0) && (
+             <CompleteEventButton>
+                <CompleteEventForm eventId={event.id}/>
+             </CompleteEventButton>
+          )
+        }
+       
+      </header>
+      
+      <div className={style.event_body}>
+        <EventDetailInfo event={event} amountEnrolled = {enrollmentsEvent.length}/>
+        <EventEnrollmentTable event={event} enrollmentEvent={enrollmentsEvent}/>
+      </div>
+    
+    </section>
+   </main>
+  )
+}
+
+export default EventDetailPage

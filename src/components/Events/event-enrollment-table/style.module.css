@@ -1,0 +1,54 @@
+.event_enrollment_table{
+    margin:1rem 0;
+    overflow:auto;
+}
+.event_enrollment_table tr{
+ text-align: center;
+ padding:1rem;
+}
+.event_enrollment_table tr:last-child{
+    border: 1px solid #E2E2E3;
+}
+.event_enrollment_header{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.enrollment_table{
+    display:table;
+    table-layout: auto;
+    width:100%;
+    padding:2rem 0;
+    margin:2rem 0;
+    border-collapse: collapse;
+}
+
+.table_text{
+    font-size: 1.125rem;
+    color:var(--primary_black);
+    font-weight: 700;
+    padding:.5rem;
+}
+.table_center{
+   font-size: 1.125rem;
+    color:var(--primary_black);
+    font-weight: 700;
+    text-align: center;  
+}
+
+.enrollment_action{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:1rem;
+    padding:1rem 0;
+}
+
+.table_row{
+    border: 1px solid #E2E2E3;
+}
+.event_row{
+    padding:1rem .5rem;
+   
+}
