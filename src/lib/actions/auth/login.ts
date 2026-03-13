@@ -16,9 +16,20 @@ export const authenticateUser = async(email:string,password:string):Promise<User
         password
     })
       })
-   
 
-      return await loginRequest.json();
+      const contentType = loginRequest.headers.get('content-type') || '';
+      if (!contentType.includes('application/json')) {
+        const rawResponse = await loginRequest.text();
+        throw new Error(`Invalid API response format. Expected JSON but received: ${rawResponse.slice(0, 120)}`);
+      }
+
+      const jsonResponse = await loginRequest.json();
+      if (!loginRequest.ok) {
+        const errorMessage = (jsonResponse as { message?: string })?.message || 'Login request failed';
+        throw new Error(errorMessage);
+      }
+
+      return jsonResponse;
       
     }
   
