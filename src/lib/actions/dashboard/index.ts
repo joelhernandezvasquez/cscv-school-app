@@ -1,6 +1,12 @@
 import { DashboardEventSummary, DashboardStudentRisk } from "@/types";
 import { getValidatedToken } from "..";
 
+type DashboardSummary = {
+  totalStudents: number;
+  totalEnrollments: number;
+  totalEvents: number;
+};
+
 const parseJsonResponse = async <T>(response: Response, fallbackError: string): Promise<T> => {
   const contentType = response.headers.get('content-type') || '';
 
@@ -19,7 +25,7 @@ const parseJsonResponse = async <T>(response: Response, fallbackError: string): 
 };
 
 
-export const getDashboardSummary = async() =>{
+export const getDashboardSummary = async():Promise<DashboardSummary> =>{
    try{
         const token = await getValidatedToken();
         const summaryMetrics = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/dashboard/summary`,{
@@ -30,7 +36,7 @@ export const getDashboardSummary = async() =>{
             }
        })
   
-      return await parseJsonResponse(summaryMetrics, 'Failed to get dashboard summary');
+      return await parseJsonResponse<DashboardSummary>(summaryMetrics, 'Failed to get dashboard summary');
       }
       catch(error){
         if(error instanceof Error){
