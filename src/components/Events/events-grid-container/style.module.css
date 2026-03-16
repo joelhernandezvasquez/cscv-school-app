@@ -1,0 +1,6 @@
+.events_grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,330px));
+    gap:1.2rem;
+    margin:1rem 0;
+}

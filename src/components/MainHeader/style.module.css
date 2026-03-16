@@ -1,0 +1,9 @@
+
+
+@media(min-width:767px){
+    .main_header{
+        grid-column:2/-1;
+        grid-row:1/2;
+        padding:1rem;
+    }
+}

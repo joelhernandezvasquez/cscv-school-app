@@ -10,16 +10,26 @@ export const authenticateUser = async(email:string,password:string):Promise<User
        method:'POST',
         headers:{
         "Content-Type":"application/json",
-     
     },
     body:JSON.stringify({
         email,
         password
     })
       })
-   
 
-      return await loginRequest.json();
+      const contentType = loginRequest.headers.get('content-type') || '';
+      if (!contentType.includes('application/json')) {
+        const rawResponse = await loginRequest.text();
+        throw new Error(`Invalid API response format. Expected JSON but received: ${rawResponse.slice(0, 120)}`);
+      }
+
+      const jsonResponse = await loginRequest.json();
+      if (!loginRequest.ok) {
+        const errorMessage = (jsonResponse as { message?: string })?.message || 'Login request failed';
+        throw new Error(errorMessage);
+      }
+
+      return jsonResponse;
       
     }
   
@@ -39,4 +49,19 @@ export const signInUser = async (email:string,password:string) =>{
         password:password,
         callbackUrl:'/dashboard'
       });
+}
+
+export const refreshToken = async(id:string)=>{
+  try{
+     const tokenRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/refresh-token/${id}`);
+      
+     return await tokenRequest.json();
+  
+    }
+  catch(error){
+    if(error instanceof Error){
+        console.log(error);
+        throw new Error(error.message);
+    } 
+}
 }

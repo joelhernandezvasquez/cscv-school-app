@@ -1,3 +1,18 @@
+
+.form{
+    margin-top:1rem;
+}
+.buttons_container{
+    display:flex;
+    flex-direction: column;
+    gap:1rem;
+}
+.buttons_container > *{
+    width: 95%;
+    margin:0 auto;
+}
+
+
 .form_field{
     display:flex;
     flex-direction: column;
@@ -6,14 +21,19 @@
 }
 .form_field label{
  color:var(--primary_black);
- font-size: 1.125rem;
+ font-size: 1rem;
+}
+.form_field .bold_label{
+  font-size:1.125rem;
+  font-weight: 700;
 }
 
 .form_field input{
- padding:.75rem 1rem;
+ padding:.5rem 1rem;
  border-radius:5px;
  border:1px solid #e5e7eb;
- font-size: 1.125rem;
+ font-size: 1rem;
+ background:none;
 }
 .form_field input:focus{
  outline:1.5px solid  #5655D7;
@@ -48,8 +68,74 @@
 }
 .input_wrapper input:focus{
     outline: unset;
+    
 }
 .input_wrapper:focus-within svg, .input_wrapper:focus-within span{
     color:#5655D7;
-    
+}
+
+.radio_group{
+    display:flex;
+    align-items: center;
+    gap:1rem;
+}
+.radio_group label{
+    display:flex;
+    align-items: center;
+    gap:.5rem;
+}
+input[type="radio"]:focus {
+  outline: none;
+}
+
+.fieldset {
+    border: none;
+}
+.textarea{
+    min-height: 100px;
+    padding:.5rem;
+    border-radius: 5px;
+}
+.textarea:focus{
+       outline: 1px solid var(--primary_blue);
+}
+.error{
+ outline:1px solid red;
+}
+
+
+.delete_form{
+     display:flex;
+    flex-direction: column;
+    gap:1rem;
+    margin-top:1.5rem;
+}
+
+.form_field_two_column{
+    display:flex;
+   align-items: center;
+   gap:.5rem;
+   margin-bottom:1.5rem;
+   font-size: 1.125rem;
+   
+}
+
+
+@media(min-width:767px){
+   .form_field label{
+ font-size: 1.125rem;
+}
+
+.form_field input{
+ font-size: 1.125rem;
+} 
+
+.buttons_container > *{
+    width: 250px;
+    margin:unset;
+}
+  .buttons_container{
+    flex-direction: row;
+    justify-content: flex-end;
+  } 
 }

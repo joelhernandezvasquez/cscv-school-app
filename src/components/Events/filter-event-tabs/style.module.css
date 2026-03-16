@@ -1,0 +1,54 @@
+.container{
+  position:relative;
+}
+
+.filter_container{
+  display:flex;
+  align-items: center;
+  gap:1rem;
+  background: #F5F5F5;
+  border-radius: 10px;
+  width: min-content;
+}
+
+.filter_tab_button{
+  border-radius:10px;
+  background: none;
+  padding:.5rem .875rem;
+  border:none;
+  cursor: pointer;
+  color:var(--primary_black);
+}
+.active_btn{
+  background:#cddeff;
+}
+.filter_mobile_btn{
+    display:none;
+  }
+
+  .dropdown_style{
+    display:none;
+  }
+
+ @media(max-width:500px){
+  .filter_container{
+    display:none;
+  }
+    .dropdown_style{
+      display:block;
+    position:absolute;
+    top:45px;
+    left:0;
+    width: 160px;
+}
+
+  .filter_mobile_btn{
+    border:none;
+    display:flex;
+    align-items: center;
+    gap:1rem;
+    padding:8px 20px;
+    border-radius: .5rem;
+    color:var(--primary_black);
+  }
+ }
