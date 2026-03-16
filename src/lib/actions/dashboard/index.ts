@@ -1,6 +1,7 @@
 import { DashboardEventSummary, DashboardStudentRisk } from "@/types";
 import { getValidatedToken } from "..";
 
+<<<<<<< HEAD
 type DashboardSummary = {
   totalStudents: number;
   totalEnrollments: number;
@@ -26,6 +27,10 @@ const parseJsonResponse = async <T>(response: Response, fallbackError: string): 
 
 
 export const getDashboardSummary = async():Promise<DashboardSummary> =>{
+=======
+
+export const getDashboardSummary = async() =>{
+>>>>>>> 5f761c1620cb177574ada88c34351169709c01f9
    try{
         const token = await getValidatedToken();
         const summaryMetrics = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/dashboard/summary`,{
@@ -36,7 +41,11 @@ export const getDashboardSummary = async():Promise<DashboardSummary> =>{
             }
        })
   
+<<<<<<< HEAD
       return await parseJsonResponse<DashboardSummary>(summaryMetrics, 'Failed to get dashboard summary');
+=======
+       return await summaryMetrics.json();
+>>>>>>> 5f761c1620cb177574ada88c34351169709c01f9
       }
       catch(error){
         if(error instanceof Error){
@@ -59,7 +68,11 @@ export const getDashboardEventsSummary = async():Promise<DashboardEventSummary>=
             }
        })
   
+<<<<<<< HEAD
       return await parseJsonResponse<DashboardEventSummary>(dashboardEventSummary, 'Failed to get dashboard events summary');
+=======
+       return await dashboardEventSummary.json();
+>>>>>>> 5f761c1620cb177574ada88c34351169709c01f9
       }
       catch(error){
         if(error instanceof Error){
