@@ -7,6 +7,7 @@ type DashboardSummary = {
   totalEvents: number;
 };
 
+
 const parseJsonResponse = async <T>(response: Response, fallbackError: string): Promise<T> => {
   const contentType = response.headers.get('content-type') || '';
 
