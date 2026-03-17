@@ -82,7 +82,7 @@ export const getDashboardStudentRisk = async():Promise<DashboardStudentRisk> =>{
               'Content-Type': 'application/json'
             }
        })
-  
+      
       return await parseJsonResponse<DashboardStudentRisk>(studentsRisk, 'Failed to get dashboard student risk');
       }
       catch(error){
