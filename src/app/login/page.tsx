@@ -24,7 +24,7 @@ const LoginPage = async() => {
       <section className={style.wrapper}>
         <div className={style.logo}>
           <Logo width={45} height={45}/>
-          <span className={style.academy_text}>CSCV Academy</span>
+          <span className={'text-lg font-semibold md:text-2xl'}>Casa De La Anunciacion Brooklyn</span>
         </div>
       
         <h1 className={`${style.main_headline} ${DMSerifDisplay.className}`}>
