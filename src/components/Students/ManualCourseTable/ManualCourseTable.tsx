@@ -28,7 +28,7 @@ const {
       <TableRow>
         <TableHead className={style.table_text}>Task</TableHead>
         <TableHead className={style.table_text}>Course</TableHead>
-          <TableHead className={style.table_text}>Description</TableHead>
+        <TableHead className={style.table_text}>Description</TableHead>
         <TableHead className={style.table_text}>Level</TableHead>
       </TableRow>
   </TableHeader>
@@ -49,8 +49,9 @@ const {
         </TableCell>
      
         <TableCell className={util.text_left}>
-        <p>{course.name}</p>
+        <p className="text-[1rem]">{course.name}</p>
         </TableCell>
+        
 
         <TableCell className={`${style.student_courses}`}>
          <p>{course.description}</p> 
