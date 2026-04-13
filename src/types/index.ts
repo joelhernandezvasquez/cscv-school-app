@@ -98,10 +98,20 @@ export interface PendingCourses {
    level: string,
 }
 export interface CompletedCourse{
+  id:number,
   name:string,
   description:string,
   level:string,
   completeAt: null | Date
+}
+export interface CompletedCourseActionState{
+  // id:number,
+  // name:string,
+  // description:string,
+  // level:string,
+  // completeAt: null | Date
+    success:boolean,
+    message:string,
 }
 
 export interface AddPendingCourses {
