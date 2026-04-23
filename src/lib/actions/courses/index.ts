@@ -1,4 +1,4 @@
-import { Courses } from "@/types";
+import { Courses, CoursesByLevel } from "@/types";
 import { getValidatedToken } from "../index";
 
  export const fetchCourses = async ():Promise<Courses[]> =>{
@@ -23,3 +23,28 @@ import { getValidatedToken } from "../index";
               throw new Error('Unknown error occurred while getting the courses');
         }
  }
+
+ export const getCoursesByLevel = async ():Promise<CoursesByLevel[]> =>{
+    try{
+      const token = await getValidatedToken();
+      const coursesRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/course/total-courses-level`,{
+       method: 'GET',
+         headers: {
+           'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+     })
+
+     return await coursesRequest.json();
+    }
+    catch(error){
+      if(error instanceof Error){
+              console.log(error);
+              throw new Error(error.message);
+          } 
+            console.log(error);
+              throw new Error('Unknown error occurred while getting the courses');
+        }
+ }
+
+

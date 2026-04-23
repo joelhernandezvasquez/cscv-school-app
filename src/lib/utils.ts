@@ -1,5 +1,5 @@
 
-import { CompletedCourse, LoginError, PendingCourses } from "@/types";
+import { CompletedCourse, CoursePieChartData, CoursesByLevel, LoginError, PendingCourses } from "@/types";
 import clsx, { ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -42,6 +42,7 @@ export const getFirstLetterUpperCase = (text:string) =>{
   const firstLetter = text[0].toUpperCase();
   return `${firstLetter}${text.slice(1)}`;
 }
+
 export const getOnlyUserName = (userName:string) =>{
   const name = getFirstLetterUpperCase(userName);
   const whiteSpace = name.indexOf(' ');
@@ -123,6 +124,29 @@ export const mappedPendingCourses = (pendingCourses:PendingCourses[]) =>{
      date:null
   }
  })
+}
+
+export const formatCoursesByLevelToChartData = (coursesByLevel:CoursesByLevel[]):CoursePieChartData[] =>{
+
+ const nivel1 = coursesByLevel.find((element)=> element.level.includes('Nivel 1'));
+ const nivel2 = coursesByLevel.find((element)=> element.level.includes('Nivel 2'));
+ const nivel3 = coursesByLevel.find((element)=> element.level.includes('Nivel 3'));
+
+ const renacerTotal = coursesByLevel.reduce((acc, course) => {
+   if (course.level.toLowerCase().includes('renacer')) {
+     return acc + course.courseLevelQuantity;
+   }
+   return acc;
+ }, 0);
+
+ const chartData = [
+  { browser: "Nivel 1", visitors: nivel1?.courseLevelQuantity ?? 0, fill: "#a30f12" },
+  { browser: "Nivel 2", visitors: nivel2?.courseLevelQuantity ?? 0, fill: "#12a9a6" },
+  { browser: "Nivel 3", visitors: nivel3?.courseLevelQuantity ?? 0, fill: "#f5c544" },
+  { browser: "Renacer", visitors: renacerTotal, fill: "#5655d7" },
+ ];
+ return chartData;
+
 }
 
 export const getDiffDays = (eventDate:Date) =>{

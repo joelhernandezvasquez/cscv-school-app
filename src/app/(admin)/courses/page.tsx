@@ -1,7 +1,23 @@
+import { Suspense } from "react";
+import { Metadata } from "next";
+import GridStatSkeleton from "@/components/ui/grid-stat-skeleton/GridStatSkeleton";
+import CourseCategory from "@/components/Course/course-category/CourseCategory";
+import util from '../../../styles/utils.module.css';
+
+export const metadata: Metadata = {
+  title: "Courses",
+  description: "CSCV Academy",
+};
+
 
 const CoursePage = () => {
   return (
-    <h1>Course Page</h1>
+    <main className={util.wrapper}>
+       <Suspense fallback={<GridStatSkeleton/>}>
+        <CourseCategory/>
+     </Suspense>
+     
+    </main>
   )
 }
 

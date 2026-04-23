@@ -1,17 +1,18 @@
-import { getCoursePercentange } from '@/lib/utils';
+import {getCoursePercentange } from '@/lib/utils';
 import style from './style.module.css';
 
 interface Props{
   colorLevel:string,
   level:string,
   courseLevelQuantity:number,
-  courseQuantityCompleted:number
+  courseQuantityCompleted?:number,
+  totalCourses?:number
 }
 
-const CourseCategoryPercentange = ({colorLevel,level,courseLevelQuantity,courseQuantityCompleted}:Props) => {
-    
-   const coursePercentage = getCoursePercentange(courseQuantityCompleted,courseLevelQuantity);
-  
+const CourseCategoryPercentange = ({colorLevel,level,courseLevelQuantity,courseQuantityCompleted,totalCourses}:Props) => {
+   
+const coursePercentage = !totalCourses ? getCoursePercentange(courseQuantityCompleted!,courseLevelQuantity): getCoursePercentange(courseLevelQuantity,totalCourses);
+   
    return (
     <div className={style.container}>
        <div className={style.category_block}>

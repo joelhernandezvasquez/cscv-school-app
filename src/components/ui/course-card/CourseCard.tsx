@@ -1,11 +1,11 @@
 
 import CourseLevelIcon from '../course-icon/CourseLevelIcon';
+import UpdateCourse from './UpdateCourse';
 import { getFormattedDate } from '@/lib/utils';
 import CourseLevelPill from '../course-level-pill/CourseLevelPill';
 import { CompletedCourse } from '@/types';
 import style from './style.module.css';
 import util from '../../../styles/utils.module.css';
-import UpdateCourse from './UpdateCourse';
 
 interface Props{
   studentId:string

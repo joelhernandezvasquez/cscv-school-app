@@ -167,6 +167,17 @@ export interface Courses{
   level: string
 }
 
+export interface CoursesByLevel{
+  level: string,
+  courseLevelQuantity:number
+}
+
+export interface CoursePieChartData {
+  browser: string,
+  visitors: number,
+  fill: string
+}
+
 export interface AddEventFormState {
     name?: string,
     course?: string,
