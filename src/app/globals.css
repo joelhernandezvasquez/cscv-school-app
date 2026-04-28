@@ -224,3 +224,18 @@ a{
  }
 }
 
+@layer components{
+    .container-card{
+        @apply bg-white rounded-2xl p-4 shadow-[0_2px_6px_#90929433]
+    }
+
+    .dropdown-container{
+      @apply block absolute w-40 top-11.25 left-0
+    }
+
+    .primary-button{
+      @apply bg-[#5655d7] text-white! cursor-pointer text-center border-0 rounded-xl font-medium py-2! px-6!
+    }
+}
+
+

@@ -56,6 +56,30 @@ export const eventTabs = [
 
 ];
 
+export const courseTabs = [
+    {
+        id:'course-filter-all',
+        value:'All'
+    },
+    {
+        id:'course-filter-level1',
+        value:'Level 1'
+    },
+    {
+        id:'course-filter-level2',
+        value:'Level 2'
+    },
+    {
+        id:'course-filter-level3',
+        value:'Level 3'
+    },
+    {
+        id:'course-filter-renacer',
+        value:'Renacer'
+    }
+
+];
+
 export const sortStudentOptions = [
     'Name (A-Z)','Name (Z-A)','Recent','Oldest','Most Courses','Least Courses'
 ]
