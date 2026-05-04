@@ -31,7 +31,6 @@ export default async function EventPage (props:{
   const currentPage = Number(searchParams?.page) || 1;
   const pagination = await getEventsPagination(query,currentPage);
 
-
   return (
     <main className={util.wrapper}>
      <Suspense fallback={<GridStatSkeleton/>}>

@@ -13,7 +13,17 @@ export const metadata: Metadata = {
   description: "CSCV Academy",
 };
 
-const CoursePage = () => {
+export default async function CoursePage(props:{
+   searchParams?: Promise<{
+    query?: string;
+    page?: string;
+    sortBy?:string
+  }>;
+}) {
+
+   const searchParams = await(props.searchParams);
+   const query = searchParams?.query || '';
+
   return (
     <main className={util.wrapper}>
        <Suspense fallback={<GridStatSkeleton/>}>
@@ -27,12 +37,11 @@ const CoursePage = () => {
        </header>
      </section>
 
-     <Suspense fallback={<TableSkeleton/>}>
-       <CourseList/>
+     <Suspense key={query} fallback={<TableSkeleton/>}>
+       <CourseList query={query}/>
      </Suspense>
      
     </main>
   )
 }
 
-export default CoursePage

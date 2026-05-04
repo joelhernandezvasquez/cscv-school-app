@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import UseClickAway from '@/hooks/UseClickAway';
 import UseToggle from '@/hooks/UseToggle';
 import Dropdown from '@/components/ui/dropdown/Dropdown';
@@ -9,10 +10,22 @@ import { ChevronDown } from 'lucide-react';
 const FilterCourseTabs = () => {
   const {isToggle,handleToggle} = UseToggle();
   const dropdownRef = UseClickAway(handleToggle);
-  const [currentActiveTab,setCurrentActiveTab] = useState('All');
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const {replace} = useRouter();
+  const [currentActiveTab,setCurrentActiveTab] = useState(searchParams.get('query') || 'All');
 
   const onChangeTab = (item:string) =>{
      setCurrentActiveTab(item);
+      const params = new URLSearchParams(searchParams);
+
+      if(item){
+        params.set('query', item);
+      }
+      else{
+        params.delete('query');
+      }
+      replace(`${pathname}?${params.toString()}`);
      handleToggle();
   }
 

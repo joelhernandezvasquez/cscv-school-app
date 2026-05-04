@@ -82,6 +82,16 @@ export const formatCourseLevel = (level:string) =>{
     .replace(/RENACER_PAREJAS/, "renacer");
 }
 
+export const formatLevelToName = (level:string) =>{
+     level = level.replaceAll(' ','').toLowerCase();
+     
+       return level
+    .replace(/level1/, "NIVEL_1_JESUS_ESTA_VIVO")
+    .replace(/level2/, "NIVEL_2_JESUS_NOS_CAPACITA")
+    .replace(/level3/, "NIVEL_3_JESUS_NOS_ENVIA")
+    .replace(/Renacer/, "Renacer")
+}
+
 export const formatCourseLevelName = (level:string) =>{
        return level
     .replace(/NIVEL_1_JESUS_ESTA_VIVO/, "Nivel 1")

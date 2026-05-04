@@ -1,9 +1,13 @@
-import { fetchCourses } from "@/lib/actions/courses"
+import {searchCourses } from "@/lib/actions/courses"
 import CourseCardDetail from "../course-card-detail/CourseCardDetail";
 
-const CourseList = async() => {
-  const courses = await fetchCourses();
+interface Props{
+  query:string
+}
 
+const CourseList = async({query}:Props) => {
+  const courses = await searchCourses(query);
+ 
   return (
     <ul className="mt-6 grid gap-5">
      {
