@@ -73,4 +73,34 @@ import { formatLevelToName } from "@/lib/utils";
         }
  }
 
+ export const validateCourseForm = (formData:FormData) =>{
+ let errors = {};
+
+ const name = formData.get('name');
+ const description = formData.get('description');
+ const level = formData.get('level');
+
+  if(!name){
+   errors = {
+    ...errors,
+    name:true
+   } 
+  }
+
+   if(!description){
+   errors = {
+    ...errors,
+    description:true
+   } 
+  }
+    if(!level){
+    errors = {
+      ...errors,
+      level:true
+    }
+  }
+   
+  return errors;
+}
+
 

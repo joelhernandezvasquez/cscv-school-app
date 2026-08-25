@@ -189,6 +189,17 @@ export interface AddEventFormState {
     errors?: Record<string, string>;
 }
 
+export interface AddCourseFormState {
+    name?: string,
+    description?: string,
+    level?: string,
+    success:boolean,
+    message:string,
+    errors?: Record<string, string>;
+}
+
+
+
 export interface UpdateEventFormState {
     id?:string,
     name?: string,
