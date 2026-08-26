@@ -26,8 +26,8 @@ export const addCourse = async(
   
     try {
      const token = await getValidatedToken();
-         console.log({name},{description},{level})
-      const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/course/create`, {
+        
+         const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/course/create`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -39,9 +39,8 @@ export const addCourse = async(
             level:formatLevel(level as string)
         })
       });
-  
+       
       if (!request.ok) {
-        console.log(request);
         return {
           success: false,
           message: `Server error: ${request.statusText}`
@@ -50,7 +49,6 @@ export const addCourse = async(
   
       const response = await request.json();
       if (response) {
-        console.log(response);
         return {
           success: true,
           message: 'Course has been added.'

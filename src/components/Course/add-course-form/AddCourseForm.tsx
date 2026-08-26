@@ -15,7 +15,7 @@ interface Props{
   onClose:() => void
 }
 
-const AddCourseForm = ({onClose}:Props) => {
+ const AddCourseForm = ({onClose}:Props) => {
  const[level,setLevel] = useState(courseLevel[0]);
  const {isToggle,handleToggle} = UseToggle();
  const router = useRouter();

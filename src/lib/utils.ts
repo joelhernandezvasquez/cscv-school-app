@@ -84,7 +84,7 @@ export const formatCourseLevel = (level:string) =>{
 
 export const formatLevel = (level:string) =>{
        return level
-    .replace(/'Nivel 1 Jesus Esta Vivo/, "NIVEL_1_JESUS_ESTA_VIVO")
+    .replace(/Nivel 1 Jesus Esta Vivo/, "NIVEL_1_JESUS_ESTA_VIVO")
     .replace(/Nivel 2 Jesus Nos Capacita/, "NIVEL_2_JESUS_NOS_CAPACITA")
     .replace(/Nivel 3 Jesus Nos Envia/, "NIVEL_3_JESUS_NOS_ENVIA")
     .replace(/Renacer/, "RENACER_MUJERES")
