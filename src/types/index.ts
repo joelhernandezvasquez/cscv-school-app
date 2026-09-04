@@ -164,7 +164,8 @@ export interface Courses{
   id: number,
   name: string,
   description: string,
-  level: string
+  level: string,
+  image_url?:string
 }
 
 export interface CoursesByLevel{

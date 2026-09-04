@@ -6,6 +6,12 @@ import { twMerge } from "tailwind-merge";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
+
+export const getImageUrl = (imagePath: string) => {
+  if (/^https?:\/\//.test(imagePath)) return imagePath;
+  const serverOrigin = (process.env.NEXT_PUBLIC_SERVER_URL ?? '').replace(/\/api\/?$/, '');
+  return `${serverOrigin}${imagePath}`;
+}
 export const checkLoginFormErrors = (email:string,password:string):LoginError =>{
     if(email.length === 0){
         return {
