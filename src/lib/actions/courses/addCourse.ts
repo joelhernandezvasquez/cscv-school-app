@@ -26,18 +26,23 @@ export const addCourse = async(
   
     try {
      const token = await getValidatedToken();
-        
+
+     const payload = new FormData();
+     payload.append('name', name as string);
+     payload.append('description', description as string);
+     payload.append('level', formatLevel(level as string));
+
+     const image = formData.get('image');
+     if (image instanceof File && image.size > 0) {
+       payload.append('image_file', image);
+     }
+
          const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/course/create`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
+          'Authorization': `Bearer ${token}`
         },
-        body: JSON.stringify({
-            name:name,
-            description:description,
-            level:formatLevel(level as string)
-        })
+        body: payload
       });
        
       if (!request.ok) {

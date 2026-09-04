@@ -10,6 +10,7 @@ import { addCourse } from '@/lib/actions/courses/addCourse';
 import style from '../../../styles/forms.module.css';
 import button from '../../../styles/buttons.module.css';
 import ErrorMessage from '@/components/ui/error/ErrorMessage';
+import ImageUpload from '@/components/ui/image-upload/ImageUpload';
 
 interface Props{
   onClose:() => void
@@ -44,6 +45,8 @@ interface Props{
 
   return (
     <form className={style.form} action={action}>
+       <ImageUpload name='image' label='Course Image' />
+
        <div className={style.form_field}>
           <label htmlFor='name'>Course Name</label>
           <input type='text' name='name' id='name'/>
