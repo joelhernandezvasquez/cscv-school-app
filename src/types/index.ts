@@ -164,7 +164,19 @@ export interface Courses{
   id: number,
   name: string,
   description: string,
-  level: string
+  level: string,
+  image_url?:string
+}
+
+export interface CoursesByLevel{
+  level: string,
+  courseLevelQuantity:number
+}
+
+export interface CoursePieChartData {
+  browser: string,
+  visitors: number,
+  fill: string
 }
 
 export interface AddEventFormState {
@@ -177,6 +189,17 @@ export interface AddEventFormState {
     message:string,
     errors?: Record<string, string>;
 }
+
+export interface AddCourseFormState {
+    name?: string,
+    description?: string,
+    level?: string,
+    success:boolean,
+    message:string,
+    errors?: Record<string, string>;
+}
+
+
 
 export interface UpdateEventFormState {
     id?:string,

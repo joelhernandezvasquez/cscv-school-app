@@ -56,6 +56,30 @@ export const eventTabs = [
 
 ];
 
+export const courseTabs = [
+    {
+        id:'course-filter-all',
+        value:'All'
+    },
+    {
+        id:'course-filter-level1',
+        value:'Level 1'
+    },
+    {
+        id:'course-filter-level2',
+        value:'Level 2'
+    },
+    {
+        id:'course-filter-level3',
+        value:'Level 3'
+    },
+    {
+        id:'course-filter-renacer',
+        value:'Renacer'
+    }
+
+];
+
 export const sortStudentOptions = [
     'Name (A-Z)','Name (Z-A)','Recent','Oldest','Most Courses','Least Courses'
 ]
@@ -63,3 +87,10 @@ export const sortStudentOptions = [
 export const colorLevels = [{id:'001',color:'#a30f12'},{id:'002',color:'#12a9a6'},{id:'003',color:'#f5c544'},{id:'004',color:'#5655D7'},{id:'005',color:'#002d88ff'}];
 
 export const eventStatus = ['upcoming','ongoing','cancelled'];
+
+export const courseLevel = [
+  'Nivel 1 Jesus Esta Vivo',
+  'Nivel 2 Jesus Nos Capacita',
+  'Nivel 3 Jesus Nos Envia',
+  'Renacer'
+]

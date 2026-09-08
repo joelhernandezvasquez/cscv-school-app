@@ -3,7 +3,6 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { RxDashboard } from 'react-icons/rx';
 import { PiCalendarBlank, PiStudent } from 'react-icons/pi';
-import { LuUserCheck } from 'react-icons/lu';
 import { SiGoogleclassroom } from 'react-icons/si';
 import { getPageNameFromPath } from '@/lib/utils';
 import SignOutBtn from '../ui/sign-out-btn/SignOutBtn';
@@ -34,12 +33,12 @@ export const navigationItems = [
     //     url:'/enrollment',
     //     icon:<LuUserCheck size={24} />
     // },
-    // {
-    //     id:'005-courses',
-    //     item:'Courses',
-    //     url:'/courses',
-    //     icon:<SiGoogleclassroom size={24} />
-    // }
+    {
+      id:'005-courses',
+      item:'Courses',
+      url:'/courses',
+      icon:<SiGoogleclassroom size={24} />
+    }
 ]
 
 interface Props{
