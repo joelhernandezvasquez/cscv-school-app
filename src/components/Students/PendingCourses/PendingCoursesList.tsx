@@ -20,7 +20,7 @@ const PendingCoursesList = async ({studentId}:Props) => {
     <section className={`${style.pending_course_container} ${util.card_container}`}>
        <header className={style.header}>
           <h2 className='title'>Pending Courses</h2>
-          {(session?.user as SessionUser)?.role === 'admin' && <Link className={style.add_courses_btn} href={`/students/${studentId}/manual-course`}>Add Courses</Link>}
+          {(session?.user as SessionUser)?.role === 'super_admin' && <Link className={style.add_courses_btn} href={`/students/${studentId}/manual-course`}>Add Courses</Link>}
        </header>
       
        <div className={style.inner_course_container}>
