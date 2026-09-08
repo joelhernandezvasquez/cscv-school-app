@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ImageOff } from "lucide-react";
 import CourseLevelPill from "@/components/ui/course-level-pill/CourseLevelPill";
 import { formatCourseLevel, getImageUrl } from "@/lib/utils";
 import { Courses } from "@/types";
@@ -27,7 +28,9 @@ const CourseCardDetail = ({course}:Props) => {
                 />
               </div>
               :
-               <div className="bg-[#e2e2e3] w-full h-50 rounded-2xl"></div>
+               <div className="bg-[#e2e2e3] w-full h-50 rounded-2xl flex items-center justify-center">
+                <ImageOff className="text-[#a6a8a9]" size={28} strokeWidth={1.5} aria-hidden="true"/>
+              </div>
 
           }
          

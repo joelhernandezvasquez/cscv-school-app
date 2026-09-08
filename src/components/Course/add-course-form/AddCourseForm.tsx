@@ -63,7 +63,7 @@ interface Props{
           <div className={`${style.form_field} relative w-full mb-4 lg:w-80`}>
             <label htmlFor='level'>Select Level</label>
 
-             <button className={'flex items-center justify-between gap-2 border-0 bg-[##FAFAFA] rounded-xl py-1.5 px-2.5  text-[#2E3135] font-medium cursor-pointer'} 
+             <button className={'flex items-center justify-between gap-2 border-0 bg-[#FAFAFA] rounded-xl py-1.5 px-2.5  text-[#2E3135] font-medium cursor-pointer'}
                onClick={handleToggle} type='button'>
                 <span>{level}</span>
                   <svg  width="14" height="14" viewBox="0 0 14 14" fill="none">

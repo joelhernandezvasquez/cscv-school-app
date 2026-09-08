@@ -31,8 +31,8 @@ const FilterCourseTabs = () => {
 
   return (
     <section className='relative'>
-    <button 
-      className="flex items-center gap-4 border-0 py-2 px-5 rounded-lg text-[#11141A]"
+    <button
+      className="flex items-center gap-4 border-0 py-2 px-5 rounded-lg text-[#11141A] cursor-pointer transition-colors hover:bg-[#F0F1F5] focus-visible:outline-2 focus-visible:outline-[#5655D7] focus-visible:outline-offset-2"
       onClick={handleToggle}
     >
       <span>{currentActiveTab}</span>
