@@ -7,6 +7,8 @@ import AddCourseButton from "@/components/Course/add-course-button/AddCourseButt
 import util from '../../../styles/utils.module.css';
 import CourseListSkeleton from "@/components/ui/course-list-skeleton/CourseListSkeleton";
 import CourseList from "@/components/Course/course-list/CourseList";
+import { auth } from "@/auth.config";
+import { SessionUser } from '@/types';
 
 export const metadata: Metadata = {
   title: "Courses",
@@ -23,6 +25,7 @@ export default async function CoursePage(props:{
 
    const searchParams = await(props.searchParams);
    const query = searchParams?.query || '';
+   const session = await auth();
 
   return (
     <main className={util.wrapper}>
@@ -33,7 +36,7 @@ export default async function CoursePage(props:{
      <section className="container-card mt-5"> 
        <header className="flex items-center justify-between p-4">
          <FilterCourseTabs/>
-         <AddCourseButton/>
+           {(session?.user as SessionUser)?.role === 'super_admin' &&  <AddCourseButton/>}
        </header>
      </section>
 
