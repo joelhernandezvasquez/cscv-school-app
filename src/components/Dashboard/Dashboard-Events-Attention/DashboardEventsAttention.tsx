@@ -16,6 +16,14 @@ const DashboardEventsAttention = ({dashboardEventSummary}:Props) => {
 
   const {upcomingEvents,activeEvents,pendingCompletionEvents} = dashboardEventSummary;
 
+  if(pendingCompletionEvents.events.length ===0 
+    && activeEvents.events.length === 0
+    && upcomingEvents.events.length === 0
+  )
+  {
+    return;
+  }
+
   return (
     <section className={style.dashboard_events_metric_container}>
         <p className="sub_title">Needs Your Attention</p>

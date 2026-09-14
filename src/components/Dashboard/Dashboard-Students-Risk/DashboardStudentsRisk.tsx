@@ -6,6 +6,13 @@ import style from './style.module.css';
 const DashboardStudentsRisk = async() => {
 
   const students = await getDashboardStudentRisk();
+
+  if(
+    students.studentsNoCourse.length === 0 
+    && 
+    students.studentsPastEnrollment.length === 0){
+    return;
+  }
  
   return (
     <section>

@@ -4,7 +4,6 @@ import { redirect } from "next/navigation";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import Sidebar from "@/components/Sidebar/Sidebar";
 
-
 export default async function AuthenticatedLayout({children}: Readonly<{children: React.ReactNode}>) 
 {
     const session = await auth();

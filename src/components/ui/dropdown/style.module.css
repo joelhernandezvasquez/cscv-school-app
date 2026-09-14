@@ -9,10 +9,24 @@
     flex-direction: column;
     gap:12px;
 }
-.dropdown_menu li{
+.dropdown_item{
+    display:block;
+    width:100%;
+    border:none;
+    background:none;
+    padding:0;
+    font:inherit;
+    text-align: left;
+    color:inherit;
     cursor: pointer;
 }
-.dropdown_menu li:hover{
+.dropdown_item:hover,
+.dropdown_item:focus-visible{
     color:var(--primary_blue);
     font-weight: 600;
+}
+.dropdown_item:focus-visible{
+    outline:2px solid var(--primary_blue);
+    outline-offset:2px;
+    border-radius: 4px;
 }

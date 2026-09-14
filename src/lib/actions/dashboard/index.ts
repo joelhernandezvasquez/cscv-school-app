@@ -7,6 +7,7 @@ type DashboardSummary = {
   totalEvents: number;
 };
 
+
 const parseJsonResponse = async <T>(response: Response, fallbackError: string): Promise<T> => {
   const contentType = response.headers.get('content-type') || '';
 
@@ -81,7 +82,7 @@ export const getDashboardStudentRisk = async():Promise<DashboardStudentRisk> =>{
               'Content-Type': 'application/json'
             }
        })
-  
+      
       return await parseJsonResponse<DashboardStudentRisk>(studentsRisk, 'Failed to get dashboard student risk');
       }
       catch(error){
