@@ -1,10 +1,12 @@
 .pagination_container{
     display:flex;
     flex-direction: column;
+    gap:.75rem;
 }
 
 .pagination{
     margin:1rem 0;
+    min-width: 0;
 }
 
 .pagination_text{
@@ -12,30 +14,21 @@
     color:#4d5154;
 }
 
-.pagination_content{
-    display:flex;
-    align-items: center;
-    justify-content: space-between;
-}
-.pagination_item{
-    padding: .5rem 1rem;
-    border-radius: 10px;
-    font-size: .875rem;
-    color:#2E3135;
-    font-weight: 500;
-}
-.pagination_item_link{
-    display:flex;
-    font-size: .875rem;
-    padding:.5rem;
-    border-radius: 10px;
-}
-.active_link{
-    background:#CDDEFF;
+.pagination_nav{
+    width: 100%;
 }
 
-.disable{
-    cursor:not-allowed;
+.pagination_content{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    row-gap: .5rem;
+}
+
+.disabled_link{
+    pointer-events: none;
+    opacity: .4;
 }
 
 @media(min-width:767px){
@@ -49,6 +42,13 @@
     font-size: 1rem;
 }
 
+.pagination_nav{
+    width: auto;
 }
 
+.pagination_content{
+    flex-wrap: nowrap;
+}
+
+}
 
