@@ -49,7 +49,7 @@ const AddStudentForm = ({onClose}:Props) => {
         <div className={form.form_field}>
           <label htmlFor='email'>Email</label>
           <input className={`${data?.errors?.email && form.error}`} type='email' name='email' id='email'/>
-           {data?.errors?.email && <ErrorMessage message='Email is required.'/>}
+           {/* {data?.errors?.email && <ErrorMessage message='Email is required.'/>} */}
        </div>
 
          <div className={form.form_field}>
@@ -72,32 +72,32 @@ const AddStudentForm = ({onClose}:Props) => {
             </label>
              
           </div>
-          {data?.errors?.gender && <ErrorMessage message='Gender is required.'/>}
+          {/* {data?.errors?.gender && <ErrorMessage message='Gender is required.'/>} */}
        </div>
 
        <fieldset className={form.fieldset}>
            <div className={form.form_field}>
               <label htmlFor='street'>Street</label>
               <input className={`${data?.errors?.street && form.error}`} type='text' name='street' id='street'/>
-               {data?.errors?.street && <ErrorMessage message='Address is required.'/>}
+               {/* {data?.errors?.street && <ErrorMessage message='Address is required.'/>} */}
            </div>
 
            <div className={form.form_field}>
               <label htmlFor='city'>City</label>
               <input className={`${data?.errors?.city && form.error}`} type='text' name='city' id='city'/>
-               {data?.errors?.city && <ErrorMessage message='City is required.'/>}
+               {/* {data?.errors?.city && <ErrorMessage message='City is required.'/>} */}
           </div>
 
            <div className={form.form_field}>
               <label htmlFor='state'>State</label>
               <input className={`${data?.errors?.state && form.error}`} type='text' name='state' id='state'/>
-               {data?.errors?.state && <ErrorMessage message='Please provide a state.'/>}
+               {/* {data?.errors?.state && <ErrorMessage message='Please provide a state.'/>} */}
           </div>
 
             <div className={form.form_field}>
               <label htmlFor='zipcode'>Zip Code</label>
               <input className={`${data?.errors?.zipcode && form.error}`} type='number' name='zipcode' id='zipcode'/>
-               {data?.errors?.zipcode && <ErrorMessage message='Zip code is missing.'/>}
+               {/* {data?.errors?.zipcode && <ErrorMessage message='Zip code is missing.'/>} */}
           </div>
            
        </fieldset>
@@ -105,7 +105,7 @@ const AddStudentForm = ({onClose}:Props) => {
         <div className={form.form_field}>
           <label htmlFor='parroquia'>Parroquia</label>
           <input className={`${data?.errors?.parroquia && form.error}`} type='text' name='parroquia' id='parroquia'/>
-           {data?.errors?.parroquia && <ErrorMessage message='Please this field is required.'/>}
+           {/* {data?.errors?.parroquia && <ErrorMessage message='Please this field is required.'/>} */}
        </div>
 
          <div className={form.form_field}>

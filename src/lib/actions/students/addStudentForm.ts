@@ -43,16 +43,17 @@ export const addStudent = async (
       body: JSON.stringify({
         first_name: firstName,
         last_name: lastName,
-        email: email,
+        email: email || null ,
         phone: phoneNumber,
-        gender: gender,
-        direccion: `${street},${city},${state},${zipcode}`,
-        parroquia: parroquia,
+        gender: gender || null ,
+        direccion: `${street},${city},${state},${zipcode}` || '',
+        parroquia: parroquia || '',
         asuntos_medicos: medicalCondition || "Ninguno"
       })
     });
 
     if (!request.ok) {
+      console.log(request)
       return {
         success: false,
         message: `Server error: ${request.statusText}`
