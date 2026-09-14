@@ -100,14 +100,14 @@ export const validateStudentForm = (formData:FormData) =>{
 
   const firstName = formData.get('firstName');
   const lastName = formData.get('lastName');
-  const email = formData.get('email');
+  // const email = formData.get('email');
   const phoneNumber = formData.get('phoneNumber');
-  const gender = formData.get('genderRadio');
-  const street = formData.get('street');
-  const city = formData.get('city');
-  const state = formData.get('state');
-  const zipcode = formData.get('zipcode');
-  const parroquia = formData.get('parroquia');
+  // const gender = formData.get('genderRadio');
+  // const street = formData.get('street');
+  // const city = formData.get('city');
+  // const state = formData.get('state');
+  // const zipcode = formData.get('zipcode');
+  // const parroquia = formData.get('parroquia');
 
   if(!firstName){
    errors = {
@@ -123,12 +123,12 @@ export const validateStudentForm = (formData:FormData) =>{
    } 
   }
 
-    if(!email){
-    errors = {
-      ...errors,
-      email:true
-    }
-  }
+  //   if(!email){
+  //   errors = {
+  //     ...errors,
+  //     email:true
+  //   }
+  // }
 
    if(!phoneNumber){
    errors = {
@@ -137,54 +137,47 @@ export const validateStudentForm = (formData:FormData) =>{
    }
   }
 
-    if(!phoneNumber){
-   errors = {
-    ...errors,
-    gender:true
-   }
-  }
+  //  if(!gender){
+  //  errors = {
+  //   ...errors,
+  //   gender:true
+  //  }
+  // }
 
-   if(!gender){
-   errors = {
-    ...errors,
-    gender:true
-   }
-  }
+  //  if(!street){
+  //  errors = {
+  //   ...errors,
+  //   street:true
+  //  }
+  // }
 
-   if(!street){
-   errors = {
-    ...errors,
-    street:true
-   }
-  }
+  //  if(!city){
+  //  errors = {
+  //   ...errors,
+  //   city:true
+  //  }
+  // }
 
-   if(!city){
-   errors = {
-    ...errors,
-    city:true
-   }
-  }
+  //  if(!state){
+  //  errors = {
+  //   ...errors,
+  //  state:true
+  //  }
+  // }
 
-   if(!state){
-   errors = {
-    ...errors,
-   state:true
-   }
-  }
+  //  if(!zipcode){
+  //  errors = {
+  //   ...errors,
+  //   zipcode:true
+  //  }
+  // }
 
-   if(!zipcode){
-   errors = {
-    ...errors,
-    zipcode:true
-   }
-  }
-
-   if(!parroquia){
-   errors = {
-    ...errors,
-    parroquia:true
-   }
-  }
+  //  if(!parroquia){
+  //  errors = {
+  //   ...errors,
+  //   parroquia:true
+  //  }
+  // }
   return errors;
 }
 

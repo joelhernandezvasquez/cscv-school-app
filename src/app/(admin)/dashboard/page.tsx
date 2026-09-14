@@ -33,7 +33,7 @@ const DashboardPage = async () => {
      </Suspense>
     
       <Suspense fallback={<GridStatSkeleton/>}>
-         <DashboardStudentsRisk/>
+         {/* <DashboardStudentsRisk/> */}
       </Suspense>
      
     </main>
