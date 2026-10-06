@@ -7,6 +7,7 @@ import { SiGoogleclassroom } from 'react-icons/si';
 import { getPageNameFromPath } from '@/lib/utils';
 import SignOutBtn from '../ui/sign-out-btn/SignOutBtn';
 import style from './style.module.css';
+import Report from '../Report/Report';
 
 export const navigationItems = [
     {
@@ -38,7 +39,7 @@ export const navigationItems = [
       item:'Courses',
       url:'/courses',
       icon:<SiGoogleclassroom size={24} />
-    }
+    },
 ]
 
 interface Props{
@@ -71,6 +72,7 @@ const Navigation = ({closeMenu}:Props) => {
         )
       })}
      </ul>
+     <Report/>
      <SignOutBtn/>
     </nav>
   )

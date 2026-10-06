@@ -1,0 +1,156 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e5]:
+      - list [ref=e6]:
+        - listitem [ref=e7]:
+          - link "Dashboard" [ref=e8] [cursor=pointer]:
+            - /url: /dashboard
+        - listitem [ref=e11]:
+          - link "Students" [ref=e12] [cursor=pointer]:
+            - /url: /students
+        - listitem [ref=e15]:
+          - link "Events" [ref=e16] [cursor=pointer]:
+            - /url: /events
+        - listitem [ref=e19]:
+          - link "Courses" [ref=e20] [cursor=pointer]:
+            - /url: /courses
+      - button "Reports" [ref=e25] [cursor=pointer]
+      - button "Sign Out" [ref=e33] [cursor=pointer]
+    - banner [ref=e39]:
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - heading "Course-report" [level=1] [ref=e42]
+          - paragraph [ref=e43]: Hello Joel, welcome back!
+        - generic [ref=e44]:
+          - generic [ref=e49]:
+            - paragraph [ref=e50]: Joel Hernandez
+            - generic [ref=e51]: Admin
+          - button [ref=e52] [cursor=pointer]
+          - button [ref=e56] [cursor=pointer]
+    - main [ref=e61]:
+      - generic [ref=e62]:
+        - heading "Course Participation" [level=1] [ref=e63]
+        - paragraph [ref=e64]: Find every active student who has, or hasn't, completed a course or retreat.
+      - generic [ref=e65]:
+        - text: Course - Retreat
+        - button "Choose a course or retreat…" [ref=e67] [cursor=pointer]
+      - list [ref=e75]:
+        - listitem [ref=e76]:
+          - generic [ref=e81]:
+            - heading "Has Completed" [level=2] [ref=e82]
+            - paragraph [ref=e83]: "13"
+        - listitem [ref=e84]:
+          - generic [ref=e90]:
+            - heading "No Yet" [level=2] [ref=e91]
+            - paragraph [ref=e92]: "51"
+      - generic [ref=e93]:
+        - generic [ref=e94]:
+          - list [ref=e96]:
+            - listitem [ref=e97]:
+              - button "Has Not Completed" [ref=e98] [cursor=pointer]
+            - listitem [ref=e100]:
+              - button "Has Completed" [ref=e101] [cursor=pointer]
+          - generic [ref=e102]:
+            - textbox "Search name,email,phone" [ref=e104]
+            - button "Export CSV" [ref=e108] [cursor=pointer]
+        - table [ref=e115]:
+          - rowgroup [ref=e116]:
+            - row [ref=e117]:
+              - columnheader "Name" [ref=e118]
+              - columnheader "Phone" [ref=e119]
+              - columnheader "Completed on" [ref=e120]
+              - columnheader "Status" [ref=e121]
+          - rowgroup [ref=e122]:
+            - row [ref=e123]:
+              - cell "AP Ana Pérez García ana.perez@gmail.com" [ref=e124]:
+                - generic [ref=e125]:
+                  - generic [ref=e126]: AP
+                  - generic [ref=e127]:
+                    - generic [ref=e128]: Ana Pérez García
+                    - button "ana.perez@gmail.com" [ref=e129] [cursor=pointer]
+              - cell [ref=e133]:
+                - button "809-412-3381" [ref=e134] [cursor=pointer]
+              - cell "Mar 14, 2025" [ref=e138]
+              - cell "Completed" [ref=e139]
+            - row [ref=e141]:
+              - cell "LM Luis Martínez Cruz luis.martinez@hotmail.com" [ref=e142]:
+                - generic [ref=e143]:
+                  - generic [ref=e144]: LM
+                  - generic [ref=e145]:
+                    - generic [ref=e146]: Luis Martínez Cruz
+                    - button "luis.martinez@hotmail.com" [ref=e147] [cursor=pointer]
+              - cell [ref=e151]:
+                - button "809-231-9042" [ref=e152] [cursor=pointer]
+              - cell "—" [ref=e156]
+              - cell "Not yet" [ref=e157]
+            - row [ref=e159]:
+              - cell "MR María Rodríguez Flores maria.rodriguez@outlook.com" [ref=e160]:
+                - generic [ref=e161]:
+                  - generic [ref=e162]: MR
+                  - generic [ref=e163]:
+                    - generic [ref=e164]: María Rodríguez Flores
+                    - button "maria.rodriguez@outlook.com" [ref=e165] [cursor=pointer]
+              - cell [ref=e169]:
+                - button "809-775-1120" [ref=e170] [cursor=pointer]
+              - cell "Nov 02, 2024" [ref=e174]
+              - cell "Completed" [ref=e175]
+            - row [ref=e177]:
+              - cell "JH José Hernández Reyes jose.hernandez@gmail.com" [ref=e178]:
+                - generic [ref=e179]:
+                  - generic [ref=e180]: JH
+                  - generic [ref=e181]:
+                    - generic [ref=e182]: José Hernández Reyes
+                    - button "jose.hernandez@gmail.com" [ref=e183] [cursor=pointer]
+              - cell [ref=e187]:
+                - button "809-654-7788" [ref=e188] [cursor=pointer]
+              - cell "—" [ref=e192]
+              - cell "Not yet" [ref=e193]
+            - row [ref=e195]:
+              - cell "CL Carmen López Peña carmen.lopez@gmail.com" [ref=e196]:
+                - generic [ref=e197]:
+                  - generic [ref=e198]: CL
+                  - generic [ref=e199]:
+                    - generic [ref=e200]: Carmen López Peña
+                    - button "carmen.lopez@gmail.com" [ref=e201] [cursor=pointer]
+              - cell [ref=e205]:
+                - button "809-318-4406" [ref=e206] [cursor=pointer]
+              - cell "Jun 21, 2025" [ref=e210]
+              - cell "Completed" [ref=e211]
+            - row [ref=e213]:
+              - cell "RG Rafael González Vargas rafael.gonzalez@hotmail.com" [ref=e214]:
+                - generic [ref=e215]:
+                  - generic [ref=e216]: RG
+                  - generic [ref=e217]:
+                    - generic [ref=e218]: Rafael González Vargas
+                    - button "rafael.gonzalez@hotmail.com" [ref=e219] [cursor=pointer]
+              - cell [ref=e223]:
+                - button "809-902-5513" [ref=e224] [cursor=pointer]
+              - cell "—" [ref=e228]
+              - cell "Not yet" [ref=e229]
+        - generic [ref=e231]:
+          - paragraph [ref=e233]: Showing 1-10 of 37
+          - navigation "pagination" [ref=e235]:
+            - list [ref=e236]:
+              - listitem [ref=e237]:
+                - link "Go to previous page" [disabled]:
+                  - /url: "#"
+              - listitem [ref=e238]:
+                - link "Go to page 1" [ref=e239] [cursor=pointer]:
+                  - /url: "?page=1"
+                  - text: "1"
+              - listitem [ref=e240]:
+                - link "Go to page 2" [ref=e241] [cursor=pointer]:
+                  - /url: "?page=2"
+                  - text: "2"
+              - listitem [ref=e242]:
+                - link "Go to page 3" [ref=e243] [cursor=pointer]:
+                  - /url: "?page=3"
+                  - text: "3"
+              - listitem [ref=e244]:
+                - link "Go to page 4" [ref=e245] [cursor=pointer]:
+                  - /url: "?page=4"
+                  - text: "4"
+              - listitem [ref=e246]:
+                - link "Go to next page" [ref=e247] [cursor=pointer]:
+                  - /url: "?page=2"
+  - button "Open Next.js Dev Tools" [ref=e253] [cursor=pointer]

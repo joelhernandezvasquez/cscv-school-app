@@ -1,0 +1,60 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - navigation [ref=f3e4]:
+      - list [ref=f3e5]:
+        - listitem [ref=f3e6]:
+          - link "Dashboard" [ref=f3e7] [cursor=pointer]:
+            - /url: /dashboard
+        - listitem [ref=f3e10]:
+          - link "Students" [ref=f3e11] [cursor=pointer]:
+            - /url: /students
+        - listitem [ref=f3e14]:
+          - link "Events" [ref=f3e15] [cursor=pointer]:
+            - /url: /events
+        - listitem [ref=f3e18]:
+          - link "Courses" [ref=f3e19] [cursor=pointer]:
+            - /url: /courses
+      - button "Reports" [ref=f3e24] [cursor=pointer]
+      - button "Sign Out" [ref=f3e32] [cursor=pointer]
+    - banner [ref=f3e38]:
+      - generic [ref=f3e39]:
+        - generic [ref=f3e40]:
+          - heading "Course-report" [level=1] [ref=f3e41]
+          - paragraph [ref=f3e42]: Hello Joel, welcome back!
+        - generic [ref=f3e43]:
+          - generic [ref=f3e48]:
+            - paragraph [ref=f3e49]: Joel Hernandez
+            - generic [ref=f3e50]: Admin
+          - button [ref=f3e51] [cursor=pointer]
+          - button [ref=f3e55] [cursor=pointer]
+    - main [ref=f3e60]:
+      - generic [ref=f3e61]:
+        - heading "Course Participation" [level=1] [ref=f3e62]
+        - paragraph [ref=f3e63]: Find every active student who has, or hasn't, completed a course or retreat.
+      - generic [ref=f3e64]:
+        - text: Course - Retreat
+        - button "Choose a course or retreat…" [ref=f3e66] [cursor=pointer]
+      - list [ref=f3e74]:
+        - listitem [ref=f3e75]:
+          - generic [ref=f3e80]:
+            - heading "Has Completed" [level=2] [ref=f3e81]
+            - paragraph [ref=f3e82]: "13"
+        - listitem [ref=f3e83]:
+          - generic [ref=f3e89]:
+            - heading "No Yet" [level=2] [ref=f3e90]
+            - paragraph [ref=f3e91]: "51"
+      - list [ref=f3e95]:
+        - listitem [ref=f3e96]:
+          - button "Has Not Completed" [ref=f3e97] [cursor=pointer]
+        - listitem [ref=f3e99]:
+          - button "Has Completed" [ref=f3e100] [cursor=pointer]
+  - generic [ref=f3e105] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=f3e106]
+    - generic [ref=f3e110]:
+      - button "Open issues overlay" [ref=f3e111]:
+        - generic [ref=f3e112]:
+          - generic [aria-hidden] [ref=f3e113]: "0"
+          - generic [ref=f3e114]: "1"
+        - generic [ref=f3e115]: Issue
+      - button "Collapse issues badge" [ref=f3e116]
+  - alert [ref=f3e119]
