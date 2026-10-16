@@ -1,7 +1,7 @@
 "use client";
 
 import { startTransition, ViewTransition } from "react";
-import UseToggle from "@/hooks/UseToggle";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const tabBase =
@@ -10,9 +10,18 @@ const tabPill =
   "absolute inset-0 -z-10 bg-white rounded-lg shadow-[0_1px_3px_rgba(0,0,0,.08)]";
 
 const CourseCompletionTab = () => {
-  const { isToggle, handleToggle } = UseToggle();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  const isToggle = searchParams.get("status") === "completed";
 
-  const switchTab = () => startTransition(() => handleToggle());
+  const switchTab = (status: "completed" | "not-completed") =>
+    startTransition(() => {
+      const params = new URLSearchParams(searchParams);
+      params.set("status", status);
+      params.set("page", "1");
+      replace(`${pathname}?${params.toString()}`);
+    });
 
   return (
     <ul className="flex w-fit items-center gap-0.5 rounded-[10px] bg-[#F5F5F5] p-[3px] isolate">
@@ -22,7 +31,7 @@ const CourseCompletionTab = () => {
             tabBase,
             !isToggle ? "text-[#11141A]" : "text-[#6B7280]",
           )}
-          onClick={() => isToggle && switchTab()}
+          onClick={() => isToggle && switchTab("not-completed")}
         >
           {!isToggle && (
             <ViewTransition
@@ -44,7 +53,7 @@ const CourseCompletionTab = () => {
             tabBase,
             isToggle ? "text-[#11141A]" : "text-[#6B7280]",
           )}
-          onClick={() => !isToggle && switchTab()}
+          onClick={() => !isToggle && switchTab("completed")}
         >
           {isToggle && (
             <ViewTransition

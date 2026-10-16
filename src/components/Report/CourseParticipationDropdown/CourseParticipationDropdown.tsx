@@ -1,7 +1,8 @@
 "use client";
+import { useState } from "react";
 import UseToggle from "@/hooks/UseToggle";
 import { Courses } from "@/types";
-import { useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 interface Props {
   courses: Courses[];
@@ -9,10 +10,23 @@ interface Props {
 
 const CourseParticipationDropdown = ({ courses }: Props) => {
   const { isToggle, handleToggle } = UseToggle();
-  const [courseSelected,setCourseSelected] = useState('Choose a course or retreat…');
+  const [courseSelected,setCourseSelected] = useState('Select A course or Retreat');
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const {replace} = useRouter();
 
    const onSelectCourse = (course:Courses) =>{
     setCourseSelected(course.name);
+    const params = new URLSearchParams(searchParams);
+      params.set('page','1');
+
+    if(course.id){
+      params.set('query', course.id.toString());
+    }
+    else{
+      params.delete('query');
+    }
+    replace(`${pathname}?${params.toString()}`);
     handleToggle();
    }
 

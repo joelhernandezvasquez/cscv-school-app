@@ -15,13 +15,14 @@ interface Props{
   currentPage:number,
   query?:string,
   sortBy?:string,
+  extraParams?:Record<string,string>,
   pagination:PaginationData
 }
 
 type PageToken = number | 'ellipsis-start' | 'ellipsis-end';
 
-const buildHref = (page: number, query?: string, sortBy?: string) => {
-  const params = new URLSearchParams({ page: String(page) });
+const buildHref = (page: number, query?: string, sortBy?: string, extraParams?: Record<string,string>) => {
+  const params = new URLSearchParams({ page: String(page), ...extraParams });
   if (query) params.set('query', query);
   if (sortBy) params.set('sortBy', sortBy);
   return `?${params.toString()}`;
@@ -43,7 +44,7 @@ const getPageWindow = (currentPage: number, totalPages: number): PageToken[] => 
   return pages;
 };
 
-const PaginationContainer = ({currentPage,query,sortBy,pagination}:Props) => {
+const PaginationContainer = ({currentPage,query,sortBy,extraParams,pagination}:Props) => {
 
   const {totalPages,totalCount} = pagination;
 
@@ -66,7 +67,7 @@ const PaginationContainer = ({currentPage,query,sortBy,pagination}:Props) => {
               <PaginationItem>
                 {
                   currentPage > 1
-                  ? <PaginationPrevious href={buildHref(currentPage - 1, query, sortBy)} />
+                  ? <PaginationPrevious href={buildHref(currentPage - 1, query, sortBy, extraParams)} />
                   : <PaginationPrevious aria-disabled="true" className={style.disabled_link} href="#" />
                 }
               </PaginationItem>
@@ -76,7 +77,7 @@ const PaginationContainer = ({currentPage,query,sortBy,pagination}:Props) => {
                 ? <PaginationItem key={page}><PaginationEllipsis /></PaginationItem>
                 : <PaginationItem key={page}>
                     <PaginationLink
-                      href={buildHref(page, query, sortBy)}
+                      href={buildHref(page, query, sortBy, extraParams)}
                       isActive={page === currentPage}
                       aria-label={`Go to page ${page}`}
                     >
@@ -88,7 +89,7 @@ const PaginationContainer = ({currentPage,query,sortBy,pagination}:Props) => {
               <PaginationItem>
                 {
                   currentPage < totalPages
-                  ? <PaginationNext href={buildHref(currentPage + 1, query, sortBy)} />
+                  ? <PaginationNext href={buildHref(currentPage + 1, query, sortBy, extraParams)} />
                   : <PaginationNext aria-disabled="true" className={style.disabled_link} href="#" />
                 }
               </PaginationItem>

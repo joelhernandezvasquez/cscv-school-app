@@ -7,91 +7,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import CopyableValue from "./CopyableValue";
-import { cn } from "@/lib/utils";
-
-// Static placeholder data — will be replaced by the backend response.
-const participants = [
-  {
-    id: 1,
-    firstName: "Ana",
-    lastName: "Pérez García",
-    email: "ana.perez@gmail.com",
-    phone: "809-412-3381",
-    completedAt: "Mar 14, 2025",
-  },
-  {
-    id: 2,
-    firstName: "Luis",
-    lastName: "Martínez Cruz",
-    email: "luis.martinez@hotmail.com",
-    phone: "809-231-9042",
-    completedAt: null,
-  },
-  {
-    id: 3,
-    firstName: "María",
-    lastName: "Rodríguez Flores",
-    email: "maria.rodriguez@outlook.com",
-    phone: "809-775-1120",
-    completedAt: "Nov 02, 2024",
-  },
-  {
-    id: 4,
-    firstName: "José",
-    lastName: "Hernández Reyes",
-    email: "jose.hernandez@gmail.com",
-    phone: "809-654-7788",
-    completedAt: null,
-  },
-  {
-    id: 5,
-    firstName: "Carmen",
-    lastName: "López Peña",
-    email: "carmen.lopez@gmail.com",
-    phone: "809-318-4406",
-    completedAt: "Jun 21, 2025",
-  },
-  {
-    id: 6,
-    firstName: "Rafael",
-    lastName: "González Vargas",
-    email: "rafael.gonzalez@hotmail.com",
-    phone: "809-902-5513",
-    completedAt: null,
-  },
-  {
-    id: 7,
-    firstName: "Sofía",
-    lastName: "Ramírez Castillo",
-    email: "sofia.ramirez@gmail.com",
-    phone: "809-547-2209",
-    completedAt: "Jan 18, 2025",
-  },
-  {
-    id: 8,
-    firstName: "Miguel",
-    lastName: "Torres Medina",
-    email: "miguel.torres@outlook.com",
-    phone: "809-486-3315",
-    completedAt: null,
-  },
-  {
-    id: 9,
-    firstName: "Lucía",
-    lastName: "Díaz Santana",
-    email: "lucia.diaz@hotmail.com",
-    phone: "809-693-8472",
-    completedAt: "Aug 09, 2025",
-  },
-  {
-    id: 10,
-    firstName: "Daniel",
-    lastName: "Morales Jiménez",
-    email: "daniel.morales@gmail.com",
-    phone: "809-720-6154",
-    completedAt: null,
-  },
-];
+import { cn, getFormattedDate } from "@/lib/utils";
+import { CourseParticipant, CourseParticipantRow, CourseParticipantsResponse } from "@/types";
+import { getPaginatedCompletionStatusCourseList } from "@/lib/actions/reports";
 
 const headClass =
   "h-auto px-3 pt-0 pb-2.5 text-left align-middle text-[.82rem] font-bold uppercase tracking-[.02em] text-[#4D5154]";
@@ -117,7 +35,22 @@ const Initials = ({ first, last }: { first: string; last: string }) => (
   </span>
 );
 
-const CourseParticipationTable = () => {
+const normalizeParticipant = (row: CourseParticipantRow): CourseParticipant =>
+  "student" in row
+    ? { ...row.student, id: row.id, completed_at: row.completedAt }
+    : { ...row, completed_at: null };
+
+interface Props{
+    query:string,
+    sortBy?:string,
+    currentPage:number | string,
+    status:string,
+}
+
+const CourseParticipationTable = async({query,currentPage,status}:Props) => {
+  const { students }: CourseParticipantsResponse = await getPaginatedCompletionStatusCourseList(query,status,currentPage);
+  const participants = students.map(normalizeParticipant);
+
   return (
     <>
       {/* Mobile cards */}
@@ -128,18 +61,18 @@ const CourseParticipationTable = () => {
             className="flex justify-between gap-3 border-t border-[#E2E2E3] px-1 py-4 first:border-t-0"
           >
             <div className="flex gap-3">
-              <Initials first={p.firstName} last={p.lastName} />
+              <Initials first={p.first_name} last={p.last_name} />
               <div className="flex flex-col gap-0.5">
                 <span className="font-semibold text-[#11141A]">
-                  {p.firstName} {p.lastName}
+                  {p.first_name} {p.last_name}
                 </span>
                 <CopyableValue
                   value={p.phone}
                   className="mt-1 text-[.82rem] text-[#4D5154]"
                 />
                 <span className="mt-1 text-[.82rem] text-[#4D5154]">
-                  {p.completedAt
-                    ? `Completed ${p.completedAt}`
+                  {p.completed_at
+                    ? `Completed ${getFormattedDate(new Date(p.completed_at))}`
                     : "Not completed yet"}
                 </span>
               </div>
@@ -149,10 +82,10 @@ const CourseParticipationTable = () => {
               <span
                 className={cn(
                   "mt-1 h-2 w-2 rounded-full",
-                  p.completedAt ? "bg-[#5655D7]" : "bg-[#E2E2E3]",
+                  status==='completed' ? "bg-[#5655D7]" : "bg-[#E2E2E3]",
                 )}
               />
-              {p.completedAt ? "Completed" : "Not yet"}
+              {status==='completed' ? "Completed" : "Not yet"}
             </div>
           </li>
         ))}
@@ -177,10 +110,10 @@ const CourseParticipationTable = () => {
             >
               <TableCell className={cellClass}>
                 <div className="flex items-center gap-2.5">
-                  <Initials first={p.firstName} last={p.lastName} />
+                  <Initials first={p.first_name} last={p.last_name} />
                   <div className="flex flex-col">
                     <span className="text-[.94rem] font-semibold leading-snug text-[#11141A]">
-                      {p.firstName} {p.lastName}
+                      {p.first_name} {p.last_name}
                     </span>
                     <CopyableValue
                       value={p.email}
@@ -199,11 +132,13 @@ const CourseParticipationTable = () => {
               <TableCell
                 className={cn(cellClass, "font-medium text-[#4D5154]")}
               >
-                {p.completedAt ?? <span className="opacity-60">—</span>}
+                {p.completed_at
+                  ? getFormattedDate(new Date(p.completed_at))
+                  : <span className="opacity-60">—</span>}
               </TableCell>
 
               <TableCell className={cellClass}>
-                <StatusPill completed={!!p.completedAt} />
+                <StatusPill completed={status==='completed' ? true :false} />
               </TableCell>
             </TableRow>
           ))}
