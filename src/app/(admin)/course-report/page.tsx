@@ -17,6 +17,7 @@ export default async function Page(props: {
     query?: string;
     page?: string;
     status?: string;
+    search?: string;
   }>;
 }) {
   const [searchParams, courses] = await Promise.all([
@@ -27,6 +28,7 @@ export default async function Page(props: {
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
   const status = searchParams?.status === "completed" ? "completed" : "not-completed";
+  const search = searchParams?.search?.trim() || "";
   const list =  await getCompletionCourseList(query);
   
   
@@ -37,13 +39,13 @@ export default async function Page(props: {
           Course Participation
         </h1>
         <p className="text-[1rem] lg:text-[1.125rem]">
-          Find every active student who has, or hasn't, completed a course or
+          Find every active student who has, or hasn&apos;t, completed a course or
           retreat.
         </p>
       </header>
 
       <CourseParticipationDropdown courses={courses} />
-      {list.hasCompleted? (
+      {list.hasCompleted && query ? (
         <>
           <ReportMetrics
            hasCompleted={list.hasCompleted.length}
@@ -57,26 +59,28 @@ export default async function Page(props: {
               </div>
 
               <div className="flex items-center gap-3 md:ml-auto md:flex-1">
-                <CourseSearchBar />
-                <CourseExportBtn />
+                <CourseSearchBar key={`${query}:${search}`} initialValue={search} />
+                <CourseExportBtn query={query} status={status} search={search} />
               </div>
             </header>
 
             <div className="mt-4">
-               <Suspense key={query + currentPage + status} fallback={<TableSkeleton/>}>
+               <Suspense key={query + currentPage + status + search} fallback={<TableSkeleton/>}>
                 <CourseParticipationTable
                   query={query} 
                   currentPage={currentPage}
                   status={status}
+                  search={search}
                 />
                </Suspense>
             </div>
 
-            <Suspense key={query + currentPage + status} fallback={null}>
+            <Suspense key={query + currentPage + status + search} fallback={null}>
               <CourseParticipationPagination
                 query={query}
                 status={status}
                 currentPage={currentPage}
+                search={search}
               />
             </Suspense>
           </section>

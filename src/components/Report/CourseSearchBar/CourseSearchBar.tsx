@@ -1,5 +1,34 @@
 
-const CourseSearchBar = () => {
+'use client';
+
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
+import { useDebouncedCallback } from 'use-debounce';
+import { useState } from 'react';
+
+interface Props {
+  initialValue: string;
+}
+
+const CourseSearchBar = ({ initialValue }: Props) => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  const [value, setValue] = useState(initialValue);
+
+  const handleSearch = useDebouncedCallback((term: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    const trimmedTerm = term.trim();
+
+    params.set('page', '1');
+    if (trimmedTerm) {
+      params.set('search', trimmedTerm);
+    } else {
+      params.delete('search');
+    }
+
+    replace(`${pathname}?${params.toString()}`);
+  }, 300);
+
   return (
     <div className={'flex min-w-0 flex-1 items-center gap-2 py-2 px-3 rounded-[.625rem] bg-[#F5F5F5]'}>
       <input
@@ -8,8 +37,11 @@ const CourseSearchBar = () => {
         id="search"
         name="search"
         placeholder={'Search name,email,phone'}
-        // onChange={(e) => handleSearch(e.target.value)}
-        // defaultValue={searchParams.get('query')?.toString()}
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+          handleSearch(e.target.value);
+        }}
       />
       <svg className="flex-none" width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path fillRule="evenodd" clipRule="evenodd" d="M7.25 2.5C4.62665 2.5 2.5 4.62665 2.5 7.25C2.5 9.87335 4.62665 12 7.25 12C9.87335 12 12 9.87335 12 7.25C12 4.62665 9.87335 2.5 7.25 2.5ZM1.5 7.25C1.5 4.07436 4.07436 1.5 7.25 1.5C10.4256 1.5 13 4.07436 13 7.25C13 10.4256 10.4256 13 7.25 13C4.07436 13 1.5 10.4256 1.5 7.25Z" fill="#2E3135"/>

@@ -19,6 +19,7 @@ const CourseParticipationDropdown = ({ courses }: Props) => {
     setCourseSelected(course.name);
     const params = new URLSearchParams(searchParams);
       params.set('page','1');
+      params.delete('search');
 
     if(course.id){
       params.set('query', course.id.toString());

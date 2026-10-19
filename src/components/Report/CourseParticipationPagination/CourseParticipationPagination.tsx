@@ -6,17 +6,18 @@ interface Props {
   query: string;
   status: string;
   currentPage: number;
+  search?: string;
 }
 
-const CourseParticipationPagination = async ({ query, status, currentPage }: Props) => {
+const CourseParticipationPagination = async ({ query, status, currentPage, search = '' }: Props) => {
   const { pagination }: CourseParticipantsResponse =
-    await getPaginatedCompletionStatusCourseList(query, status, currentPage);
+    await getPaginatedCompletionStatusCourseList(query, status, currentPage, search);
 
   return (
     <PaginationContainer
       currentPage={currentPage}
       query={query}
-      extraParams={{ status }}
+      extraParams={{ status, ...(search ? { search } : {}) }}
       pagination={{ totalPages: pagination.totalPages, totalCount: pagination.total }}
     />
   );

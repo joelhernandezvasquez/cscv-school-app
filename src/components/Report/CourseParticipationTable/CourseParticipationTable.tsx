@@ -45,10 +45,11 @@ interface Props{
     sortBy?:string,
     currentPage:number | string,
     status:string,
+    search?:string,
 }
 
-const CourseParticipationTable = async({query,currentPage,status}:Props) => {
-  const { students }: CourseParticipantsResponse = await getPaginatedCompletionStatusCourseList(query,status,currentPage);
+const CourseParticipationTable = async({query,currentPage,status,search = ''}:Props) => {
+  const { students }: CourseParticipantsResponse = await getPaginatedCompletionStatusCourseList(query,status,currentPage,search);
   const participants = students.map(normalizeParticipant);
 
   return (
