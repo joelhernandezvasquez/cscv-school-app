@@ -27,20 +27,23 @@ export default async function Page(props: {
 
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
-  const status = searchParams?.status === "completed" ? "completed" : "not-completed";
+  const status =
+    searchParams?.status === "completed" ? "completed" : "not-completed";
   const search = searchParams?.search?.trim() || "";
-  const list =  await getCompletionCourseList(query);
-  
-  
+  const list = await getCompletionCourseList(query);
+
   return (
     <main className={`${util.wrapper} bg-[#f7f8fa]`}>
       <header className="my-6">
-        <h1 className="text-[#11141a] text-[1.5rem] lg:text-[2rem]">
+        <p className="text-[.75rem] font-bold uppercase tracking-[.06em] text-[#5655D7]">
+          Reports
+        </p>
+        <h2 className="text-[#11141a] text-[1.5rem] lg:text-[2rem]">
           Course Participation
-        </h1>
+        </h2>
         <p className="text-[1rem] lg:text-[1.125rem]">
-          Find every active student who has, or hasn&apos;t, completed a course or
-          retreat.
+          Find every active student who has, or hasn&apos;t, completed a course
+          or retreat — built for building your call and invite lists.
         </p>
       </header>
 
@@ -48,34 +51,47 @@ export default async function Page(props: {
       {list.hasCompleted && query ? (
         <>
           <ReportMetrics
-           hasCompleted={list.hasCompleted.length}
-           hasNotCompleted={list.notCompleted.length}
+            hasCompleted={list.hasCompleted.length}
+            hasNotCompleted={list.notCompleted.length}
           />
 
           <section className={`mt-4 ${util.card_container} md:mt-6`}>
-            <header className="flex flex-col gap-3 md:flex-row md:items-center">
+            <header className="flex flex-col gap-3 lg:flex-row lg:items-center">
               <div>
                 <CourseCompletionTab />
               </div>
 
-              <div className="flex items-center gap-3 md:ml-auto md:flex-1">
-                <CourseSearchBar key={`${query}:${search}`} initialValue={search} />
-                <CourseExportBtn query={query} status={status} search={search} />
+              <div className="flex flex-wrap items-center gap-3 sm:flex-nowrap lg:ml-auto lg:flex-1">
+                <CourseSearchBar
+                  key={`${query}:${search}`}
+                  initialValue={search}
+                />
+                <CourseExportBtn
+                  query={query}
+                  status={status}
+                  search={search}
+                />
               </div>
             </header>
 
             <div className="mt-4">
-               <Suspense key={query + currentPage + status + search} fallback={<TableSkeleton/>}>
+              <Suspense
+                key={query + currentPage + status + search}
+                fallback={<TableSkeleton columns={4} />}
+              >
                 <CourseParticipationTable
-                  query={query} 
+                  query={query}
                   currentPage={currentPage}
                   status={status}
                   search={search}
                 />
-               </Suspense>
+              </Suspense>
             </div>
 
-            <Suspense key={query + currentPage + status + search} fallback={null}>
+            <Suspense
+              key={query + currentPage + status + search}
+              fallback={null}
+            >
               <CourseParticipationPagination
                 query={query}
                 status={status}

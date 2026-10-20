@@ -6,9 +6,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { redirect } from "next/navigation";
 import CopyableValue from "./CopyableValue";
 import { cn, getFormattedDate } from "@/lib/utils";
-import { CourseParticipant, CourseParticipantRow, CourseParticipantsResponse } from "@/types";
+import {
+  CourseParticipant,
+  CourseParticipantRow,
+  CourseParticipantsResponse,
+} from "@/types";
 import { getPaginatedCompletionStatusCourseList } from "@/lib/actions/reports";
 
 const headClass =
@@ -40,25 +45,76 @@ const normalizeParticipant = (row: CourseParticipantRow): CourseParticipant =>
     ? { ...row.student, id: row.id, completed_at: row.completedAt }
     : { ...row, completed_at: null };
 
-interface Props{
-    query:string,
-    sortBy?:string,
-    currentPage:number | string,
-    status:string,
-    search?:string,
+interface Props {
+  query: string;
+  sortBy?: string;
+  currentPage: number | string;
+  status: string;
+  search?: string;
 }
 
-const CourseParticipationTable = async({query,currentPage,status,search = ''}:Props) => {
-  const { students }: CourseParticipantsResponse = await getPaginatedCompletionStatusCourseList(query,status,currentPage,search);
+const CourseParticipationTable = async ({
+  query,
+  currentPage,
+  status,
+  search = "",
+}: Props) => {
+  const { students, pagination }: CourseParticipantsResponse =
+    await getPaginatedCompletionStatusCourseList(
+      query,
+      status,
+      currentPage,
+      search,
+    );
   const participants = students.map(normalizeParticipant);
+
+  // Out-of-range page (e.g. ?page=3 with 2 pages): go to the last page instead of an empty state.
+  if (
+    participants.length === 0 &&
+    pagination.total > 0 &&
+    Number(currentPage) > pagination.totalPages
+  ) {
+    const params = new URLSearchParams({
+      query,
+      status,
+      page: String(pagination.totalPages),
+    });
+    if (search) params.set("search", search);
+    redirect(`/course-report?${params.toString()}`);
+  }
+
+  if (participants.length === 0) {
+    return (
+      <div className="flex flex-col items-center gap-3.5 px-6 py-12 text-center">
+        <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#F5F8FF] text-[#5655D7]">
+          <svg
+            className="h-7.5 w-7.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+        </span>
+        <h3 className="font-bold text-[#11141A]">No matches</h3>
+        <p className="max-w-[36ch] text-[.9rem] text-[#4D5154]">
+          {search
+            ? `No one in this list matches “${search}”. Try a different name, email or phone number.`
+            : "No students in this list yet."}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <>
       {/* Mobile cards */}
       <ul className="flex flex-col lg:hidden">
-        {participants.map((p) => (
+        {participants.map((p, index) => (
           <li
-            key={p.id}
+            key={`${p.id}-${index}`}
             className="flex justify-between gap-3 border-t border-[#E2E2E3] px-1 py-4 first:border-t-0"
           >
             <div className="flex gap-3">
@@ -83,10 +139,10 @@ const CourseParticipationTable = async({query,currentPage,status,search = ''}:Pr
               <span
                 className={cn(
                   "mt-1 h-2 w-2 rounded-full",
-                  status==='completed' ? "bg-[#5655D7]" : "bg-[#E2E2E3]",
+                  status === "completed" ? "bg-[#5655D7]" : "bg-[#E2E2E3]",
                 )}
               />
-              {status==='completed' ? "Completed" : "Not yet"}
+              {status === "completed" ? "Completed" : "Not yet"}
             </div>
           </li>
         ))}
@@ -104,9 +160,9 @@ const CourseParticipationTable = async({query,currentPage,status,search = ''}:Pr
         </TableHeader>
 
         <TableBody>
-          {participants.map((p) => (
+          {participants.map((p, index) => (
             <TableRow
-              key={p.id}
+              key={`${p.id}-${index}`}
               className="border-b border-[#E2E2E3] last:border-b-0"
             >
               <TableCell className={cellClass}>
@@ -133,13 +189,15 @@ const CourseParticipationTable = async({query,currentPage,status,search = ''}:Pr
               <TableCell
                 className={cn(cellClass, "font-medium text-[#4D5154]")}
               >
-                {p.completed_at
-                  ? getFormattedDate(new Date(p.completed_at))
-                  : <span className="opacity-60">—</span>}
+                {p.completed_at ? (
+                  getFormattedDate(new Date(p.completed_at))
+                ) : (
+                  <span className="opacity-60">—</span>
+                )}
               </TableCell>
 
               <TableCell className={cellClass}>
-                <StatusPill completed={status==='completed' ? true :false} />
+                <StatusPill completed={status === "completed" ? true : false} />
               </TableCell>
             </TableRow>
           ))}

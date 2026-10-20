@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 const tabBase =
-  "relative border-none bg-transparent py-2 px-3.5 rounded-lg text-[.85rem] whitespace-nowrap font-bold cursor-pointer transition-colors duration-200";
+  "relative border-none bg-transparent py-3 px-3.5 lg:py-2 rounded-lg text-[.85rem] whitespace-nowrap font-bold cursor-pointer transition-colors duration-200";
 const tabPill =
   "absolute inset-0 -z-10 bg-white rounded-lg shadow-[0_1px_3px_rgba(0,0,0,.08)]";
 
@@ -20,7 +20,7 @@ const CourseCompletionTab = () => {
       const params = new URLSearchParams(searchParams);
       params.set("status", status);
       params.set("page", "1");
-      replace(`${pathname}?${params.toString()}`);
+      replace(`${pathname}?${params.toString()}`, { scroll: false });
     });
 
   return (
@@ -29,8 +29,9 @@ const CourseCompletionTab = () => {
         <button
           className={cn(
             tabBase,
-            !isToggle ? "text-[#11141A]" : "text-[#6B7280]",
+            !isToggle ? "text-[#11141A]" : "text-[#4D5154]",
           )}
+          aria-pressed={!isToggle}
           onClick={() => isToggle && switchTab("not-completed")}
         >
           {!isToggle && (
@@ -43,7 +44,7 @@ const CourseCompletionTab = () => {
             </ViewTransition>
           )}
           <span style={{ viewTransitionName: "tab-label-not-completed" }}>
-            Has Not Completed
+            Has not completed
           </span>
         </button>
       </li>
@@ -51,8 +52,9 @@ const CourseCompletionTab = () => {
         <button
           className={cn(
             tabBase,
-            isToggle ? "text-[#11141A]" : "text-[#6B7280]",
+            isToggle ? "text-[#11141A]" : "text-[#4D5154]",
           )}
+          aria-pressed={isToggle}
           onClick={() => !isToggle && switchTab("completed")}
         >
           {isToggle && (
@@ -65,7 +67,7 @@ const CourseCompletionTab = () => {
             </ViewTransition>
           )}
           <span style={{ viewTransitionName: "tab-label-completed" }}>
-            Has Completed
+            Has completed
           </span>
         </button>
       </li>

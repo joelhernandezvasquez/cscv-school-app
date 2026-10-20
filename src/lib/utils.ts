@@ -42,6 +42,10 @@ export const checkLoginFormErrors = (
   };
 };
 
+const PAGE_NAME_LABELS: Record<string, string> = {
+  "Course-report": "Reports",
+};
+
 export const getPageNameFromPath = (path: string) => {
   let pathName = path.replace("/", "");
   const firstLetter = pathName[0].toUpperCase();
@@ -50,9 +54,9 @@ export const getPageNameFromPath = (path: string) => {
   // it is a Slug page then
   if (pathName.includes("/")) {
     const slashIndex = pathName.indexOf("/");
-    return pathName.slice(0, slashIndex);
+    pathName = pathName.slice(0, slashIndex);
   }
-  return pathName;
+  return PAGE_NAME_LABELS[pathName] ?? pathName;
 };
 
 export const getFirstLetterUpperCase = (text: string) => {

@@ -27,7 +27,7 @@ const CopyableValue = ({ value, className }: Props) => {
       type="button"
       onClick={handleCopy}
       className={cn(
-        "group inline-flex items-center gap-1.5 cursor-pointer rounded bg-transparent border-none p-0 text-left hover:text-[#5655D7]",
+        "group inline-flex items-center gap-1.5 max-lg:min-h-11 cursor-pointer rounded bg-transparent border-none p-0 text-left hover:text-[#5655D7]",
         copied && "text-[#5655D7] font-bold",
         className,
       )}
