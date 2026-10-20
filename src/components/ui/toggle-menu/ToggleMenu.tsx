@@ -9,7 +9,7 @@ export const ToggleMenu = () => {
    //TODO: Refactor the icons move it to another area.
   return (
     <>
-    <button className={buttons.toggle_btn} onClick={handleToggle}>
+    <button className={buttons.toggle_btn} onClick={handleToggle} aria-label={isToggle ? "Close menu" : "Open menu"} aria-expanded={isToggle}>
       {!isToggle
         ? (
         <svg  width="24" height="24" viewBox="0 0 24 24" fill="none">

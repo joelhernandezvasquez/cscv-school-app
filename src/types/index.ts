@@ -266,3 +266,29 @@ export interface DashboardEventSummary{
       Enrollments: EnrollmentStudent[]
     }[]
   }
+
+
+export interface CourseParticipant{
+  id: number,
+  first_name: string,
+  last_name: string,
+  email: string,
+  phone: string,
+  completed_at?: string | null
+}
+
+// "completed" rows come back as StudentCourse records with the student nested;
+// "not-completed" rows come back as flat students.
+export type CourseParticipantRow =
+  | { id: number, completedAt: string | null, student: Omit<CourseParticipant, 'id' | 'completed_at'> & { id: number } }
+  | Omit<CourseParticipant, 'completed_at'>
+
+export interface CourseParticipantsResponse{
+  students: CourseParticipantRow[],
+  pagination: {
+    page: number,
+    limit: number,
+    total: number,
+    totalPages: number
+  }
+}

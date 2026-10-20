@@ -115,7 +115,7 @@ a{
 
 .container{
   display:grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 @media(min-width:767px){
@@ -239,3 +239,29 @@ a{
 }
 
 
+
+/* Course completion tab pill: the group is painted by the pseudo-element itself
+   so its rounded corners/shadow are not stretched like a snapshot would be. */
+::view-transition-group(.tab-pill),
+::view-transition-group(tab-label-not-completed),
+::view-transition-group(tab-label-completed),
+::view-transition-old(tab-label-not-completed),
+::view-transition-new(tab-label-not-completed),
+::view-transition-old(tab-label-completed),
+::view-transition-new(tab-label-completed),
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 180ms;
+}
+
+::view-transition-group(.tab-pill) {
+  animation-timing-function: ease-in-out;
+  background: #fff;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+::view-transition-old(.tab-pill),
+::view-transition-new(.tab-pill) {
+  display: none;
+}
