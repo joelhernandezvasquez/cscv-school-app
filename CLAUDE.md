@@ -13,9 +13,13 @@ npm run dev      # start dev server with Turbopack
 npm run build    # production build
 npm run start    # run production build
 npm run lint     # eslint
+npm run test     # vitest (watch mode)
+npm run test:run # vitest, single run
 ```
 
-There is no test suite configured in this repo.
+## Testing
+
+Unit tests use Vitest + React Testing Library (jsdom), configured in `vitest.config.mts` and `vitest.setup.ts`. Test files are co-located with the source (`Foo.tsx` → `Foo.test.tsx`). Mock server actions, `next/navigation` and `fetch`; tests never hit the backend. The `unit-tester` agent in `.claude/agents/` writes tests for a branch diff or named files.
 
 ## Environment
 
@@ -28,7 +32,7 @@ There is no test suite configured in this repo.
 
 - Auth.js (`next-auth` v5 beta) is configured in [src/auth.config.ts](src/auth.config.ts) using the `CredentialsProvider`. `authorize()` posts credentials to the backend `/auth/login` endpoint and returns the resulting user/token payload.
 - Session strategy is JWT; the `jwt` and `session` callbacks stash the full backend response (`token.data = user`) and replace the session object with it wholesale on read — so `session` shape mirrors the backend's login response (`UserSession` in [src/types/index.ts](src/types/index.ts)), not the default Auth.js session shape.
-- Route protection is done per-layout, not via middleware (no `middleware.ts` exists): [src/app/(admin)/layout.tsx](src/app/(admin)/layout.tsx) calls `auth()` and redirects to `/login` when there's no session. All admin pages live under the `(admin)` route group and inherit this guard.
+- Route protection is done per-layout, not via middleware (no `middleware.ts` exists): [src/app/(admin)/layout.tsx](<src/app/(admin)/layout.tsx>) calls `auth()` and redirects to `/login` when there's no session. All admin pages live under the `(admin)` route group and inherit this guard.
 - Token refresh: `getValidatedToken()` in [src/lib/actions/index.ts](src/lib/actions/index.ts) checks `session.expiresAt` against `Date.now()` and calls `refreshToken()` ([src/lib/actions/auth/login.ts](src/lib/actions/auth/login.ts)) when expired. Every server action that hits the backend calls `getValidatedToken()` first and sends the token as a `Bearer` header.
 
 ### Server actions / data layer
