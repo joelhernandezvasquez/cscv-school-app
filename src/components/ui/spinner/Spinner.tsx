@@ -1,17 +1,16 @@
-import style from './style.module.css';
+import style from "./style.module.css";
 
-interface Props{
-  text:string
+interface Props {
+  text: string;
 }
 
-const Spinner = ({text}:Props) => {
+const Spinner = ({ text }: Props) => {
   return (
-    <div className={style.spinner_container}>
+    <span className={style.spinner_container}>
       <span>{text}</span>
-      <span className={style.spinner}></span>
-    </div>
-   
-  )
-}
+      <span className={style.spinner} aria-hidden="true"></span>
+    </span>
+  );
+};
 
-export default Spinner
+export default Spinner;

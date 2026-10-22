@@ -1,0 +1,88 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation [ref=e4]:
+      - list [ref=e5]:
+        - listitem [ref=e6]:
+          - link "Dashboard" [ref=e7] [cursor=pointer]:
+            - /url: /dashboard
+        - listitem [ref=e10]:
+          - link "Students" [ref=e11] [cursor=pointer]:
+            - /url: /students
+        - listitem [ref=e14]:
+          - link "Events" [ref=e15] [cursor=pointer]:
+            - /url: /events
+        - listitem [ref=e18]:
+          - link "Courses" [ref=e19] [cursor=pointer]:
+            - /url: /courses
+      - button "Reports" [ref=e24] [cursor=pointer]
+      - button "Sign Out" [ref=e32] [cursor=pointer]
+    - banner [ref=e38]:
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - heading "Dashboard" [level=1] [ref=e41]
+          - paragraph [ref=e42]: Hello Joel, welcome back!
+        - generic [ref=e43]:
+          - button "Notifications" [ref=e48] [cursor=pointer]
+          - button "Settings" [ref=e52] [cursor=pointer]
+    - main [ref=e57]:
+      - list [ref=e60]:
+        - listitem [ref=e61]:
+          - generic [ref=e64]:
+            - heading "Total Students" [level=2] [ref=e65]
+            - paragraph [ref=e66]: "23"
+        - listitem [ref=e67]:
+          - generic [ref=e70]:
+            - heading "Total Enrollments" [level=2] [ref=e71]
+            - paragraph [ref=e72]: "43"
+        - listitem [ref=e73]:
+          - generic [ref=e76]:
+            - heading "Total Events" [level=2] [ref=e77]
+            - paragraph [ref=e78]: "28"
+      - generic [ref=e79]:
+        - paragraph [ref=e80]: Overview of Events
+        - list [ref=e81]:
+          - listitem [ref=e82]:
+            - generic [ref=e83]:
+              - heading "Upcoming Events" [level=3] [ref=e88]
+              - generic [ref=e89]:
+                - paragraph [ref=e90]: "2"
+                - paragraph [ref=e91]: Next 174 Days
+          - listitem [ref=e92]:
+            - generic [ref=e93]:
+              - heading "Active Events" [level=3] [ref=e102]
+              - generic [ref=e103]:
+                - paragraph [ref=e104]: "0"
+                - paragraph [ref=e105]: Currently Running
+          - listitem [ref=e106]:
+            - generic [ref=e107]:
+              - heading "Pending Completions" [level=3] [ref=e116]
+              - generic [ref=e117]:
+                - paragraph [ref=e118]: "0"
+                - paragraph [ref=e119]: Needs Attention
+      - generic [ref=e120]:
+        - paragraph [ref=e121]: Needs Your Attention
+        - list [ref=e122]:
+          - listitem [ref=e123]:
+            - article [ref=e124] [cursor=pointer]:
+              - generic [ref=e125]:
+                - generic [ref=e126]: upcoming
+                - paragraph [ref=e127]: 174 days
+              - generic [ref=e128]:
+                - paragraph [ref=e129]: Curso Apolo
+                - generic [ref=e130]:
+                  - paragraph [ref=e135]: Add Students to fill seats
+                  - link "Enroll Students" [ref=e137]:
+                    - /url: /events/4
+          - listitem [ref=e138]:
+            - article [ref=e139] [cursor=pointer]:
+              - generic [ref=e140]:
+                - generic [ref=e141]: upcoming
+                - paragraph [ref=e142]: 139 days
+              - generic [ref=e143]:
+                - paragraph [ref=e144]: Curso Pedro
+                - generic [ref=e145]:
+                  - paragraph [ref=e150]: Add Students to fill seats
+                  - link "Enroll Students" [ref=e152]:
+                    - /url: /events/58
+  - button "Open Next.js Dev Tools" [ref=e158] [cursor=pointer]
+  - alert [ref=e162]
