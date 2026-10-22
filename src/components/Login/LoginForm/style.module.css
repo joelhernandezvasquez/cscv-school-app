@@ -5,6 +5,11 @@
 /* Login-only override of the shared .input_wrapper border (>= 3:1 on #f7f8fa) */
 .form_container .field_box {
   border-color: #80858e;
+  background-color: #fff;
+}
+
+.form_container .field_box:has(input[aria-invalid="true"]) {
+  border-color: #b91c1c;
 }
 
 .field_error {

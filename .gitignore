@@ -44,3 +44,6 @@ next-env.d.ts
 
 # accessibility audit reports (local only)
 a11y-reports/
+
+# UX review reports (local only)
+ux-reports/

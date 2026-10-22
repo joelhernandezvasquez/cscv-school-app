@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useState, useTransition } from "react";
 import { authenticateUser, signInUser } from "@/lib/actions/auth/login";
-import { checkLoginFormErrors } from "@/lib/utils";
+import { checkLoginFormErrors, EMAIL_PATTERN } from "@/lib/utils";
 import { toast, Toaster } from "sonner";
 import Spinner from "@/components/ui/spinner/Spinner";
 import style from "./style.module.css";
@@ -24,6 +24,10 @@ const LoginForm = ({ fontType }: Props) => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
+  const clearFieldError = (field: keyof FieldErrors) => {
+    setErrors((prev) => (prev[field] ? { ...prev, [field]: undefined } : prev));
+  };
+
   const handleAuthentication = async (
     event: React.FormEvent<HTMLFormElement>,
   ) => {
@@ -33,16 +37,17 @@ const LoginForm = ({ fontType }: Props) => {
 
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-    const { isError, message } = checkLoginFormErrors(email, password);
+    const { isError } = checkLoginFormErrors(email, password);
 
     const nextErrors: FieldErrors = {};
     if (email.length === 0) nextErrors.email = "Email cannot be empty";
+    else if (!EMAIL_PATTERN.test(email))
+      nextErrors.email = "Enter a valid email address";
     if (password.length === 0) nextErrors.password = "Password cannot be empty";
     setErrors(nextErrors);
     setFormError("");
 
     if (isError) {
-      toast.error(message);
       if (nextErrors.email) emailRef.current?.focus();
       else passwordRef.current?.focus();
       return;
@@ -69,7 +74,11 @@ const LoginForm = ({ fontType }: Props) => {
   };
 
   return (
-    <form className={style.form_container} onSubmit={handleAuthentication}>
+    <form
+      className={style.form_container}
+      onSubmit={handleAuthentication}
+      noValidate
+    >
       <div className={form.form_field}>
         <label className={`${form.bold_label} ${fontType}`} htmlFor="email">
           Email Address
@@ -98,6 +107,7 @@ const LoginForm = ({ fontType }: Props) => {
             autoComplete="username"
             aria-required="true"
             ref={emailRef}
+            onChange={() => clearFieldError("email")}
             aria-invalid={errors.email ? true : undefined}
             aria-describedby={errors.email ? "email-error" : undefined}
           />
@@ -137,6 +147,7 @@ const LoginForm = ({ fontType }: Props) => {
             autoComplete="current-password"
             aria-required="true"
             ref={passwordRef}
+            onChange={() => clearFieldError("password")}
             aria-invalid={errors.password ? true : undefined}
             aria-describedby={errors.password ? "password-error" : undefined}
           />
