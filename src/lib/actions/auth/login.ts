@@ -1,68 +1,26 @@
+import { signIn } from "next-auth/react";
 
-import { User } from "@/types";
-import { signIn} from "next-auth/react";
+export type LoginResult = { ok: true } | { ok: false; message: string };
 
-export const authenticateUser = async(email:string,password:string):Promise<User> =>{
-//  const TOKEN = getSession();
-//   console.log(TOKEN);
-  try{
-      const loginRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login`,{
-       method:'POST',
-        headers:{
-        "Content-Type":"application/json",
-     
-    },
-    body:JSON.stringify({
-        email,
-        password
-    })
-      })
+// The backend is called once, from Auth.js's authorize() on the server, so the password
+// is sent a single time and backend error text never reaches the form.
+export const signInUser = async (
+  email: string,
+  password: string,
+): Promise<LoginResult> => {
+  const result = await signIn("credentials", {
+    email,
+    password,
+    redirect: false,
+  });
 
-      const contentType = loginRequest.headers.get('content-type') || '';
-      if (!contentType.includes('application/json')) {
-        const rawResponse = await loginRequest.text();
-        throw new Error(`Invalid API response format. Expected JSON but received: ${rawResponse.slice(0, 120)}`);
-      }
+  if (result?.ok && !result.error) return { ok: true };
 
-      const jsonResponse = await loginRequest.json();
-      if (!loginRequest.ok) {
-        const errorMessage = (jsonResponse as { message?: string })?.message || 'Login request failed';
-        throw new Error(errorMessage);
-      }
-
-      return jsonResponse;
-      
-    }
-  
-catch(error){
-    if(error instanceof Error){
-        console.log(error);
-        throw new Error(error.message);
-    }  
-    return {} as User;
-}
- 
-}
-
-export const signInUser = async (email:string,password:string) =>{
-    return await signIn("credentials",{
-        email:email,
-        password:password,
-        callbackUrl:'/dashboard'
-      });
-}
-
-export const refreshToken = async(id:string)=>{
-  try{
-     const tokenRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/auth/refresh-token/${id}`);
-      
-     return await tokenRequest.json();
-  
-    }
-  catch(error){
-    if(error instanceof Error){
-        console.log(error);
-        throw new Error(error.message);
-    } 
-}
-}
+  if (result?.code === "rate_limited") {
+    return {
+      ok: false,
+      message: "Too many login attempts. Please wait a few minutes and try again.",
+    };
+  }
+  return { ok: false, message: "Invalid email or password." };
+};

@@ -41,3 +41,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# accessibility audit reports (local only)
+a11y-reports/
+
+# UX review reports (local only)
+ux-reports/
+
+# product strategy reports (local only)
+product-reports/
+
+# security audit reports (local only)
+security-reports/

@@ -20,6 +20,8 @@ export const getImageUrl = (imagePath: string) => {
   );
   return `${serverOrigin}${imagePath}`;
 };
+export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export const checkLoginFormErrors = (
   email: string,
   password: string,
@@ -28,6 +30,13 @@ export const checkLoginFormErrors = (
     return {
       isError: true,
       message: "Email cannot be empty",
+    };
+  }
+
+  if (!EMAIL_PATTERN.test(email)) {
+    return {
+      isError: true,
+      message: "Enter a valid email address",
     };
   }
 

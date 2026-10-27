@@ -5,7 +5,7 @@ export const getCompletionCourseList = async (query: string) => {
   try {
     const token = await getValidatedToken();
     const listRequest = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/report/course-completion?query=${query}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/report/course-completion?query=${encodeURIComponent(query)}`,
       {
         method: "GET",
         headers: {

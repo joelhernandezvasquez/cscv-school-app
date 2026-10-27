@@ -1,14 +1,14 @@
 'use server';
 
 import { DeleteStudentForm } from "@/types";
-import { getValidatedToken } from "..";
+import { getValidatedToken, pathId } from "..";
 
 export const deleteStudent = async (studentId:number):Promise<DeleteStudentForm> =>{
 
   try{
        const token = await getValidatedToken();
       
-      const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${studentId}`,{
+      const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${pathId(studentId)}`,{
          method: 'DELETE',
          headers: {
            'Authorization': `Bearer ${token}`,

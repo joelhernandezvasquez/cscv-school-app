@@ -1,7 +1,7 @@
 'use client';
 import { ChangeEvent,startTransition, useState} from 'react';
 import EventEnrollStudentList from '../event-enroll-list-student/EventEnrollStudentList';
-import {searchStudents} from '@/lib/actions/students';
+import {searchStudents} from '@/lib/actions/students/searchStudents';
 import { Students } from '@/types';
 import { LuSearch } from 'react-icons/lu';
 import style from './style.module.css';
