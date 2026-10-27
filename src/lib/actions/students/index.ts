@@ -1,5 +1,5 @@
 import { CompletedCourse, PaginationData, PendingCourses, StudentProgress, Students, StudentsSummary } from "@/types";
-import { getValidatedToken } from "../index";
+import { getValidatedToken, pathId } from "../index";
 
 export const getStudentSummary = async():Promise<StudentsSummary> => {
     try{
@@ -28,7 +28,7 @@ export const getStudentSummary = async():Promise<StudentsSummary> => {
 export const fetchStudents = async(query:string,page?:string | number,sortBy?:string):Promise<Students[]> =>{
   try{
        const token = await getValidatedToken();
-       const studentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/search?query=${query}&page=${page}&sortBy=${sortBy}`,{
+       const studentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/search?query=${encodeURIComponent(query)}&page=${encodeURIComponent(String(page))}&sortBy=${encodeURIComponent(String(sortBy))}`,{
          method: 'GET',
          headers: {
            'Authorization': `Bearer ${token}`,
@@ -163,7 +163,7 @@ export const validateStudentForm = (formData:FormData) =>{
    try{
     const token = await getValidatedToken();
 
-     const studentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${studentId}`,{
+     const studentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${pathId(studentId)}`,{
        method: 'GET',
          headers: {
            'Authorization': `Bearer ${token}`,
@@ -186,7 +186,7 @@ export const validateStudentForm = (formData:FormData) =>{
  export const getStudentProgress = async (studentId:string):Promise<StudentProgress> =>{
     try{
       const token = await getValidatedToken();
-      const studentProgressRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${studentId}/progress`,{
+      const studentProgressRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${pathId(studentId)}/progress`,{
        method: 'GET',
          headers: {
            'Authorization': `Bearer ${token}`,
@@ -216,7 +216,7 @@ export const validateStudentForm = (formData:FormData) =>{
  export const getPendingCoursesList = async (studentId:string):Promise<PendingCourses[]> =>{
     try{
       const token = await getValidatedToken();
-      const pendingCoursesRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${studentId}/pending-courses`,{
+      const pendingCoursesRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${pathId(studentId)}/pending-courses`,{
        method: 'GET',
          headers: {
            'Authorization': `Bearer ${token}`,
@@ -239,7 +239,7 @@ export const validateStudentForm = (formData:FormData) =>{
   export const getCompletedCoursesList = async (studentId:string):Promise<CompletedCourse[]> =>{
     try{
       const token = await getValidatedToken();
-      const completedCoursesRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${studentId}/complete-courses`,{
+      const completedCoursesRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${pathId(studentId)}/complete-courses`,{
        method: 'GET',
          headers: {
            'Authorization': `Bearer ${token}`,

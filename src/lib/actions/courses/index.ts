@@ -53,7 +53,7 @@ import { formatLevelToName } from "@/lib/utils";
    try{
       const token = await getValidatedToken();
       const courseQueryMapped = formatLevelToName(query);
-      const coursesRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/course/search?query=${courseQueryMapped}`,{
+      const coursesRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/course/search?query=${encodeURIComponent(courseQueryMapped)}`,{
        method: 'GET',
          headers: {
            'Authorization': `Bearer ${token}`,

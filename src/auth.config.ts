@@ -1,16 +1,36 @@
-import NextAuth, { type NextAuthConfig } from "next-auth";
+import NextAuth, { CredentialsSignin, type NextAuthConfig } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { UserSession } from "./types";
+import { refreshToken } from "./lib/actions/auth/refreshToken";
+
+class RateLimitedError extends CredentialsSignin {
+  code = "rate_limited";
+}
 
 export const authConfig: NextAuthConfig = {
   pages: {
-    signIn: "/auth/login",
+    signIn: "/login",
   },
 
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
         token.data = user;
+        return token;
+      }
+
+      // The session cookie outlives the backend token, so refresh it once it expires and
+      // end the session if that fails. Returning null clears the session.
+      const data = token.data as Partial<UserSession> | undefined;
+      const expiresAt = data?.expiresAt ? Number(data.expiresAt) * 1000 : 0;
+      if (data && expiresAt && Date.now() > expiresAt) {
+        const refreshed = await refreshToken(String(data.user?.id), data.token);
+        if (!refreshed) return null;
+        token.data = {
+          ...data,
+          token: refreshed.token,
+          expiresAt: refreshed.expiresAt ?? data.expiresAt,
+        };
       }
       return token;
     },
@@ -41,6 +61,10 @@ export const authConfig: NextAuthConfig = {
       async authorize(credentials) {
         const { email, password } = credentials;
 
+        if (typeof email !== "string" || typeof password !== "string") {
+          return null;
+        }
+
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/login`,
           {
@@ -55,16 +79,26 @@ export const authConfig: NextAuthConfig = {
           },
         );
 
-        const user: UserSession = await res.json();
-
-        if (user) {
-          return user;
+        // A failed login (401 etc.) returns a JSON error body that would otherwise be
+        // truthy and be issued a session, so only accept a successful, well-formed response.
+        if (res.status === 429) {
+          throw new RateLimitedError();
         }
-        return null;
+        if (!res.ok) {
+          return null;
+        }
+
+        const user: UserSession = await res.json().catch(() => null);
+
+        if (!user?.token || !user.user?.id) {
+          return null;
+        }
+
+        return user;
       },
     }),
   ],
-  secret: process.env.NEXT_PUBLIC_AUTH_SECRET,
+  secret: process.env.AUTH_SECRET,
   session: {
     strategy: "jwt",
   },

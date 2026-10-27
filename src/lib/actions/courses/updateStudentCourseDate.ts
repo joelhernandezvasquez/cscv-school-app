@@ -1,7 +1,7 @@
 'use server';
 
 import { CompletedCourseActionState} from "@/types";
-import { getValidatedToken } from "..";
+import { getValidatedToken, pathId } from "..";
 
 export const updateStudentCourseDate = async (
   previousState: CompletedCourseActionState,
@@ -16,7 +16,7 @@ export const updateStudentCourseDate = async (
   try {
    const token = await getValidatedToken();
        
-    const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${studentId}/update-student-course-date`, {
+    const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${pathId(studentId)}/update-student-course-date`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,

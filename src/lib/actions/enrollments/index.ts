@@ -1,12 +1,12 @@
 import { EnrollmentEvent } from "@/types";
-import { getValidatedToken } from "../index";
+import { getValidatedToken, pathId } from "../index";
 
 
 export const getEnrollmentsPerEvent = async(eventId:string):Promise<EnrollmentEvent[]> =>{
     try{
       const token = await getValidatedToken();
 
-      const enrollmentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/events/${eventId}/enrollments`,{
+      const enrollmentRequest = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/events/${pathId(eventId)}/enrollments`,{
          method: 'GET',
          headers: {
            'Authorization': `Bearer ${token}`,

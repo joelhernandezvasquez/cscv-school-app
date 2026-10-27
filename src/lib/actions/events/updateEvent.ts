@@ -2,7 +2,7 @@
 
 import { UpdateEventFormState} from "@/types";
 import { validateEventForm } from ".";
-import { getValidatedToken } from "..";
+import { getValidatedToken, pathId } from "..";
 
 export const updateEvent = async (
   previousState: UpdateEventFormState,
@@ -29,7 +29,7 @@ const formErrors = validateEventForm(formData);
   try {
    const token = await getValidatedToken();
        
-    const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/events/${eventId}`, {
+    const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/events/${pathId(eventId)}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,

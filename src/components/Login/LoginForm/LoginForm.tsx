@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState, useTransition } from "react";
-import { authenticateUser, signInUser } from "@/lib/actions/auth/login";
+import { useRouter } from "next/navigation";
+import { signInUser } from "@/lib/actions/auth/login";
 import { checkLoginFormErrors, EMAIL_PATTERN } from "@/lib/utils";
 import { toast, Toaster } from "sonner";
 import Spinner from "@/components/ui/spinner/Spinner";
@@ -18,6 +19,7 @@ interface FieldErrors {
 }
 
 const LoginForm = ({ fontType }: Props) => {
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [errors, setErrors] = useState<FieldErrors>({});
   const [formError, setFormError] = useState("");
@@ -54,15 +56,16 @@ const LoginForm = ({ fontType }: Props) => {
     }
     startTransition(async () => {
       try {
-        const result = await authenticateUser(email, password);
+        const result = await signInUser(email, password);
 
-        if (result.error) {
-          setFormError(result.error);
-          toast.error(result.error);
+        if (!result.ok) {
+          setFormError(result.message);
+          toast.error(result.message);
           return;
         }
 
-        await signInUser(email, password);
+        router.replace("/dashboard");
+        router.refresh();
       } catch (error) {
         setFormError(
           error instanceof Error && error.message

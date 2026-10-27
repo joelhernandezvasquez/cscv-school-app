@@ -23,7 +23,7 @@ Unit tests use Vitest + React Testing Library (jsdom), configured in `vitest.con
 
 ## Environment
 
-- `.env` / `.env.development.local` / `.env.production` hold `NEXT_PUBLIC_SERVER_URL` (backend API base URL, already includes `/api`) and `NEXT_PUBLIC_AUTH_SECRET`.
+- `.env` / `.env.development.local` / `.env.production` hold `NEXT_PUBLIC_SERVER_URL` (backend API base URL, already includes `/api`) and (in `.env`) `AUTH_SECRET`, the server-only Auth.js secret.
 - The backend API is an external service this repo does not contain — all data-fetching code assumes it is reachable at `NEXT_PUBLIC_SERVER_URL`.
 
 ## Architecture

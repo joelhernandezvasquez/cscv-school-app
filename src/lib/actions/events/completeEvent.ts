@@ -1,13 +1,13 @@
 "use server";
 
-import { getValidatedToken } from "..";
+import { getValidatedToken, pathId } from "..";
 
 export const completeEvent = async (eventId: number) => {
   try {
     const token = await getValidatedToken();
 
     const request = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/events/${eventId}/complete`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/events/${pathId(eventId)}/complete`,
       {
         method: "POST",
         headers: {

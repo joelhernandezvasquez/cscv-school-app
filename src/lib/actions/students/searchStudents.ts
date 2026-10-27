@@ -1,7 +1,7 @@
 "use server";
 
 import { Students } from "@/types";
-import { getValidatedToken } from "..";
+import { getValidatedToken, pathId } from "..";
 
 export const searchStudents = async (
   query: string,
@@ -10,7 +10,7 @@ export const searchStudents = async (
   try {
     const token = await getValidatedToken();
     const studentRequest = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/enrollments/search/${eventId}?query=${query}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/enrollments/search/${pathId(eventId)}?query=${encodeURIComponent(query)}`,
       {
         method: "GET",
         headers: {

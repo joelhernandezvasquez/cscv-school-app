@@ -1,7 +1,7 @@
 'use server';
 import { validateStudentForm } from "./index";
 import { AddStudentFormState } from "@/types";
-import { getValidatedToken } from "..";
+import { getValidatedToken, pathId } from "..";
 
 export const updateStudent = async (
   previousState: AddStudentFormState,
@@ -35,7 +35,7 @@ export const updateStudent = async (
   try {
     const token = await getValidatedToken();
        
-    const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${studentId}`, {
+    const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/${pathId(studentId)}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,

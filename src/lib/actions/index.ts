@@ -5,7 +5,7 @@ import { headers } from "next/headers";
 import { getToken } from "next-auth/jwt";
 import { authConfig } from "@/auth.config";
 import { UserSession } from "@/types";
-import { refreshToken } from "./auth/login";
+import { refreshToken } from "./auth/refreshToken";
 
 // Reads the backend login response stored in the encrypted session JWT (token.data).
 // The session exposed by auth()/api/auth/session no longer carries the token.
@@ -25,6 +25,16 @@ const getSessionData = async (): Promise<Partial<UserSession> | undefined> => {
   return undefined;
 };
 
+// Backend ids are integers. Rejecting anything else keeps ids that come from FormData or the
+// URL from changing the backend path (e.g. "1/../..") or adding query parameters.
+export const pathId = (value: unknown): string => {
+  const id = String(value ?? "").trim();
+  if (!/^\d+$/.test(id)) {
+    throw new Error("Invalid id");
+  }
+  return id;
+};
+
 export const getValidatedToken = async () => {
   const data = await getSessionData();
   let token = data?.token;
@@ -34,8 +44,14 @@ export const getValidatedToken = async () => {
   const expiresAt = expiresAtSeconds ? Number(expiresAtSeconds) * 1000 : 0;
 
   if (expiresAt && Date.now() > expiresAt) {
-    token = await refreshToken(data?.user?.id as unknown as string);
-    return token;
+    token = (await refreshToken(pathId(data?.user?.id), token))?.token;
+  }
+
+  // Layout redirects don't stop page server components from running, so refuse here
+  // rather than calling the backend with `Bearer undefined`. A plain Error is thrown
+  // (not redirect()) because callers catch and rethrow, which would swallow the redirect.
+  if (typeof token !== "string" || !token) {
+    throw new Error("Unauthorized: no valid session token");
   }
   return token;
 };
