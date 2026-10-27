@@ -3,9 +3,9 @@ import {UpdateEventFormState } from "@/types";
 import { toast } from "sonner";
 import { startTransition } from "react";
 import { updateEvent } from "@/lib/actions/events/updateEvent";
-import { completeEvent } from "@/lib/actions/events";
+import { completeEvent } from "@/lib/actions/events/completeEvent";
 import { enrollStudentIntoEvent } from "@/lib/actions/enrollments/enrollStudentIntoEvent.ts";
-import { updateEnrollment } from "@/lib/actions/enrollments";
+import { updateEnrollment } from "@/lib/actions/enrollments/updateEnrollment";
 
 const useEventManagement = () => {
        const router = useRouter();
