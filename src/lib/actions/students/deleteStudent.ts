@@ -15,18 +15,20 @@ export const deleteStudent = async (studentId:number):Promise<DeleteStudentForm>
             'Content-Type': 'application/json'
           }
       })
-     const response =  await request.json();
+     const response = await request.json().catch(() => ({}));
 
-     if(response.success){
+     if(request.ok && response.success){
         return{
             success:true,
             message:response.message
         }
      }
 
-      return{
+     // Backends often fail with an `error` key and no `message`, so fall back to it and the status.
+     console.log('Delete student failed', request.status, response);
+     return{
             success:false,
-            message:response.message
+            message:response.message || response.error || `The server rejected the request (${request.status}).`
         }
   }
   catch(error){
