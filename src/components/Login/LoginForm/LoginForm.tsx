@@ -2,7 +2,7 @@
 import { useRef, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { signInUser } from "@/lib/actions/auth/login";
-import { checkLoginFormErrors, EMAIL_PATTERN } from "@/lib/utils";
+import { getLoginFieldErrors } from "@/lib/utils";
 import { toast, Toaster } from "sonner";
 import Spinner from "@/components/ui/spinner/Spinner";
 import style from "./style.module.css";
@@ -39,17 +39,11 @@ const LoginForm = ({ fontType }: Props) => {
 
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-    const { isError } = checkLoginFormErrors(email, password);
-
-    const nextErrors: FieldErrors = {};
-    if (email.length === 0) nextErrors.email = "Email cannot be empty";
-    else if (!EMAIL_PATTERN.test(email))
-      nextErrors.email = "Enter a valid email address";
-    if (password.length === 0) nextErrors.password = "Password cannot be empty";
+    const nextErrors: FieldErrors = getLoginFieldErrors(email, password);
     setErrors(nextErrors);
     setFormError("");
 
-    if (isError) {
+    if (nextErrors.email || nextErrors.password) {
       if (nextErrors.email) emailRef.current?.focus();
       else passwordRef.current?.focus();
       return;

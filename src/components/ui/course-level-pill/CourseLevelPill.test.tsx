@@ -19,8 +19,7 @@ describe("CourseLevelPill", () => {
     expect(screen.getByText(label)).toBeInTheDocument();
   });
 
-  // TEST-1: formatLevelName has no mapping for the "renacer" slug, so the pill shows lowercase "renacer"
-  it.fails("shows Renacer for the renacer slug produced by formatCourseLevel", () => {
+  it("shows Renacer for the renacer slug produced by formatCourseLevel", () => {
     render(<CourseLevelPill level="renacer" />);
 
     expect(screen.getByText("Renacer")).toBeInTheDocument();

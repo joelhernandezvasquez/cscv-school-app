@@ -8,12 +8,8 @@ import {
 } from "@/components/ui/table";
 import { redirect } from "next/navigation";
 import CopyableValue from "./CopyableValue";
-import { cn, getFormattedDate } from "@/lib/utils";
-import {
-  CourseParticipant,
-  CourseParticipantRow,
-  CourseParticipantsResponse,
-} from "@/types";
+import { cn, getFormattedDate, normalizeParticipant } from "@/lib/utils";
+import { CourseParticipantsResponse } from "@/types";
 import { getPaginatedCompletionStatusCourseList } from "@/lib/actions/reports";
 
 const headClass =
@@ -39,11 +35,6 @@ const Initials = ({ first, last }: { first: string; last: string }) => (
     {getInitials(first, last)}
   </span>
 );
-
-const normalizeParticipant = (row: CourseParticipantRow): CourseParticipant =>
-  "student" in row
-    ? { ...row.student, id: row.id, completed_at: row.completedAt }
-    : { ...row, completed_at: null };
 
 interface Props {
   query: string;

@@ -20,17 +20,18 @@ export default async function Page(props: {
     search?: string;
   }>;
 }) {
-  const [searchParams, courses] = await Promise.all([
-    props.searchParams,
-    fetchCourses(),
-  ]);
-
+  const searchParams = await props.searchParams;
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
   const status =
     searchParams?.status === "completed" ? "completed" : "not-completed";
   const search = searchParams?.search?.trim() || "";
-  const list = await getCompletionCourseList(query);
+
+  // The completion list only exists for a selected course, so skip it on the empty state.
+  const [courses, list] = await Promise.all([
+    fetchCourses(),
+    query ? getCompletionCourseList(query) : null,
+  ]);
 
   return (
     <main className={`${util.wrapper} bg-[#f7f8fa]`}>
@@ -48,7 +49,7 @@ export default async function Page(props: {
       </header>
 
       <CourseParticipationDropdown courses={courses} />
-      {list.hasCompleted && query ? (
+      {list?.hasCompleted && query ? (
         <>
           <ReportMetrics
             hasCompleted={list.hasCompleted.length}
