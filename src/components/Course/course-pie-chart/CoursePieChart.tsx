@@ -1,54 +1,31 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Label, Pie, PieChart } from "recharts"
+import * as React from "react";
+import { Label, Pie, PieChart } from "recharts";
 
-import {
-  Card,
-  CardContent,
-} from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
-} from "@/components/ui/chart"
-import { CoursePieChartData } from "@/types"
+} from "@/components/ui/chart";
+import { CoursePieChartData } from "@/types";
 
-interface Props{
-  chartData:CoursePieChartData[]
+interface Props {
+  chartData: CoursePieChartData[];
 }
 
 const chartConfig = {
   visitors: {
     label: "Cursos",
   },
-  chrome: {
-    label: "Chrome",
-    color: "var(--chart-1)",
-  },
-  safari: {
-    label: "Safari",
-    color: "var(--chart-2)",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "var(--chart-3)",
-  },
-  edge: {
-    label: "Edge",
-    color: "var(--chart-4)",
-  },
-  other: {
-    label: "Other",
-    color: "var(--chart-5)",
-  },
-} satisfies ChartConfig
+} satisfies ChartConfig;
 
-export function CoursePieChart({ chartData }:Props) {
+export function CoursePieChart({ chartData }: Props) {
   const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.visitors, 0)
-  }, [chartData])
+    return chartData.reduce((acc, curr) => acc + curr.visitors, 0);
+  }, [chartData]);
 
   return (
     <Card className="flex flex-col border-0! shadow-none!">
@@ -61,7 +38,7 @@ export function CoursePieChart({ chartData }:Props) {
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent hideLabel />}
-          />
+            />
             <Pie
               data={chartData}
               dataKey="visitors"
@@ -91,10 +68,10 @@ export function CoursePieChart({ chartData }:Props) {
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                         Total Courses
+                          Total Courses
                         </tspan>
                       </text>
-                    )
+                    );
                   }
                 }}
               />
@@ -103,5 +80,5 @@ export function CoursePieChart({ chartData }:Props) {
         </ChartContainer>
       </CardContent>
     </Card>
-  )
+  );
 }

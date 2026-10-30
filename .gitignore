@@ -53,3 +53,6 @@ product-reports/
 
 # security audit reports (local only)
 security-reports/
+
+# code review reports (local only)
+code-reviews/

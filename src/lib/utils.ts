@@ -1,8 +1,9 @@
 import {
   CompletedCourse,
+  CourseParticipant,
+  CourseParticipantRow,
   CoursePieChartData,
   CoursesByLevel,
-  LoginError,
   PendingCourses,
 } from "@/types";
 import clsx, { ClassValue } from "clsx";
@@ -22,33 +23,19 @@ export const getImageUrl = (imagePath: string) => {
 };
 export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export const checkLoginFormErrors = (
+export const getLoginFieldErrors = (
   email: string,
   password: string,
-): LoginError => {
-  if (email.length === 0) {
-    return {
-      isError: true,
-      message: "Email cannot be empty",
-    };
-  }
+): { email?: string; password?: string } => {
+  const errors: { email?: string; password?: string } = {};
 
-  if (!EMAIL_PATTERN.test(email)) {
-    return {
-      isError: true,
-      message: "Enter a valid email address",
-    };
-  }
+  if (email.length === 0) errors.email = "Email cannot be empty";
+  else if (!EMAIL_PATTERN.test(email))
+    errors.email = "Enter a valid email address";
 
-  if (password.length === 0) {
-    return {
-      isError: true,
-      message: "Password cannot be empty",
-    };
-  }
-  return {
-    isError: false,
-  };
+  if (password.length === 0) errors.password = "Password cannot be empty";
+
+  return errors;
 };
 
 const PAGE_NAME_LABELS: Record<string, string> = {
@@ -102,7 +89,8 @@ export const getCoursePercentange = (
   completed: number,
   currentQuantity: number,
 ) => {
-  return ((completed / currentQuantity) * 100).toFixed(2);
+  const percentage = (completed / currentQuantity) * 100;
+  return Number.isFinite(percentage) ? percentage.toFixed(2) : "0.00";
 };
 
 export const formatCourseLevel = (level: string) => {
@@ -115,14 +103,19 @@ export const formatCourseLevel = (level: string) => {
     .replace(/RENACER_PAREJAS/, "renacer");
 };
 
+// Form label (courseLevel in src/lib/constants.tsx) -> backend enum. Each Renacer variant
+// needs its own label: a single "Renacer" option cannot say which enum to save.
+const LEVEL_LABEL_TO_ENUM: Record<string, string> = {
+  "Nivel 1 Jesus Esta Vivo": "NIVEL_1_JESUS_ESTA_VIVO",
+  "Nivel 2 Jesus Nos Capacita": "NIVEL_2_JESUS_NOS_CAPACITA",
+  "Nivel 3 Jesus Nos Envia": "NIVEL_3_JESUS_NOS_ENVIA",
+  "Renacer Mujeres": "RENACER_MUJERES",
+  "Renacer Hombres": "RENACER_HOMBRE",
+  "Renacer Parejas": "RENACER_PAREJAS",
+};
+
 export const formatLevel = (level: string) => {
-  return level
-    .replace(/Nivel 1 Jesus Esta Vivo/, "NIVEL_1_JESUS_ESTA_VIVO")
-    .replace(/Nivel 2 Jesus Nos Capacita/, "NIVEL_2_JESUS_NOS_CAPACITA")
-    .replace(/Nivel 3 Jesus Nos Envia/, "NIVEL_3_JESUS_NOS_ENVIA")
-    .replace(/Renacer/, "RENACER_MUJERES")
-    .replace(/Renacer/, "RENACER_HOMBRE")
-    .replace(/Renacer/, "RENACER_PAREJAS");
+  return LEVEL_LABEL_TO_ENUM[level] ?? level;
 };
 
 export const formatLevelToName = (level: string) => {
@@ -150,6 +143,7 @@ export const formatLevelName = (level: string) => {
     .replace(/level1/, "Nivel 1")
     .replace(/level2/, "Nivel 2")
     .replace(/level3/, "Nivel 3")
+    .replace(/renacer/, "Renacer")
     .replace(/ongoing/, "Active")
     .replace(/upcoming/, "Upcoming")
     .replace(/complete/, "Complete")
@@ -221,6 +215,14 @@ export const formatCoursesByLevelToChartData = (
   ];
   return chartData;
 };
+
+// "completed" rows nest the student; "not-completed" rows are flat students.
+export const normalizeParticipant = (
+  row: CourseParticipantRow,
+): CourseParticipant =>
+  "student" in row
+    ? { ...row.student, id: row.id, completed_at: row.completedAt }
+    : { ...row, completed_at: null };
 
 export const getDiffDays = (eventDate: Date) => {
   const today = new Date();

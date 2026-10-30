@@ -1,8 +1,7 @@
-
-export interface User{
-    email:string,
-    password:string,
-    error:string
+export interface User {
+  email: string;
+  password: string;
+  error: string;
 }
 export type SessionUser = {
   name: string;
@@ -10,285 +9,280 @@ export type SessionUser = {
   image?: string;
   role: string;
 };
-export interface UserSession{
-    user: {
-      id: number,
-      name: string,
-      email:string,
-      role: string,
-      created_at: Date
-    },
-    token: string,
-    id: string,
-   expires: Date,
-   expiresAt:number
+export interface UserSession {
+  user: {
+    id: number;
+    name: string;
+    email: string;
+    role: string;
+    created_at: Date;
+  };
+  token: string;
+  id: string;
+  expires: Date;
+  expiresAt: number;
 }
 
 export type LoginError = {
- isError:boolean,
- message?:string
-}
-export interface StudentsSummary{
-    total:number,
-    active:number,
-    inactive:number
-}
-
-export interface Students{
-  id: number,
-  first_name: string,
-  last_name: string,
-  email: string,
-  phone: string,
-  gender: string,
-  direccion:string,
-  parroquia: string,
-  asuntos_medicos: string,
-  active: boolean,
-  created_at: Date,
-  _count:{StudentCourses:number},
-  error?:string | boolean
+  isError: boolean;
+  message?: string;
+};
+export interface StudentsSummary {
+  total: number;
+  active: number;
+  inactive: number;
 }
 
-export interface PaginationData{
-  totalPages:number,
-  totalCount:number;
+export interface Students {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  gender: string;
+  direccion: string;
+  parroquia: string;
+  asuntos_medicos: string;
+  active: boolean;
+  created_at: Date;
+  _count: { StudentCourses: number };
+  error?: string | boolean;
+}
+
+export interface PaginationData {
+  totalPages: number;
+  totalCount: number;
 }
 
 export interface AddStudentFormState {
-    firstName?: boolean;
-    lastName?: boolean;
-    email?: boolean,
-    phoneNumber?: boolean;
-    gender?: boolean;
-    active?:boolean;
-    street?: boolean;
-    city?: boolean;
-    state?: boolean;
-    zipcode?: boolean;
-    parroquia?: boolean;
-    medicalCondition?: boolean;
-    success:boolean,
-    message:string,
-    errors?: Record<string, string>;
+  firstName?: boolean;
+  lastName?: boolean;
+  email?: boolean;
+  phoneNumber?: boolean;
+  gender?: boolean;
+  active?: boolean;
+  street?: boolean;
+  city?: boolean;
+  state?: boolean;
+  zipcode?: boolean;
+  parroquia?: boolean;
+  medicalCondition?: boolean;
+  success: boolean;
+  message: string;
+  errors?: Record<string, string>;
 }
 
-export interface DeleteStudentForm{
-  success:boolean,
-  message:string,
+export interface DeleteStudentForm {
+  success: boolean;
+  message: string;
 }
 
 export type CoursesTakenByLevel = {
-  colorLevel?:string,
-  level: string,
-  courseLevelQuantity: number,
-  coursesCompleted: number
-}
+  colorLevel?: string;
+  level: string;
+  courseLevelQuantity: number;
+  coursesCompleted: number;
+};
 
 export interface StudentProgress {
-   totalCourses: number,
-   totalCoursesTaken: number,
-   coursesTakenByLevel: CoursesTakenByLevel []
+  totalCourses: number;
+  totalCoursesTaken: number;
+  coursesTakenByLevel: CoursesTakenByLevel[];
 }
 
 export interface PendingCourses {
-   id:number,
-   name: string,
-   description: string,
-   level: string,
+  id: number;
+  name: string;
+  description: string;
+  level: string;
 }
-export interface CompletedCourse{
-  id:number,
-  name:string,
-  description:string,
-  level:string,
-  completeAt: null | Date
+export interface CompletedCourse {
+  id: number;
+  name: string;
+  description: string;
+  level: string;
+  completeAt: null | Date;
 }
-export interface CompletedCourseActionState{
-  // id:number,
-  // name:string,
-  // description:string,
-  // level:string,
-  // completeAt: null | Date
-    success:boolean,
-    message:string,
+export interface CompletedCourseActionState {
+  success: boolean;
+  message: string;
 }
 
 export interface AddPendingCourses {
-     id:number,
-     name:string,
-     description:string,
-     level:string,
-     complete:boolean
-     date?:Date | null
+  id: number;
+  name: string;
+  description: string;
+  level: string;
+  complete: boolean;
+  date?: Date | null;
 }
-export interface CourseIds{
+export interface CourseIds {
   course_id: number;
 }
 
-export interface EventsSummary{
-    total:number,
-    upcoming:number,
-    completed:number
+export interface EventsSummary {
+  total: number;
+  upcoming: number;
+  completed: number;
 }
 
 export interface Events {
-        id: number;
-        name: string;
-        course_id: number;
-        created_at: Date;
-        status: string;
-        price: number;
-        start_date: Date;
-        end_date: Date;
-        location: string;
+  id: number;
+  name: string;
+  course_id: number;
+  created_at: Date;
+  status: string;
+  price: number;
+  start_date: Date;
+  end_date: Date;
+  location: string;
 }
-export interface EventItem{
-        id: number;
-        name: string;
-        course_id: number;
-        created_at: Date;
-        status: string;
-        price: number;
-        start_date: Date;
-        end_date: Date;
-        course:{
-          level:string,
-          name:string
-        },
-         enrollmentCount: number,
-         error?:string | boolean     
-}
-
-export interface Courses{
-  id: number,
-  name: string,
-  description: string,
-  level: string,
-  image_url?:string
+export interface EventItem {
+  id: number;
+  name: string;
+  course_id: number;
+  created_at: Date;
+  status: string;
+  price: number;
+  start_date: Date;
+  end_date: Date;
+  course: {
+    level: string;
+    name: string;
+  };
+  enrollmentCount: number;
+  error?: string | boolean;
 }
 
-export interface CoursesByLevel{
-  level: string,
-  courseLevelQuantity:number
+export interface Courses {
+  id: number;
+  name: string;
+  description: string;
+  level: string;
+  image_url?: string;
+}
+
+export interface CoursesByLevel {
+  level: string;
+  courseLevelQuantity: number;
 }
 
 export interface CoursePieChartData {
-  browser: string,
-  visitors: number,
-  fill: string
+  browser: string;
+  visitors: number;
+  fill: string;
 }
 
 export interface AddEventFormState {
-    name?: string,
-    course?: string,
-    price?: number,
-    status?: string,
-    date?: Date,
-    success:boolean,
-    message:string,
-    errors?: Record<string, string>;
+  name?: string;
+  course?: string;
+  price?: number;
+  status?: string;
+  date?: Date;
+  success: boolean;
+  message: string;
+  errors?: Record<string, string>;
 }
 
 export interface AddCourseFormState {
-    name?: string,
-    description?: string,
-    level?: string,
-    success:boolean,
-    message:string,
-    errors?: Record<string, string>;
+  name?: string;
+  description?: string;
+  level?: string;
+  success: boolean;
+  message: string;
+  errors?: Record<string, string>;
 }
-
-
 
 export interface UpdateEventFormState {
-    id?:string,
-    name?: string,
-    course?: string,
-    price?: number,
-    status?: string,
-    date?: Date,
-    success:boolean,
-    message:string,
-    errors?: Record<string, string>;
+  id?: string;
+  name?: string;
+  course?: string;
+  price?: number;
+  status?: string;
+  date?: Date;
+  success: boolean;
+  message: string;
+  errors?: Record<string, string>;
 }
 
-export interface EnrollmentEvent{
-  enrollmentId:string,
-  studentId: number,
-  fullName: string,
-  phone: string,
-  email: string,
-  enrollmentDate: Date,
-  courseTitle: string,
-  status: string,
-  success?: boolean,
-  message?: string,
+export interface EnrollmentEvent {
+  enrollmentId: string;
+  studentId: number;
+  fullName: string;
+  phone: string;
+  email: string;
+  enrollmentDate: Date;
+  courseTitle: string;
+  status: string;
+  success?: boolean;
+  message?: string;
 }
 
+export interface DashboardEventSummary {
+  upcomingEvents: {
+    events: Events[];
+    amount: number;
+    nextEventInDays: number;
+  };
+  activeEvents: {
+    events: Events[];
+    amount: number;
+  };
+  pendingCompletionEvents: {
+    events: Events[];
+    amount: number;
+  };
+}
 
-export interface DashboardEventSummary{
-      upcomingEvents:{
-           events:Events[],
-           amount:number,
-           nextEventInDays:number
-         },
-         activeEvents:{
-          events:Events[],
-          amount:number
-         },
-         pendingCompletionEvents:{
-          events:Events[],
-          amount:number
-         }
-       }
+export interface StudentNoCourse {
+  id: number;
+  first_name: string;
+  last_name: string;
+}
 
-       export interface StudentNoCourse{
-         id: number, 
-         first_name: string, 
-         last_name: string
-       }
+export interface EnrollmentStudent {
+  enrolled_at: Date;
+  event_id: number;
+  id: string;
+  status: string;
+  student_id: number;
+}
 
-       export interface EnrollmentStudent{
-        enrolled_at: Date,
-        event_id:number,
-        id:string,
-        status:string,
-        student_id:number
-      }
+export interface DashboardStudentRisk {
+  studentsNoCourse: StudentNoCourse[];
+  studentsPastEnrollment: {
+    id: number;
+    first_name: string;
+    last_name: string;
+    Enrollments: EnrollmentStudent[];
+  }[];
+}
 
-  export interface DashboardStudentRisk{
-    studentsNoCourse: StudentNoCourse[],
-    studentsPastEnrollment: {
-      id: number,
-      first_name: string,
-      last_name: string,
-      Enrollments: EnrollmentStudent[]
-    }[]
-  }
-
-
-export interface CourseParticipant{
-  id: number,
-  first_name: string,
-  last_name: string,
-  email: string,
-  phone: string,
-  completed_at?: string | null
+export interface CourseParticipant {
+  id: number;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone: string;
+  completed_at?: string | null;
 }
 
 // "completed" rows come back as StudentCourse records with the student nested;
 // "not-completed" rows come back as flat students.
 export type CourseParticipantRow =
-  | { id: number, completedAt: string | null, student: Omit<CourseParticipant, 'id' | 'completed_at'> & { id: number } }
-  | Omit<CourseParticipant, 'completed_at'>
+  | {
+      id: number;
+      completedAt: string | null;
+      student: Omit<CourseParticipant, "id" | "completed_at"> & { id: number };
+    }
+  | Omit<CourseParticipant, "completed_at">;
 
-export interface CourseParticipantsResponse{
-  students: CourseParticipantRow[],
+export interface CourseParticipantsResponse {
+  students: CourseParticipantRow[];
   pagination: {
-    page: number,
-    limit: number,
-    total: number,
-    totalPages: number
-  }
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
 }

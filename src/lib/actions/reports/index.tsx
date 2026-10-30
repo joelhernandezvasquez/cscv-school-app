@@ -14,6 +14,11 @@ export const getCompletionCourseList = async (query: string) => {
         },
       },
     );
+    if (!listRequest.ok) {
+      throw new Error(
+        `Course completion request failed (${listRequest.status}).`,
+      );
+    }
     return await listRequest.json();
   } catch (error) {
     if (error instanceof Error) {

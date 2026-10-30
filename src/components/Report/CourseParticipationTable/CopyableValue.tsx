@@ -15,11 +15,11 @@ const CopyableValue = ({ value, className }: Props) => {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(value);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1100);
     } catch (error) {
       console.log(error);
     }
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1100);
   };
 
   return (
@@ -37,7 +37,10 @@ const CopyableValue = ({ value, className }: Props) => {
       ) : (
         <>
           {value}
-          <MdContentCopy size={13} className="opacity-0 transition-opacity group-hover:opacity-70" />
+          <MdContentCopy
+            size={13}
+            className="opacity-0 transition-opacity group-hover:opacity-70"
+          />
         </>
       )}
     </button>

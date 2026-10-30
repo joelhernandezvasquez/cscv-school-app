@@ -19,7 +19,7 @@ npm run test:run # vitest, single run
 
 ## Testing
 
-Unit tests use Vitest + React Testing Library (jsdom), configured in `vitest.config.mts` and `vitest.setup.ts`. Test files are co-located with the source (`Foo.tsx` → `Foo.test.tsx`). Mock server actions, `next/navigation` and `fetch`; tests never hit the backend. The `unit-tester` agent in `.claude/agents/` writes tests for a branch diff or named files.
+Unit tests use Vitest + React Testing Library (jsdom), configured in `vitest.config.mts` and `vitest.setup.ts`. Test files are co-located with the source (`Foo.tsx` → `Foo.test.tsx`). Mock server actions, `next/navigation` and `fetch`; tests never hit the backend. The `unit-tester` agent in `.claude/agents/` writes tests for a branch diff or named files. The `code-reviewer` agent reviews a branch diff or named files (reports go to the git-ignored `code-reviews/`) and refactors only the findings the user approves.
 
 ## Environment
 

@@ -1,4 +1,4 @@
-'use server';
+"use server";
 
 import { validateStudentForm } from "./index";
 import { AddStudentFormState } from "@/types";
@@ -6,57 +6,61 @@ import { getValidatedToken } from "..";
 
 export const addStudent = async (
   previousState: AddStudentFormState,
-  formData: FormData
+  formData: FormData,
 ): Promise<AddStudentFormState> => {
+  const firstName = formData.get("firstName");
+  const lastName = formData.get("lastName");
+  const email = formData.get("email");
+  const phoneNumber = formData.get("phoneNumber");
+  const gender = formData.get("genderRadio");
+  const street = formData.get("street");
+  const city = formData.get("city");
+  const state = formData.get("state");
+  const zipcode = formData.get("zipcode");
+  const parroquia = formData.get("parroquia");
+  const medicalCondition = formData.get("medicalCondition");
 
-  const firstName = formData.get('firstName');
-  const lastName = formData.get('lastName');
-  const email = formData.get('email');
-  const phoneNumber = formData.get('phoneNumber');
-  const gender = formData.get('genderRadio');
-  const street = formData.get('street');
-  const city = formData.get('city');
-  const state = formData.get('state');
-  const zipcode = formData.get('zipcode');
-  const parroquia = formData.get('parroquia');
-  const medicalCondition = formData.get('medicalCondition');
-  
   const formErrors = validateStudentForm(formData);
 
   if (Object.keys(formErrors).length > 0) {
     return {
       success: false,
-      message: 'Validation Failed',
-      errors: formErrors
+      message: "Validation Failed",
+      errors: formErrors,
     };
   }
-  
+
   try {
-   const token = await getValidatedToken();
-       
-    const request = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/student/students`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
+    const token = await getValidatedToken();
+
+    const request = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/student/students`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          first_name: firstName,
+          last_name: lastName,
+          email: email || null,
+          phone: phoneNumber,
+          gender: gender || null,
+          direccion: [street, city, state, zipcode].some(Boolean)
+            ? `${street ?? ""},${city ?? ""},${state ?? ""},${zipcode ?? ""}`
+            : "",
+          parroquia: parroquia || "",
+          asuntos_medicos: medicalCondition || "Ninguno",
+        }),
       },
-      body: JSON.stringify({
-        first_name: firstName,
-        last_name: lastName,
-        email: email || null ,
-        phone: phoneNumber,
-        gender: gender || null ,
-        direccion: `${street},${city},${state},${zipcode}` || '',
-        parroquia: parroquia || '',
-        asuntos_medicos: medicalCondition || "Ninguno"
-      })
-    });
+    );
 
     if (!request.ok) {
-      console.log(request)
+      console.log(request);
       return {
         success: false,
-        message: `Server error: ${request.statusText}`
+        message: `Server error: ${request.statusText}`,
       };
     }
 
@@ -64,20 +68,19 @@ export const addStudent = async (
     if (response) {
       return {
         success: true,
-        message: 'Student has been added.'
+        message: "Student has been added.",
       };
     }
-    
+
     return {
       success: false,
-      message: 'No data returned from server'
+      message: "No data returned from server",
     };
-      
   } catch (error) {
     console.error(error);
     return {
       success: false,
-      message: 'An unexpected error occurred'
+      message: "An unexpected error occurred",
     };
   }
 };
