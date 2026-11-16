@@ -35,6 +35,16 @@ export const pathId = (value: unknown): string => {
   return id;
 };
 
+// Same protection as pathId for ids the backend issues as opaque strings (e.g. enrollment ids,
+// which are UUIDs). Letters, digits, "-" and "_" only, so it cannot add path segments or query params.
+export const pathSegment = (value: unknown): string => {
+  const id = String(value ?? "").trim();
+  if (!/^[A-Za-z0-9_-]+$/.test(id)) {
+    throw new Error("Invalid id");
+  }
+  return id;
+};
+
 export const getValidatedToken = async () => {
   const data = await getSessionData();
   let token = data?.token;
