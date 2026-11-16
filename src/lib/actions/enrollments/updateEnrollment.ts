@@ -1,7 +1,7 @@
 "use server";
 
 import { EnrollmentEvent } from "@/types";
-import { getValidatedToken, pathId } from "..";
+import { getValidatedToken, pathSegment } from "..";
 
 export const updateEnrollment = async (
   enrollmentId: string,
@@ -11,7 +11,7 @@ export const updateEnrollment = async (
     const token = await getValidatedToken();
 
     const enrollmentRequest = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/enrollments/${pathId(enrollmentId)}`,
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/enrollments/${pathSegment(enrollmentId)}`,
       {
         method: "PUT",
         headers: {
